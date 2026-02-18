@@ -1,4 +1,4 @@
-# USER
+## USER
 | Attribute | Type   | Key | Description                    |
 | --------- | ------ | --- | ------------------------------ |
 | user_id   | int    | PK  | Unique identifier for the user |
@@ -6,7 +6,7 @@
 | email     | string |     | Email address of the user      |
 | address   | string |     | Physical address of the user   |
 
-PRODUCT
+## PRODUCT
 | Attribute   | Type   | Key | Description                       |
 | ----------- | ------ | --- | --------------------------------- |
 | product_id  | int    | PK  | Unique identifier for the product |
@@ -15,7 +15,7 @@ PRODUCT
 | price       | float  |     | Price of the product              |
 | stock       | int    |     | Quantity available in inventory   |
 
-ORDER
+## ORDER
 | Attribute  | Type  | Key | Description                     |
 | ---------- | ----- | --- | ------------------------------- |
 | order_id   | int   | PK  | Unique identifier for the order |
@@ -23,7 +23,7 @@ ORDER
 | order_date | date  |     | Date when the order was placed  |
 | total      | float |     | Total amount of the order       |
 
-ORDER_DETAIL
+## ORDER_DETAIL
 | Attribute  | Type  | Key | Description                             |
 | ---------- | ----- | --- | --------------------------------------- |
 | detail_id  | int   | PK  | Unique identifier for the order detail  |
@@ -32,7 +32,7 @@ ORDER_DETAIL
 | quantity   | int   |     | Quantity of the product in this detail  |
 | unit_price | float |     | Price per unit at the time of the order |
 
-Tables
+## Tables
 | Attribute | Type | Key | Description                     |
 | --------- | ---- | --- | ------------------------------- |
 | tables_id | int  | PK  | Unique identifier for the table |
