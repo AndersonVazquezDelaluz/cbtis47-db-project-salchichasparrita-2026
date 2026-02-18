@@ -31,3 +31,9 @@ ORDER_DETAIL
 | product_id | int   | FK  | References PRODUCT                      |
 | quantity   | int   |     | Quantity of the product in this detail  |
 | unit_price | float |     | Price per unit at the time of the order |
+
+Tables
+| Attribute | Type | Key | Description                     |
+| --------- | ---- | --- | ------------------------------- |
+| tables_id | int  | PK  | Unique identifier for the table |
+| detail_id | int  | FK  | References ORDER_DETAIL         |
