@@ -1,4 +1,4 @@
- #USER
+# USER
 | Attribute | Type   | Key | Description                    |
 | --------- | ------ | --- | ------------------------------ |
 | user_id   | int    | PK  | Unique identifier for the user |
