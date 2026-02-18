@@ -1,1 +1,36 @@
+erDiagram
+    USER ||--o{ ORDER : "places"
+    ORDER ||--|{ ORDER_DETAIL : "contains"
+    PRODUCT ||--o{ ORDER_DETAIL : "included_in"
+    TABLES ||--o{ ORDER_DETAIL : "contains"
 
+    USER {
+        int user_id PK
+        string name
+        string email
+        string address
+    }
+    ORDER {
+        int order_id PK
+        date order_date
+        int user_id FK
+        float total
+    }
+    ORDER_DETAIL {
+        int detail_id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        float unit_price
+    }
+    PRODUCT {
+        int product_id PK
+        string name
+        string description
+        float price
+        int stock
+    }
+    TABLES{
+        int tables_id PK
+        int detail_id FK
+    }
