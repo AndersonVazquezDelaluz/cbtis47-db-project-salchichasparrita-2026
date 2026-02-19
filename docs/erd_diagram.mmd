@@ -2,7 +2,7 @@ erDiagram
     USER ||--o{ ORDER : "places"
     ORDER ||--|{ ORDER_DETAIL : "contains"
     PRODUCT ||--o{ ORDER_DETAIL : "included_in"
-    ORDER_DETAUL ||--o{ TABLES : "contains"
+    ORDER_DETAIL ||--o{ TABLES : "contains"
 
     USER {
         int user_id PK
