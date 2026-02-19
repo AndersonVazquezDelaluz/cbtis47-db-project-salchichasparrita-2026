@@ -1,5 +1,5 @@
 erDiagram
-    USER ||--o{ ORDER : "places"
+    USER ||--|{ ORDER : "places"
     ORDER ||--|{ ORDER_DETAIL : "contains"
     PRODUCT ||--o{ ORDER_DETAIL : "included_in"
     ORDER_DETAIL ||--o{ TABLES : "contains"
