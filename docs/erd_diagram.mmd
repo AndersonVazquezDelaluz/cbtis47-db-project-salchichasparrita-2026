@@ -1,9 +1,11 @@
 erDiagram
     USER ||--o{ ORDER : places
     TABLE ||--o{ ORDER : assigned_to
+    PRODUCT ||--o{ INVENTORY_MOVEMENTS:tracks
     ORDER ||--|{ ORDER_DETAIL : contains
     PRODUCT ||--o{ ORDER_DETAIL : included_in
     USER ||--o{ ADDRESS : has
+    
 
     USER {
         int user_id PK
@@ -31,7 +33,7 @@ erDiagram
         date order_date
         int user_id FK
         int table_id FK
-        string status
+        enum status
     }
 
     ORDER_DETAIL {
@@ -47,5 +49,11 @@ erDiagram
         string name
         string description
         decimal price
-        int stock
+    }
+    INVENTORY_MOVEMENTS{
+        int inventory_id PK
+        int product_id FK
+        date movement_date
+        enum movement_type
+        int quantity
     }
