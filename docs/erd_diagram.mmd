@@ -1,38 +1,51 @@
 erDiagram
-    USER ||--o{ ORDER : "places"
-    ORDER ||--|{ ORDER_DETAIL : "contains"
-    PRODUCT ||--o{ ORDER_DETAIL : "included_in"
-    TABLES ||--o{ ORDER : "assigned_to"
+    USER ||--o{ ORDER : places
+    TABLE ||--o{ ORDER : assigned_to
+    ORDER ||--|{ ORDER_DETAIL : contains
+    PRODUCT ||--o{ ORDER_DETAIL : included_in
+    USER ||--o{ ADDRESS : has
 
     USER {
         int user_id PK
         string name
         string email
-        string address
     }
+
+    ADDRESS {
+        int address_id PK
+        int user_id FK
+        string street
+        string city
+        string state
+        string postal_code
+    }
+
+    TABLE {
+        int table_id PK
+        int table_number
+        int capacity
+    }
+
     ORDER {
-    int order_id PK
-    date order_date
-    int user_id FK
-    int table_id FK
-    float total
+        int order_id PK
+        date order_date
+        int user_id FK
+        int table_id FK
+        string status
     }
+
     ORDER_DETAIL {
         int detail_id PK
         int order_id FK
         int product_id FK
         int quantity
-        float unit_price
+        decimal unit_price
     }
+
     PRODUCT {
         int product_id PK
         string name
         string description
-        float price
+        decimal price
         int stock
-    }
-    TABLES {
-    int table_id PK
-    int number
-    int capacity
     }
