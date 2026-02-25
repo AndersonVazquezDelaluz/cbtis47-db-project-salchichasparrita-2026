@@ -1,8 +1,8 @@
 erDiagram
-    USER ||--|{ ORDER : "places"
+    USER ||--o{ ORDER : "places"
     ORDER ||--|{ ORDER_DETAIL : "contains"
     PRODUCT ||--o{ ORDER_DETAIL : "included_in"
-    ORDER ||--|| TABLES : "contains"
+    TABLES ||--o{ ORDER : "assigned_to"
 
     USER {
         int user_id PK
@@ -11,10 +11,11 @@ erDiagram
         string address
     }
     ORDER {
-        int order_id PK
-        date order_date
-        int user_id FK
-        float total
+    int order_id PK
+    date order_date
+    int user_id FK
+    int table_id FK
+    float total
     }
     ORDER_DETAIL {
         int detail_id PK
@@ -29,8 +30,8 @@ erDiagram
         string description
         float price
         int stock
-    }
-    TABLES{
-        int tables_id PK
-        int detail_id FK
+    TABLES {
+    int table_id PK
+    int number
+    int capacity
     }
