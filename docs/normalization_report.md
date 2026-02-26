@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this report, I will explain the normalization process of my ER diagram for a café database system. During my conversation, I analyzed my tables to check if they follow the Third Normal Form (3NF). I made several corrections to improve the structure of the database and remove problems like repeated data and calculated values.
+In this report, I will explain the normalization process of my ER diagram for a café database system. During my conversation, I analyzed my tables to check if they follow the Third Normal Form (3NF). I made several corrections to improve the structure of the database and remove problems like repeated data.
 
 The goal of normalization is to organize the database correctly and avoid update, insert, and delete anomalies.
 
