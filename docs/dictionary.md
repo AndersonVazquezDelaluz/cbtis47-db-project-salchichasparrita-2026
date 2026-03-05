@@ -61,5 +61,5 @@
 | inventory_id  | int  | PK  | Unique identifier for the inventory movement |
 | product_id    | int  | FK  | References PRODUCT(product_id)               |
 | movement_date | date |     | Date of the inventory movement               |
-| movement_type | enum |     | Type of movement (IN, OUT)                   |
+| movement_type | enum |     | Type of movement (SALE, RESTOCK)             |
 | quantity      | int  |     | Quantity added or removed from inventory     |
