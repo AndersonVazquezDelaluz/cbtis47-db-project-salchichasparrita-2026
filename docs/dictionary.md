@@ -4,6 +4,7 @@
 | user_id   | int          | PK  | Unique identifier for the user     |
 | name      | varchar(100) |     | Full name of the user              |
 | email     | varchar(100) |     | Email address of the user (unique) |
+| password_hash| char(60) |     | Securely hashed password (optimized for BCrypt/Argon2). |
 
 
 ## ADDRESS
