@@ -3,7 +3,7 @@ erDiagram
     TABLE ||--o{ ORDER : assigned_to
     PRODUCT ||--o{ INVENTORY_MOVEMENTS:tracks
     ORDER ||--|{ ORDER_DETAIL : contains
-    PRODUCT ||--o{ ORDER_DETAIL : included_in
+    PRODUCT }|..|{  ORDER_DETAIL : included_in
     USER ||--o{ ADDRESS : has
     
 
