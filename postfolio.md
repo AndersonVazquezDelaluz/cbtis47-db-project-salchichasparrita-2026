@@ -1,7 +1,7 @@
 #  Reporte Semanal - Proyecto Base de Datos
 
 ##  Proyecto
-Creación de una base de datos para la gestión de un restaurante utilizando MySQL mediante XAMPP.
+Creación y funcionamiento de una base de datos para la gestión de un restaurante utilizando MySQL mediante XAMPP.
 
 ---
 
