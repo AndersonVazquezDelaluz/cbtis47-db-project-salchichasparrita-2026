@@ -29,3 +29,11 @@ VALUES
 (3, 4),
 (4, 6),
 (5, 2);
+
+INSERT INTO `order` (user_id, table_id, order_date, status)
+VALUES
+(1, 1, CURRENT_DATE, 'pending'),
+(2, 2, CURRENT_DATE, 'in_progress'),
+(3, 3, CURRENT_DATE, 'delivered'),
+(4, 4, CURRENT_DATE, 'pending'),
+(5, 5, CURRENT_DATE, 'cancelled');
