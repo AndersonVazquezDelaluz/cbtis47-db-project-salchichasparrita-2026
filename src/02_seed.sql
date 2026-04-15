@@ -13,3 +13,11 @@ INSERT INTO `address` (`address_id`, `user_id`, `street`, `city`, `state`, `post
   (NULL, '3', 'Calle 45', 'Cordoba', 'Veracruz', '94680', 'Lazaro Cardenas'), 
   (NULL, '4', 'Priv. Poniente 3', 'Cordoba', 'Veracruz', '94534', 'Los cerezos'), 
   (NULL, '5', 'Calle Juárez 8', 'Córdoba', 'Veracruz', '94520', 'Centro')
+
+INSERT INTO product (name, description, price)
+VALUES 
+('Café Americano', 'Café negro tradicional', 35.00),
+('Latte', 'Café con leche espumada', 45.00),
+('Capuchino', 'Café con leche y espuma', 50.00),
+('Pan dulce', 'Pan recién horneado', 25.00),
+('Chocolate caliente', 'Bebida caliente de cacao con leche', 40.00);
