@@ -37,3 +37,11 @@ VALUES
 (3, 3, CURRENT_DATE, 'delivered'),
 (4, 4, CURRENT_DATE, 'pending'),
 (5, 5, CURRENT_DATE, 'cancelled');
+
+INSERT INTO order_detail (order_id, product_id, quantity, unit_price)
+VALUES
+(1, 1, 2, 35.00),
+(1, 4, 1, 25.00),
+(2, 2, 1, 45.00),
+(3, 3, 2, 50.00),
+(4, 5, 1, 40.00);
