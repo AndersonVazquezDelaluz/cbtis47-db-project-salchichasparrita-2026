@@ -5,7 +5,7 @@ Creación y funcionamiento de una base de datos para la gestión de un restauran
 
 ---
 
-##  Semana 1: Creación de estructuras en MySQL (DDL)
+##  Semana 7: Creación de estructuras en MySQL (DDL)
 
 ###  Objetivo de la semana
 Comprender la sintaxis básica del lenguaje SQL, específicamente las instrucciones de definición de datos (DDL), para crear la estructura inicial de una base de datos en MySQL utilizando XAMPP.
@@ -63,7 +63,7 @@ Se logró comprender la base del lenguaje SQL y construir la estructura inicial 
 
 ---
 
-##  Semana 2: Integridad relacional y restricciones
+##  Semana 8: Integridad relacional y restricciones
 
 ###  Objetivo de la semana
 Implementar relaciones entre tablas mediante llaves foráneas y restricciones para garantizar la integridad de los datos dentro de la base de datos.
