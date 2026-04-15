@@ -21,3 +21,11 @@ VALUES
 ('Capuchino', 'Café con leche y espuma', 50.00),
 ('Pan dulce', 'Pan recién horneado', 25.00),
 ('Chocolate caliente', 'Bebida caliente de cacao con leche', 40.00);
+
+INSERT INTO tables (table_number, capacity)
+VALUES
+(1, 2),
+(2, 4),
+(3, 4),
+(4, 6),
+(5, 2);
