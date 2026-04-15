@@ -45,3 +45,11 @@ VALUES
 (2, 2, 1, 45.00),
 (3, 3, 2, 50.00),
 (4, 5, 1, 40.00);
+
+INSERT INTO inventory_movements (product_id, movement_type, quantity)
+VALUES
+(1, 'RESTOCK', 50),
+(2, 'RESTOCK', 40),
+(3, 'SALE', 10),
+(4, 'SALE', 5),
+(5, 'RESTOCK', 30);
