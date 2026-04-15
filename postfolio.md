@@ -130,3 +130,92 @@ Se logró implementar correctamente la integridad relacional en la base de datos
 - Validaciones de datos
 
 El uso de herramientas como XAMPP y el apoyo de inteligencia artificial facilitaron el aprendizaje y la resolución de problemas durante el desarrollo del proyecto.
+
+## Semana 9: SQL DML – Data Seeding (C.R.U.D - Create)
+
+### Objetivo de la semana
+
+Aplicar la sintaxis de `INSERT INTO` para poblar la base de datos con datos de prueba, utilizando inserciones unitarias y múltiples.
+
+---
+
+### Actividades realizadas
+
+Durante esta semana se trabajó en la inserción de datos iniciales (datos semilla) dentro de la base de datos del sistema de cafetería. Se utilizó la instrucción `INSERT INTO` para poblar las diferentes tablas previamente creadas en semanas anteriores.
+
+Se implementaron inserciones múltiples para optimizar la carga de datos, permitiendo agregar varios registros en una sola instrucción SQL. Esto facilitó la creación de un entorno funcional para pruebas.
+
+---
+
+### Desarrollo
+
+Se insertaron datos en las siguientes tablas:
+
+* `user`: registro de usuarios del sistema
+* `address`: direcciones asociadas a cada usuario
+* `product`: productos del menú de la cafetería
+* `tables`: mesas disponibles en el establecimiento
+* `order`: órdenes realizadas por los clientes
+* `order_detail`: detalle de productos por orden
+* `inventory_movements`: movimientos de inventario
+
+Se respetó el orden de inserción para evitar errores de integridad referencial, comenzando por las tablas principales y finalizando con las dependientes.
+
+---
+
+### Ejemplo aplicado
+
+Se utilizó inserción múltiple para agregar registros de forma eficiente:
+
+```sql
+INSERT INTO product (name, description, price)
+VALUES 
+('Café Americano', 'Café negro tradicional', 35.00),
+('Latte', 'Café con leche espumada', 45.00),
+('Capuchino', 'Café con leche y espuma', 50.00),
+('Pan dulce', 'Pan recién horneado', 25.00),
+('Chocolate caliente', 'Bebida caliente de cacao con leche', 40.00);
+```
+
+---
+
+### Problemas encontrados
+
+* Errores por omitir el uso de `;` entre instrucciones SQL
+* Inconsistencia en nombres de tablas (mayúsculas/minúsculas)
+* Uso incorrecto de valores `AUTO_INCREMENT` en inserciones
+* Posibles errores de claves foráneas al no respetar el orden de inserción
+
+---
+
+### Soluciones implementadas
+
+* Se corrigió la sintaxis agregando `;` en cada instrucción
+* Se estandarizó el uso de nombres en *snake_case*
+* Se eliminaron valores manuales en campos autoincrementales
+* Se organizó el orden de inserción según dependencias de tablas
+
+---
+
+### Resultados obtenidos
+
+Se logró poblar completamente la base de datos con datos coherentes y relacionados, permitiendo validar el correcto funcionamiento de las tablas y sus relaciones.
+
+La base de datos quedó lista para realizar consultas (`SELECT`) en la siguiente etapa del proyecto.
+
+---
+
+### AI Pair Prompt
+
+**Prompt utilizado:**
+
+> "Necesito generar datos de prueba. Dame un ejemplo de cómo insertar 5 filas en una sola instrucción INSERT."
+
+**Aplicación:**
+Se aplicó el concepto de inserción múltiple para poblar las tablas principales del sistema de cafetería, optimizando el proceso de carga de datos.
+
+---
+
+### Conclusión
+
+El uso de `INSERT INTO` con inserciones múltiples permitió poblar eficientemente la base de datos, facilitando la validación del sistema. Esta etapa es fundamental para garantizar que las consultas y operaciones posteriores funcionen correctamente sobre datos reales.
