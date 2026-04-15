@@ -25,17 +25,18 @@ CREATE TABLE `USER` (
 -- ------------------------------------------------------------
 -- 2. ADDRESS
 -- ------------------------------------------------------------
-CREATE TABLE ADDRESS (
+CREATE TABLE address (
   address_id  INT          NOT NULL AUTO_INCREMENT,
   user_id     INT          NOT NULL,
   street      VARCHAR(200) NOT NULL,
+  neighborhood VARCHAR(50) NOT NULL,
   city        VARCHAR(100) NOT NULL,
   state       VARCHAR(100) NOT NULL,
   postal_code VARCHAR(10)  NOT NULL,
 
-  CONSTRAINT pk_address      PRIMARY KEY (address_id),
+  CONSTRAINT pk_address PRIMARY KEY (address_id),
   CONSTRAINT fk_address_user FOREIGN KEY (user_id)
-      REFERENCES `USER` (user_id)
+      REFERENCES user (user_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE,
   CONSTRAINT chk_postal_code CHECK (LENGTH(postal_code) >= 3)
