@@ -5,3 +5,11 @@ VALUES
   ('Jayden Sarmiento', 'ivanspidey11@gmail.com', '$2a$10$FlZcSBjaH7J1hdLXO38mn.Gj66BAkYaZNJA7OZ/thb4I6w6OV4nCC'),
   ('Axel de la Cruz', 'axeld7973@fmail.com', '$2a$10$FlZcSBjaH7J1hdLXO38mn.B85oRuyvU3iQ4QyBCOUOmDmNyHGSTd.'),
   ('Matthew vergasrojas', 'venegasrojasmatthewelias@gmail.com', '$2a$10$FlZcSBjaH7J1hdLXO38mn.zJcmK/9g1q0OvQMUBon3DpaxSf3XW42');
+
+INSERT INTO `address` (`address_id`, `user_id`, `street`, `city`, `state`, `postal_code`, `neighborhood`) 
+  VALUES 
+  (NULL, '1', 'av. girasol', 'Córdoba', 'Veracruz', '94677', 'Vista Hermosa'), 
+  (NULL, '2', 'calle violeta', 'Córdoba', 'Veracruz', '94677', 'Vista Hermosa'), 
+  (NULL, '3', 'Calle 45', 'Cordoba', 'Veracruz', '94680', 'Lazaro Cardenas'), 
+  (NULL, '4', 'Priv. Poniente 3', 'Cordoba', 'Veracruz', '94534', 'Los cerezos'), 
+  (NULL, '5', 'Calle Juárez 8', 'Córdoba', 'Veracruz', '94520', 'Centro')
