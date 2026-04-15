@@ -28,13 +28,14 @@ CREATE TABLE USER (
 -- TABLE: ADDRESS
 -- Stores user addresses
 -- ------------------------------------------------------------
-CREATE TABLE ADDRESS (
-  address_id INT NOT NULL AUTO_INCREMENT,
-  user_id INT NOT NULL,
-  street VARCHAR(200) NOT NULL,
-  city VARCHAR(100) NOT NULL,
-  state VARCHAR(100) NOT NULL,
-  postal_code VARCHAR(10) NOT NULL,
+CREATE TABLE address (
+  address_id  INT          NOT NULL AUTO_INCREMENT,
+  user_id     INT          NOT NULL,
+  street      VARCHAR(100) NOT NULL,
+  neighborhood VARCHAR(50) NOT NULL,
+  city        VARCHAR(100) NOT NULL,
+  state       VARCHAR(100) NOT NULL,
+  postal_code VARCHAR(10)  NOT NULL,
 
   CONSTRAINT pk_address PRIMARY KEY (address_id)
 );
