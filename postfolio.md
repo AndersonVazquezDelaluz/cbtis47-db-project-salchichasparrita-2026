@@ -215,6 +215,85 @@ La base de datos quedó lista para realizar consultas (`SELECT`) en la siguiente
 Se aplicó el concepto de inserción múltiple para poblar las tablas principales del sistema de cafetería, optimizando el proceso de carga de datos.
 
 ---
+## Semana 10: SQL DML – Basic Queries (C.R.U.D - Read)
+
+### Objetivo de la semana
+
+Aplicar consultas básicas en SQL utilizando las instrucciones `SELECT`, `FROM`, `WHERE` y `ORDER BY`, con el fin de obtener, filtrar y ordenar información almacenada en la base de datos.
+
+---
+
+### Actividades realizadas
+
+Durante esta semana se trabajó en la consulta de datos previamente insertados en la base de datos del sistema de cafetería. Se utilizaron instrucciones `SELECT` para recuperar información de las diferentes tablas, permitiendo visualizar y analizar los datos almacenados.
+
+Se aplicaron filtros mediante la cláusula `WHERE`, así como ordenamientos con `ORDER BY`. También se trabajó con operadores lógicos como `AND` y `OR` para realizar consultas más específicas.
+
+---
+
+### Desarrollo
+
+Se realizaron consultas sobre las siguientes tablas:
+
+* `user`: para visualizar información de los usuarios
+* `product`: para consultar el menú de productos
+* `order`: para analizar el estado de las órdenes
+* `order_detail`: para revisar los productos dentro de cada orden
+
+Se implementaron diferentes tipos de consultas, desde consultas simples hasta consultas con múltiples condiciones, con el objetivo de comprender cómo se manipula la información en una base de datos.
+
+---
+
+### Ejemplo aplicado
+
+Ejemplo de consulta utilizando operadores lógicos:
+
+```sql id="qzslzk"
+SELECT *
+FROM `order`
+WHERE status = 'pending' AND table_id = 1;
+```
+
+En este caso se filtran únicamente las órdenes que cumplen ambas condiciones: estar en estado pendiente y pertenecer a una mesa específica.
+
+---
+
+### Problemas encontrados
+
+* Dificultad inicial para entender la diferencia entre los operadores `AND` y `OR`
+* Errores en la sintaxis de las consultas, especialmente en la cláusula `WHERE`
+* Uso incorrecto de nombres de tablas o columnas
+
+---
+
+### Soluciones implementadas
+
+* Se reforzó el uso de operadores lógicos mediante ejemplos prácticos
+* Se revisó la sintaxis correcta de las consultas SQL
+* Se estandarizó el uso de nombres de tablas y columnas
+
+---
+
+### Resultados obtenidos
+
+Se logró consultar correctamente la información almacenada en la base de datos, aplicando filtros y ordenamientos. Esto permitió validar que los datos insertados en la semana anterior fueran correctos y útiles para el análisis.
+
+---
+
+### AI Pair Prompt
+
+**Prompt utilizado:**
+
+> "Quiero filtrar los usuarios activos. Explícame cómo funcionan los operadores lógicos AND y OR en la cláusula WHERE."
+
+**Aplicación:**
+Se aplicaron operadores `AND` y `OR` en consultas SQL para filtrar datos de manera más precisa, permitiendo obtener resultados específicos según múltiples condiciones.
+
+---
+
+### Conclusión
+
+El uso de consultas básicas en SQL permite acceder y manipular la información de la base de datos de forma eficiente. La correcta aplicación de filtros y operadores lógicos es fundamental para obtener resultados precisos y útiles.
 
 ### Conclusión
 
