@@ -5,81 +5,82 @@
 Functional requirements describe **what the system must do**.
 
 ### 1.1 Authentication
-**FR-01.** Register users  
-**FR-02.** Unique email validation  
-**FR-03.** Empty field validation  
-**FR-04.** Supabase Auth login  
-**FR-05.** Redirect to dashboard  
-**FR-06.** Logout  
-**FR-07.** Protected routes  
+**FR-01.** The system must allow administrators to register users with name, email, and password  
+**FR-02.** The system must validate that the email is unique  
+**FR-03.** The system must display validation messages for empty fields  
+**FR-04.** The system must authenticate users using Supabase Auth  
+**FR-05.** The system must redirect users to the dashboard after login  
+**FR-06.** The system must allow logout at any time  
+**FR-07.** Protected routes must require authentication  
 
 ### 1.2 User Management
-**FR-08.** View users  
-**FR-09.** Search users  
+**FR-08.** The system must allow administrators to view all users  
+**FR-09.** The system must allow searching users by name  
 
 ### 1.3 Product & Inventory
-**FR-10.** CRUD products  
-**FR-11.** Inventory movements  
-**FR-12.** Out of stock indicator  
-**FR-13.** Prevent sales without stock  
+**FR-10.** The system must allow creating, updating, and deleting products  
+**FR-11.** The system must manage inventory movements (SALE / RESTOCK)  
+**FR-12.** Products with zero stock must be marked as "Out of stock"  
+**FR-13.** The system must prevent adding products to orders if stock is insufficient  
 
 ### 1.4 Tables
-**FR-14.** Manage tables  
+**FR-14.** The system must allow managing tables (number and capacity)  
 
 ### 1.5 Orders
-**FR-15.** Create orders  
-**FR-16.** Add products  
-**FR-17.** Order lifecycle  
-**FR-18.** Decrease inventory  
-**FR-19.** Restore inventory  
-**FR-20.** Prevent invalid transitions  
+**FR-15.** The system must allow creating orders linked to a user and table  
+**FR-16.** The system must allow adding products to an order  
+**FR-17.** The system must manage order lifecycle (pending → in_progress → delivered → cancelled)  
+**FR-18.** The system must decrease inventory when products are added  
+**FR-19.** The system must restore inventory when an order is cancelled  
+**FR-20.** The system must prevent invalid order status transitions  
 
 ### 1.6 Reports
-**FR-21.** Daily sales report  
+**FR-21.** The system must generate daily sales reports based on delivered orders  
 
 ---
 
 ## 2. Agile Requirements
-**AG-01.** Sprints  
-**AG-02.** User Stories format  
-**AG-03.** Gherkin criteria  
-**AG-04.** Story Points  
-**AG-05.** GitHub version control  
+**AG-01.** The project must be organized into Sprints  
+**AG-02.** User Stories must follow the format: *As a [user], I want to [action], so that [benefit]*  
+**AG-03.** Each User Story must include Gherkin acceptance criteria  
+**AG-04.** Each User Story must have Story Points  
+**AG-05.** Code must be version-controlled with GitHub  
 
 ---
 
 ## 3. UI/UX
-**UX-01.** Consistency  
-**UX-02.** Responsive  
-**UX-03.** Sidebar  
-**UX-04.** Confirm actions  
-**UX-05.** Out-of-stock indicator  
-**UX-06.** Search  
+**UX-01.** Consistent visual identity  
+**UX-02.** Responsive design  
+**UX-03.** Sidebar navigation  
+**UX-04.** Confirmation for destructive actions  
+**UX-05.** Visual indicator for out-of-stock products  
+**UX-06.** Search bar in tables  
 
 ---
 
 ## 4. Non-Functional
-**NFR-01.** Load < 3s  
-**NFR-02.** Save < 2s  
-**NFR-03.** Secure auth  
-**NFR-04.** Detect offline  
-**NFR-05.** Price history  
-**NFR-06.** HTML/CSS/JS/Supabase only  
-**NFR-07.** Chromium only  
+**NFR-01.** Data must load in under 3 seconds  
+**NFR-02.** Save operations must complete in under 2 seconds  
+**NFR-03.** Passwords must be securely handled by Supabase Auth  
+**NFR-04.** The system must detect internet disconnection  
+**NFR-05.** Product price must be preserved at order time  
+**NFR-06.** The system must use only HTML, CSS, JS, and Supabase  
+**NFR-07.** The system must run on Chromium browsers  
 
 ---
 
 ## 5. Product Backlog
 
 ### 🎯 Goal
-Centralize cafeteria operations.
+Centralize cafeteria operations and reduce manual errors.
 
 ### 📦 Epics
+
 | ID | Epic | Priority |
 |---|---|---|
-| EP-01 | Auth | High |
-| EP-02 | Users | High |
-| EP-03 | Inventory | High |
+| EP-01 | Authentication | High |
+| EP-02 | User Management | High |
+| EP-03 | Products & Inventory | High |
 | EP-04 | Tables | Medium |
 | EP-05 | Orders | High |
 | EP-06 | Reports | Medium |
@@ -90,48 +91,87 @@ Centralize cafeteria operations.
 
 ```gherkin
 Feature: Authentication
-Scenario: Register
-  Given valid data
-  When submitted
-  Then user created
 
-Scenario: Login
-  Given correct credentials
-  Then access granted
+Scenario: Successful registration
+  Given the admin is on the registration form
+  When valid user data is submitted
+  Then the system creates a new user account
+
+Scenario: Registration fails due to duplicate email
+  Given an existing email in the system
+  When the admin submits the form
+  Then the system displays an error message
+
+Scenario: Successful login
+  Given a registered user
+  When correct credentials are entered
+  Then access is granted and redirected to dashboard
 
 Scenario: Logout
-  Then session ends
+  Given an active session
+  When the user logs out
+  Then the session is terminated
 
-Feature: Users
-Scenario: View
-  Then show users
 
-Scenario: Search
-  Then filter users
+Feature: User Management
+
+Scenario: View users
+  When the admin accesses user list
+  Then all users are displayed
+
+Scenario: Search users
+  Given a search input
+  When typing a name
+  Then filtered results are shown
+
 
 Feature: Inventory
-Scenario: Restock
-  Then increase stock
 
-Scenario: No stock
-  Then block sale
+Scenario: Restock product
+  Given a product exists
+  When restock is registered
+  Then inventory increases
+
+Scenario: Prevent sale without stock
+  Given a product with zero stock
+  When attempting to add to order
+  Then the system blocks the action
+
 
 Feature: Orders
-Scenario: Create
-  Then pending
 
-Scenario: Cancel
-  Then restore stock
+Scenario: Create order
+  Given a user and table selected
+  When order is created
+  Then status is set to pending
+
+Scenario: Add products to order
+  Given available stock
+  When products are added
+  Then inventory decreases
+
+Scenario: Cancel order
+  Given an existing order
+  When it is cancelled
+  Then inventory is restored
+
+Scenario: Invalid status transition
+  Given an order delivered
+  When attempting to revert status
+  Then the system denies the action
+
 
 Feature: Reports
-Scenario: Daily sales
-  Then sum delivered
-```
 
----
+Scenario: Generate daily sales report
+  Given delivered orders exist
+  When report is generated
+  Then total sales are calculated
 
+  ---
+ 
 ## 7. Data Structure
-
+ 
 ```mermaid
 erDiagram
     USER ||--o{ ORDER : places
@@ -139,44 +179,44 @@ erDiagram
     ORDER ||--|{ ORDER_DETAIL : contains
     PRODUCT ||--o{ ORDER_DETAIL : included
     PRODUCT ||--o{ INVENTORY : tracked
-
+ 
     USER {
         int id_user PK
         varchar name
         varchar email
     }
-
+ 
     PRODUCT {
         int id_product PK
         varchar name
         decimal price
     }
-
+ 
     ORDER {
         int id_order PK
         int id_user FK
         int id_table FK
         enum status
     }
-
+ 
     ORDER_DETAIL {
         int id_detail PK
         int id_order FK
         int id_product FK
         int quantity
     }
-
+ 
     INVENTORY {
         int id_movement PK
         int id_product FK
         int quantity
     }
 ```
-
+ 
 ---
-
+ 
 ## 8. Development Team
-
+ 
 | Name             | Role    |
 | ---------------- | ------- |
 | Anderson Vazquez | Analyst |
@@ -184,28 +224,25 @@ erDiagram
 | Matthew Venegas  | DBA     |
 | Axel de la Cruz  | Query   |
 | Anuar Contreras  | Tester  |
-
+ 
 ---
-
+ 
 ## 9. Scope
-
+ 
 ### In
 - Auth
 - Orders
 - Inventory
 - Reports
-
 ### Out
 - Mobile app
 - Payments
-
 ---
-
+ 
 ## 10. Next Steps
 - Improve validation
 - Handle concurrency
 - Add edge cases
-
 ---
-
+ 
 **Chicaffe — CBTis 47 · 2026**
