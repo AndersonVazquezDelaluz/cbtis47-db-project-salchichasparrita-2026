@@ -179,38 +179,6 @@ erDiagram
     ORDER ||--|{ ORDER_DETAIL : contains
     PRODUCT ||--o{ ORDER_DETAIL : included
     PRODUCT ||--o{ INVENTORY : tracked
- 
-    USER {
-        int id_user PK
-        varchar name
-        varchar email
-    }
- 
-    PRODUCT {
-        int id_product PK
-        varchar name
-        decimal price
-    }
- 
-    ORDER {
-        int id_order PK
-        int id_user FK
-        int id_table FK
-        enum status
-    }
- 
-    ORDER_DETAIL {
-        int id_detail PK
-        int id_order FK
-        int id_product FK
-        int quantity
-    }
- 
-    INVENTORY {
-        int id_movement PK
-        int id_product FK
-        int quantity
-    }
 ```
  
 ---
