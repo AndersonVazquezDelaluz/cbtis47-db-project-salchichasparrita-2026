@@ -1,164 +1,189 @@
-# Technical Summary — Chicaffe
+# Chicaffe - Sistema de Gestión para Cafetería
 
-## 1. Functional Requirements (Agile & UI/UX)
-* **FR-01.** The system must allow new users to register by providing their full name, email address, and password.
-* **FR-02.** The system must validate that the email entered during registration is not already associated with an existing account.
-* **FR-03.** The system must display a validation message for each required field left empty.
-* **FR-04.** The system must authenticate users through Supabase Auth using email and password.
-* **FR-05.** The system must redirect the user to the admin dashboard after a successful login.
-* **FR-06.** The system must allow users to close their active session at any time.
-* **FR-07.** After logout, the system must prevent access to protected pages without re-authentication.
-* **FR-08.** The system must allow administrators to manage users, tables, products, and addresses.
-* **FR-09.** The system must manage the order lifecycle (pending → in_progress → delivered → cancelled).
-* **FR-10.** The system must automatically decrease product inventory when items are added to an order and restore it if an order is cancelled.
-* **FR-11.** **(New)** The system must allow searching for users and products by name via a global search bar.
-* **FR-12.** **(New)** The system must generate a daily sales report for administrative tracking.
+Sistema web para la administración completa de una cafetería, desarrollado como proyecto escolar para **CBTis 47**.
+
+Permite gestionar usuarios, productos, mesas, inventario, pedidos y generar reportes de ventas utilizando **Supabase** como backend.
+
+## Tecnologías Utilizadas
+
+- **Frontend:** HTML5, CSS3, JavaScript (Vanilla)
+- **Backend y Base de Datos:** Supabase (Authentication + PostgreSQL)
+- **Control de versiones:** Git + GitHub
 
 ---
 
-## 2. Agile Requirements
-* **AG-01.** The project must be organized into Sprints of fixed duration with defined goals.
-* **AG-02.** Every User Story must follow the format: As a [user type], I want to [action], so that [benefit].
-* **AG-03.** Every User Story must have acceptance criteria written in Gherkin format (Given / When / Then).
-* **AG-04.** Every User Story must have an estimated Story Point value assigned.
-* **AG-05.** All source code must be version-controlled with Git and hosted on GitHub.
+## 1. Functional Requirements
+
+- **FR-01.** Registro de nuevos usuarios (nombre completo, email y contraseña)
+- **FR-02.** Validación de email único durante el registro
+- **FR-03.** Mensajes de validación por campos vacíos
+- **FR-04.** Autenticación con Supabase Auth (email y contraseña)
+- **FR-05.** Redirección al dashboard administrativo tras login exitoso
+- **FR-06.** Cierre de sesión (logout)
+- **FR-07.** Protección de rutas (acceso solo con autenticación)
+- **FR-08.** Gestión de usuarios, mesas, productos y direcciones por parte del administrador
+- **FR-09.** Gestión del ciclo de vida de los pedidos (pending → in_progress → delivered → cancelled)
+- **FR-10.** Actualización automática de inventario al crear y cancelar pedidos
+- **FR-11.** Búsqueda global de usuarios y productos
+- **FR-12.** Generación de reporte diario de ventas
+
+---
+
+## 2. Product Backlog - User Stories
+
+### EP-01 · User Authentication
+
+**US-12 — Recuperación de contraseña de administrador**  
+*As an* administrator,  
+*I want to* solicitar un correo de restablecimiento de contraseña,  
+*so that* pueda recuperar el acceso si olvido mis credenciales.
+
+- **Priority:** Low  
+- **Story Points:** 3
+
+---
+
+### EP-02 · User Management
+
+**US-01 — Registrar nuevo usuario**  
+*As an* administrator,  
+*I want to* registrar un nuevo usuario en el sistema,  
+*so that* pueda dar de alta a meseros o personal administrativo.
+
+**US-02 — Visualizar lista de usuarios**  
+*As an* administrator,  
+*I want to* ver todos los usuarios registrados,  
+*so that* pueda gestionar el personal del negocio.
+
+**US-03 — Buscar usuarios por nombre**  
+*As an* administrator,  
+*I want to* buscar usuarios mediante una barra de búsqueda global,  
+*so that* encuentre rápidamente la información que necesito.
+
+---
+
+### EP-03 · Product & Inventory Management
+
+**US-04 — Registrar nuevo producto**  
+*As an* administrator,  
+*I want to* agregar un nuevo producto con nombre, descripción y precio,  
+*so that* esté disponible para la venta.
+
+**US-05 — Actualizar información de producto**  
+*As an* administrator,  
+*I want to* modificar los datos de un producto existente,  
+*so that* mantenga la información actualizada.
+
+**US-06 — Registrar entrada de inventario (Restock)**  
+*As an* administrator,  
+*I want to* registrar una reposición de stock de un producto,  
+*so that* el inventario refleje la cantidad real disponible.
+
+**US-07 — Visualizar productos con stock bajo o agotado**  
+*As an* administrator,  
+*I want to* ver claramente los productos sin stock,  
+*so that* sepa qué productos necesito reabastecer.
+
+---
+
+### EP-04 · Table Management
+
+**US-08 — Gestionar mesas**  
+*As an* administrator,  
+*I want to* registrar y administrar las mesas del local (número y capacidad),  
+*so that* pueda asignarlas correctamente a los pedidos.
+
+---
+
+### EP-05 · Order Management
+
+**US-09 — Crear nuevo pedido**  
+*As an* administrator,  
+*I want to* crear un nuevo pedido seleccionando mesa y cliente,  
+*so that* registrar las ventas del día.
+
+**US-10 — Agregar productos a un pedido**  
+*As an* administrator,  
+*I want to* agregar productos con su cantidad a un pedido en curso,  
+*so that* el cliente pueda solicitar múltiples artículos.
+
+**US-11 — Cambiar estado de un pedido**  
+*As an* administrator,  
+*I want to* actualizar el estado del pedido (pendiente → en progreso → entregado → cancelado),  
+*so that* llevar un control claro del flujo de atención.
+
+**US-13 — Cancelar pedido y restaurar inventario**  
+*As an* administrator,  
+*I want to* cancelar un pedido,  
+*so that* el inventario de los productos se restaure automáticamente.
+
+---
+
+### EP-06 · Reports & Analytics
+
+**US-14 — Ver reporte diario de ventas**  
+*As an* administrator,  
+*I want to* visualizar el total de ventas del día actual,  
+*so that* realizar el corte de caja sin errores de cálculo manual.
+
+- **Priority:** Medium  
+- **Story Points:** 3
 
 ---
 
 ## 3. UI/UX Requirements
-* **UX-01.** The application must have a consistent visual identity across all sections: colors, typography, and logo.
-* **UX-02.** All pages must be responsive and adapt correctly to desktop screen sizes.
-* **UX-03.** Navigation between modules must be accessible from a persistent sidebar menu.
-* **UX-04.** All destructive actions (delete, cancel) must display a confirmation dialog before executing.
-* **UX-05.** Products with zero stock must be visually marked as "Out of stock".
-* **UX-06.** **(New)** The system must provide a search input at the top of data tables for quick filtering.
 
----
+- Interfaz consistente con identidad visual definida (colores, tipografía y logo)
+- Diseño completamente responsive
+- Menú lateral persistente para navegación
+- Confirmación antes de acciones destructivas
+- Productos sin stock marcados como "Agotado"
+- Búsqueda rápida dentro de las tablas
 
 ## 4. Non-Functional Requirements
-* **NFR-01.** All data listings must load in under 3 seconds under normal network conditions.
-* **NFR-02.** Saving a new record must complete and reflect in the UI within 2 seconds.
-* **NFR-03.** User passwords must never be stored in plain text; Supabase Auth must handle credential management.
-* **NFR-04.** The system must be built exclusively with HTML5, CSS3, JavaScript, and Supabase.
-* **NFR-05.** The system is designed and tested for modern Chromium-based browsers.
-* **NFR-06.** **(New)** The system must detect loss of internet connection and notify the user immediately to prevent data loss.
-* **NFR-07.** **(New)** The `unit_price` in `ORDER_DETAIL` must be historically preserved (frozen) at the time of the order.
 
----
+- Tiempo de carga de listados < 3 segundos
+- Guardado de registros < 2 segundos
+- Contraseñas gestionadas de forma segura por Supabase Auth
+- Detección de pérdida de conexión a internet
+- `unit_price` congelado en el momento del pedido (histórico)
+- Compatible con navegadores Chromium modernos
 
-## 5. Data Structure (Entity-Relationship Diagram)
+## 5. Data Structure
 
 ```mermaid
 erDiagram
-
-    %% SECTION 1 — USERS & ADDRESSES
     USER ||--o{ ADDRESS : "has"
     USER ||--o{ ORDER : "places/manages"
+    TABLE ||--o{ ORDER : "assigned to"
+    ORDER ||--|{ ORDER_DETAIL : "contains"
+    PRODUCT ||--o{ ORDER_DETAIL : "included in"
+    PRODUCT ||--o{ INVENTORY : "tracked in"
 
     USER {
         int id_user PK
         varchar full_name
         varchar email
-        varchar password_hash "managed by Supabase Auth"
         timestamp created_at
     }
-
-    ADDRESS {
-        int id_address PK
-        int id_user FK
-        varchar street
-        varchar city
-        varchar state
-        varchar postal_code
-    }
-
-    %% SECTION 2 — TABLES & PRODUCTS
-    TABLE {
-        int id_table PK
-        int table_number "UNIQUE"
-        int capacity
-    }
-
     PRODUCT {
         int id_product PK
         varchar name "UNIQUE"
         text description
         decimal price
     }
-
-    %% SECTION 3 — ORDERS & DETAILS
-    TABLE ||--o{ ORDER : "assigned to"
-    ORDER ||--|{ ORDER_DETAIL : "contains"
-    PRODUCT ||--o{ ORDER_DETAIL : "included in"
-
     ORDER {
         int id_order PK
         int id_user FK
         int id_table FK
         timestamp order_date
         enum status "pending | in_progress | delivered | cancelled"
-        int created_by_admin FK "Audit tracking"
     }
 
-    ORDER_DETAIL {
-        int id_detail PK
-        int id_order FK
-        int id_product FK
-        int quantity
-        decimal unit_price "Price frozen at order time"
-    }
+Equipo de Desarrollo
 
-    %% SECTION 4 — INVENTORY
-    PRODUCT ||--o{ INVENTORY : "tracked in"
-
-    INVENTORY {
-        int id_movement PK
-        int id_product FK
-        enum movement_type "SALE | RESTOCK"
-        int quantity
-        timestamp movement_date
-        text notes
-    }
-```
-
----
-
-## 6. Expanded Product Backlog
-
-### EP-06 · Reports & Analytics (New)
-
-#### US-11 — Daily Sales Report
-*As an* administrator,
-*I want to* view the total sales for the current day,
-*So that* I can perform a cash out without manual calculation errors.
-
-*Priority:* Medium | *Story Points:* 3
-
-> **Acceptance Criteria:**
-> * **Given** the administrator is on the "Reports" section.
-> * **When** they select the current date.
-> * **Then** the system sums the total of all `ORDER_DETAIL` records linked to "delivered" orders for that day.
-
----
-
-### EP-01 · User Authentication (Ampliación)
-
-#### US-12 — Admin Password Recovery
-*As an* administrator,
-*I want to* request a password reset email,
-*So that* I can regain access if I forget my credentials.
-
-*Priority:* Low | *Story Points:* 3
-
----
-
-## 7. Development Team
-* **Anderson Vazquez de la Luz** — Analyst & Designer *(Architect)*
-* **Jayden Ivan Reyes Sarmiento** — SQL Developer *(Builder)*
-* **Matthew Elias Venegas Rojas** — Database Administrator *(Guardian)*
-* **Axel Gabriel de la Cruz Osorio** — Query Master *(Manipulator)*
-* **Anuar David Contreras Rios** — SQL Tester *(QA / Breaker)*
-
----
-
-**Chicaffe — CBTis 47 · April 2026**
+Anderson Vazquez de la Luz — Analyst & Designer (Architect)
+Jayden Ivan Reyes Sarmiento — SQL Developer (Builder)
+Matthew Elias Venegas Rojas — Database Administrator (Guardian)
+Axel Gabriel de la Cruz Osorio — Query Master (Manipulator)
+Anuar David Contreras Rios — SQL Tester (QA / Breaker)
