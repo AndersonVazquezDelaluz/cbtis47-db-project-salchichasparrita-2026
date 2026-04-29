@@ -1,45 +1,47 @@
-# Chicaffe - Sistema de Gestión para Cafetería
+# ☕ Chicaffe — Sistema de Gestión para Cafetería
 
 Sistema web para la administración completa de una cafetería, desarrollado como proyecto escolar para **CBTis 47**.
 
 Permite gestionar usuarios, productos, mesas, inventario, pedidos y generar reportes de ventas utilizando **Supabase** como backend.
 
-## Tecnologías Utilizadas
+---
 
-- **Frontend:** HTML5, CSS3, JavaScript (Vanilla)
-- **Backend y Base de Datos:** Supabase (Authentication + PostgreSQL)
-- **Control de versiones:** Git + GitHub
+## 🚀 Tecnologías Utilizadas
+
+- **Frontend:** HTML5, CSS3, JavaScript (Vanilla)  
+- **Backend y Base de Datos:** Supabase (Authentication + PostgreSQL)  
+- **Control de versiones:** Git + GitHub  
 
 ---
 
-## 1. Functional Requirements
+## 📌 1. Functional Requirements
 
-- **FR-01.** Registro de nuevos usuarios (nombre completo, email y contraseña)
-- **FR-02.** Validación de email único durante el registro
-- **FR-03.** Mensajes de validación por campos vacíos
-- **FR-04.** Autenticación con Supabase Auth (email y contraseña)
-- **FR-05.** Redirección al dashboard administrativo tras login exitoso
-- **FR-06.** Cierre de sesión (logout)
-- **FR-07.** Protección de rutas (acceso solo con autenticación)
-- **FR-08.** Gestión de usuarios, mesas, productos y direcciones por parte del administrador
-- **FR-09.** Gestión del ciclo de vida de los pedidos (pending → in_progress → delivered → cancelled)
-- **FR-10.** Actualización automática de inventario al crear y cancelar pedidos
-- **FR-11.** Búsqueda global de usuarios y productos
-- **FR-12.** Generación de reporte diario de ventas
+- **FR-01.** Registro de nuevos usuarios (nombre completo, email y contraseña)  
+- **FR-02.** Validación de email único durante el registro  
+- **FR-03.** Mensajes de validación por campos vacíos  
+- **FR-04.** Autenticación con Supabase Auth (email y contraseña)  
+- **FR-05.** Redirección al dashboard administrativo tras login exitoso  
+- **FR-06.** Cierre de sesión (logout)  
+- **FR-07.** Protección de rutas (acceso solo con autenticación)  
+- **FR-08.** Gestión de usuarios, mesas, productos y direcciones por parte del administrador  
+- **FR-09.** Gestión del ciclo de vida de los pedidos (pending → in_progress → delivered → cancelled)  
+- **FR-10.** Actualización automática de inventario al crear y cancelar pedidos  
+- **FR-11.** Búsqueda global de usuarios y productos  
+- **FR-12.** Generación de reporte diario de ventas  
 
 ---
 
-## 2. Product Backlog - User Stories
+## 📦 2. Product Backlog — User Stories
 
 ### EP-01 · User Authentication
 
 **US-12 — Recuperación de contraseña de administrador**  
 *As an* administrator,  
 *I want to* solicitar un correo de restablecimiento de contraseña,  
-*so that* pueda recuperar el acceso si olvido mis credenciales.
+*so that* pueda recuperar el acceso si olvido mis credenciales.  
 
 - **Priority:** Low  
-- **Story Points:** 3
+- **Story Points:** 3  
 
 ---
 
@@ -48,17 +50,17 @@ Permite gestionar usuarios, productos, mesas, inventario, pedidos y generar repo
 **US-01 — Registrar nuevo usuario**  
 *As an* administrator,  
 *I want to* registrar un nuevo usuario en el sistema,  
-*so that* pueda dar de alta a meseros o personal administrativo.
+*so that* pueda dar de alta a meseros o personal administrativo.  
 
 **US-02 — Visualizar lista de usuarios**  
 *As an* administrator,  
 *I want to* ver todos los usuarios registrados,  
-*so that* pueda gestionar el personal del negocio.
+*so that* pueda gestionar el personal del negocio.  
 
 **US-03 — Buscar usuarios por nombre**  
 *As an* administrator,  
 *I want to* buscar usuarios mediante una barra de búsqueda global,  
-*so that* encuentre rápidamente la información que necesito.
+*so that* encuentre rápidamente la información que necesito.  
 
 ---
 
@@ -67,22 +69,22 @@ Permite gestionar usuarios, productos, mesas, inventario, pedidos y generar repo
 **US-04 — Registrar nuevo producto**  
 *As an* administrator,  
 *I want to* agregar un nuevo producto con nombre, descripción y precio,  
-*so that* esté disponible para la venta.
+*so that* esté disponible para la venta.  
 
 **US-05 — Actualizar información de producto**  
 *As an* administrator,  
 *I want to* modificar los datos de un producto existente,  
-*so that* mantenga la información actualizada.
+*so that* mantenga la información actualizada.  
 
 **US-06 — Registrar entrada de inventario (Restock)**  
 *As an* administrator,  
 *I want to* registrar una reposición de stock de un producto,  
-*so that* el inventario refleje la cantidad real disponible.
+*so that* el inventario refleje la cantidad real disponible.  
 
 **US-07 — Visualizar productos con stock bajo o agotado**  
 *As an* administrator,  
 *I want to* ver claramente los productos sin stock,  
-*so that* sepa qué productos necesito reabastecer.
+*so that* sepa qué productos necesito reabastecer.  
 
 ---
 
@@ -91,7 +93,7 @@ Permite gestionar usuarios, productos, mesas, inventario, pedidos y generar repo
 **US-08 — Gestionar mesas**  
 *As an* administrator,  
 *I want to* registrar y administrar las mesas del local (número y capacidad),  
-*so that* pueda asignarlas correctamente a los pedidos.
+*so that* pueda asignarlas correctamente a los pedidos.  
 
 ---
 
@@ -100,22 +102,22 @@ Permite gestionar usuarios, productos, mesas, inventario, pedidos y generar repo
 **US-09 — Crear nuevo pedido**  
 *As an* administrator,  
 *I want to* crear un nuevo pedido seleccionando mesa y cliente,  
-*so that* registrar las ventas del día.
+*so that* registrar las ventas del día.  
 
 **US-10 — Agregar productos a un pedido**  
 *As an* administrator,  
 *I want to* agregar productos con su cantidad a un pedido en curso,  
-*so that* el cliente pueda solicitar múltiples artículos.
+*so that* el cliente pueda solicitar múltiples artículos.  
 
 **US-11 — Cambiar estado de un pedido**  
 *As an* administrator,  
 *I want to* actualizar el estado del pedido (pendiente → en progreso → entregado → cancelado),  
-*so that* llevar un control claro del flujo de atención.
+*so that* llevar un control claro del flujo de atención.  
 
 **US-13 — Cancelar pedido y restaurar inventario**  
 *As an* administrator,  
 *I want to* cancelar un pedido,  
-*so that* el inventario de los productos se restaure automáticamente.
+*so that* el inventario de los productos se restaure automáticamente.  
 
 ---
 
@@ -124,41 +126,45 @@ Permite gestionar usuarios, productos, mesas, inventario, pedidos y generar repo
 **US-14 — Ver reporte diario de ventas**  
 *As an* administrator,  
 *I want to* visualizar el total de ventas del día actual,  
-*so that* realizar el corte de caja sin errores de cálculo manual.
+*so that* realizar el corte de caja sin errores de cálculo manual.  
 
 - **Priority:** Medium  
-- **Story Points:** 3
+- **Story Points:** 3  
 
 ---
 
-## 3. UI/UX Requirements
+## 🎨 3. UI/UX Requirements
 
-- Interfaz consistente con identidad visual definida (colores, tipografía y logo)
-- Diseño completamente responsive
-- Menú lateral persistente para navegación
-- Confirmación antes de acciones destructivas
-- Productos sin stock marcados como "Agotado"
-- Búsqueda rápida dentro de las tablas
+- Interfaz consistente con identidad visual definida (colores, tipografía y logo)  
+- Diseño completamente responsive  
+- Menú lateral persistente para navegación  
+- Confirmación antes de acciones destructivas  
+- Productos sin stock marcados como "Agotado"  
+- Búsqueda rápida dentro de las tablas  
 
-## 4. Non-Functional Requirements
+---
 
-- Tiempo de carga de listados < 3 segundos
-- Guardado de registros < 2 segundos
-- Contraseñas gestionadas de forma segura por Supabase Auth
-- Detección de pérdida de conexión a internet
-- `unit_price` congelado en el momento del pedido (histórico)
-- Compatible con navegadores Chromium modernos
+## ⚙️ 4. Non-Functional Requirements
 
-## 5. Data Structure
+- Tiempo de carga de listados < 3 segundos  
+- Guardado de registros < 2 segundos  
+- Contraseñas gestionadas de forma segura por Supabase Auth  
+- Detección de pérdida de conexión a internet  
+- `unit_price` congelado en el momento del pedido (histórico)  
+- Compatible con navegadores Chromium modernos  
+
+---
+
+## 🗄️ 5. Data Structure
 
 ```mermaid
 erDiagram
-    USER ||--o{ ADDRESS : "has"
-    USER ||--o{ ORDER : "places/manages"
-    TABLE ||--o{ ORDER : "assigned to"
-    ORDER ||--|{ ORDER_DETAIL : "contains"
-    PRODUCT ||--o{ ORDER_DETAIL : "included in"
-    PRODUCT ||--o{ INVENTORY : "tracked in"
+    USER ||--o{ ADDRESS : has
+    USER ||--o{ ORDER : places
+    TABLE ||--o{ ORDER : assigned_to
+    ORDER ||--|{ ORDER_DETAIL : contains
+    PRODUCT ||--o{ ORDER_DETAIL : included_in
+    PRODUCT ||--o{ INVENTORY : tracked_in
 
     USER {
         int id_user PK
@@ -166,24 +172,50 @@ erDiagram
         varchar email
         timestamp created_at
     }
+
+    ADDRESS {
+        int id_address PK
+        int id_user FK
+        varchar street
+        varchar city
+        varchar state
+        varchar postal_code
+    }
+
+    TABLE {
+        int id_table PK
+        int table_number
+        int capacity
+    }
+
     PRODUCT {
         int id_product PK
-        varchar name "UNIQUE"
+        varchar name
         text description
         decimal price
     }
+
     ORDER {
         int id_order PK
         int id_user FK
         int id_table FK
         timestamp order_date
-        enum status "pending | in_progress | delivered | cancelled"
+        enum status
     }
 
-Equipo de Desarrollo
+    ORDER_DETAIL {
+        int id_detail PK
+        int id_order FK
+        int id_product FK
+        int quantity
+        decimal unit_price
+    }
 
-Anderson Vazquez de la Luz — Analyst & Designer (Architect)
-Jayden Ivan Reyes Sarmiento — SQL Developer (Builder)
-Matthew Elias Venegas Rojas — Database Administrator (Guardian)
-Axel Gabriel de la Cruz Osorio — Query Master (Manipulator)
-Anuar David Contreras Rios — SQL Tester (QA / Breaker)
+    INVENTORY {
+        int id_movement PK
+        int id_product FK
+        enum movement_type
+        int quantity
+        timestamp movement_date
+        text notes
+    }
