@@ -298,3 +298,88 @@ El uso de consultas básicas en SQL permite acceder y manipular la información 
 ### Conclusión
 
 El uso de `INSERT INTO` con inserciones múltiples permitió poblar eficientemente la base de datos, facilitando la validación del sistema. Esta etapa es fundamental para garantizar que las consultas y operaciones posteriores funcionen correctamente sobre datos reales.
+
+## Semana 11: SQL DML – Updates & Deletes (C.R.U.D - Update/Delete)
+
+### Objetivo de la semana
+
+Aplicar las instrucciones `UPDATE` y `DELETE` para modificar y eliminar datos dentro de la base de datos, comprendiendo la importancia del uso de la cláusula `WHERE` para evitar errores críticos.
+
+---
+
+### Actividades realizadas
+
+Durante esta semana se trabajó en la modificación y eliminación de datos dentro de la base de datos del sistema de cafetería. Se utilizaron las instrucciones `UPDATE` para cambiar valores existentes y `DELETE` para eliminar registros específicos.
+
+Se hizo énfasis en el uso correcto de la cláusula `WHERE` para evitar afectar múltiples registros de forma no intencionada. También se analizaron buenas prácticas para realizar operaciones seguras sobre los datos.
+
+---
+
+### Desarrollo
+
+Se realizaron operaciones sobre diferentes tablas:
+
+* `product`: actualización de precios
+* `order`: cambio de estado de órdenes
+* `order_detail`: eliminación de registros específicos
+* `inventory_movements`: limpieza de datos innecesarios
+
+Se aplicaron condiciones específicas en cada operación para asegurar que solo se modificaran o eliminaran los registros correctos.
+
+---
+
+### Ejemplo aplicado
+
+Ejemplo de actualización de datos:
+
+```sql id="g9y6cd"
+UPDATE product
+SET price = 38.00
+WHERE name = 'Café Americano';
+```
+
+Ejemplo de eliminación segura:
+
+```sql id="nn2j9n"
+DELETE FROM product
+WHERE price < 30;
+```
+
+---
+
+### Problemas encontrados
+
+* Riesgo de modificar o eliminar múltiples registros por no utilizar `WHERE`
+* Dudas sobre cuándo utilizar `UPDATE` o `DELETE`
+* Errores en la definición de condiciones en la cláusula `WHERE`
+
+---
+
+### Soluciones implementadas
+
+* Se reforzó el uso obligatorio de la cláusula `WHERE` en operaciones críticas
+* Se utilizó `SELECT` previo para validar los datos antes de eliminarlos
+* Se practicaron diferentes escenarios para comprender el impacto de cada instrucción
+
+---
+
+### Resultados obtenidos
+
+Se logró modificar y eliminar datos de manera controlada dentro de la base de datos, manteniendo la integridad de la información. Se comprendió la importancia de aplicar condiciones adecuadas para evitar errores graves.
+
+---
+
+### AI Pair Prompt
+
+**Prompt utilizado:**
+
+> "¿Por qué es peligroso ejecutar un DELETE sin un WHERE? Dame un ejemplo de una buena práctica para prevenir borrar todo por error."
+
+**Aplicación:**
+Se identificó que ejecutar un `DELETE` sin `WHERE` elimina todos los registros de una tabla. Como buena práctica, se utilizó una consulta `SELECT` previa con la misma condición para verificar los datos antes de ejecutar la eliminación.
+
+---
+
+### Conclusión
+
+El uso de `UPDATE` y `DELETE` permite mantener la base de datos actualizada, pero requiere precaución. La correcta aplicación de la cláusula `WHERE` es fundamental para evitar la pérdida de información y garantizar la integridad de los datos.
