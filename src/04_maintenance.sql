@@ -34,12 +34,4 @@ WHERE detail_id = 5;
 DELETE FROM inventory_movements
 WHERE movement_type = 'SALE' AND quantity < 10;
 
--- ------------------------------------------------------------
--- 6. SAFE PRACTICE - Preview before DELETE
--- ------------------------------------------------------------
-SELECT *
-FROM product
-WHERE price < 30;
 
--- Then execute DELETE if correct:
--- DELETE FROM product WHERE price < 30;
