@@ -34,4 +34,16 @@ WHERE detail_id = 5;
 DELETE FROM inventory_movements
 WHERE movement_type = 'SALE' AND quantity < 10;
 
+-- ------------------------------------------------------------
+-- 6. UPDATE - Change user email
+-- ------------------------------------------------------------
+UPDATE user
+SET email = 'anuar.updated@gmail.com'
+WHERE user_id = 1;
 
+-- ------------------------------------------------------------
+-- 7. UPDATE - Increase table capacity
+-- ------------------------------------------------------------
+UPDATE tables
+SET capacity = 6
+WHERE table_number = 2;
