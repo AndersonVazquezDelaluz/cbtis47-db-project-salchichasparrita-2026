@@ -291,6 +291,16 @@ body {
 .section { display: none; }
 .section.active { display: block; }
 
+/* Agregar estos alias que usa app.js: */
+.badge-pending     { background: #fef3cd; color: var(--warning); }
+.badge-in_progress { background: #cce5ff; color: #0056b3; }
+.badge-delivered   { background: #d4edda; color: var(--success); }
+.badge-cancelled   { background: #f8d7da; color: var(--danger); }
+.badge-sale        { background: #f8d7da; color: var(--danger); }
+.badge-restock     { background: #d4edda; color: var(--success); }
+
+
+
 /* ── Responsive tweaks ────────────────────────────────────── */
 @media (max-width: 900px) {
   .sidebar { width: 200px; }
