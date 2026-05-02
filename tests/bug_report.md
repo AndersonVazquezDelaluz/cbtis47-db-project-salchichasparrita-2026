@@ -1,5 +1,5 @@
 <img width="190" height="200" alt="image" src="https://github.com/user-attachments/assets/940326f6-8151-4fa2-9716-8ab7dd4e11dc" />
-en esta imagen podemos ver comoel id que tenemos salta de 3 a 5 brincando el numero 4
+en esta imagen podemos ver como el id que tenemos salta de 3 a 5 brincando el numero 4
 
 
    <img width="796" height="91" alt="image" src="https://github.com/user-attachments/assets/e47bc10b-eafc-4a70-8b80-815764f67149" />
