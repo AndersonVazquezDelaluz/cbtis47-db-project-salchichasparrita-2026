@@ -1,1 +1,613 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee Shop Admin</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <h1>☕ Café Admin</h1>
+    <span>Panel de gestión</span>
+  </div>
+
+  <nav class="sidebar-nav">
+    <p class="nav-section-label">Usuarios</p>
+    <a class="nav-link active" href="#" data-section="sec-users"     onclick="showSection('sec-users');     return false;">
+      <span class="nav-icon">👤</span> Usuarios
+    </a>
+    <a class="nav-link" href="#" data-section="sec-addresses"  onclick="showSection('sec-addresses');  return false;">
+      <span class="nav-icon">📍</span> Direcciones
+    </a>
+
+    <p class="nav-section-label">Restaurante</p>
+    <a class="nav-link" href="#" data-section="sec-tables"     onclick="showSection('sec-tables');     return false;">
+      <span class="nav-icon">🪑</span> Mesas
+    </a>
+    <a class="nav-link" href="#" data-section="sec-orders"     onclick="showSection('sec-orders');     return false;">
+      <span class="nav-icon">📋</span> Órdenes
+    </a>
+    <a class="nav-link" href="#" data-section="sec-order-details" onclick="showSection('sec-order-details'); return false;">
+      <span class="nav-icon">🧾</span> Detalles de Orden
+    </a>
+
+    <p class="nav-section-label">Catálogo</p>
+    <a class="nav-link" href="#" data-section="sec-products"   onclick="showSection('sec-products');   return false;">
+      <span class="nav-icon">☕</span> Productos
+    </a>
+    <a class="nav-link" href="#" data-section="sec-inventory"  onclick="showSection('sec-inventory');  return false;">
+      <span class="nav-icon">📦</span> Inventario
+    </a>
+  </nav>
+</aside>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ══════════════════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- ── Toast notification ── -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ════════════════════════════════════
+       SECTION: USERS (tabla USER)
+       ════════════════════════════════════ -->
+  <section id="sec-users" class="section active">
+    <div class="page-header">
+      <h2>Usuarios</h2>
+      <span class="badge">USER</span>
+    </div>
+
+    <!-- Form: Create / Update USER -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Crear / Editar Usuario</h3>
+        <button class="btn btn-secondary btn-sm" onclick="resetForm('form-user')">✕ Limpiar</button>
+      </div>
+      <div class="card-body">
+        <form id="form-user" onsubmit="saveUser(); return false;">
+          <div class="form-grid">
+
+            <!-- PK — readonly, auto-filled on edit -->
+            <div class="form-group">
+              <label for="usr-user_id">user_id (PK)</label>
+              <input type="number" id="usr-user_id" name="user_id" readonly placeholder="Auto" />
+            </div>
+
+            <div class="form-group">
+              <label for="usr-name">name *</label>
+              <input type="text" id="usr-name" name="name" maxlength="100" required placeholder="Nombre completo" />
+            </div>
+
+            <div class="form-group">
+              <label for="usr-email">email *</label>
+              <input type="email" id="usr-email" name="email" maxlength="100" required placeholder="correo@ejemplo.com" />
+            </div>
+
+            <!-- In a real backend, hash on the server, never in front-end -->
+            <div class="form-group">
+              <label for="usr-password_hash">password_hash * <small>(BCrypt, char 60)</small></label>
+              <input type="text" id="usr-password_hash" name="password_hash" maxlength="60" required placeholder="$2b$10$..." />
+            </div>
+
+          </div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button type="submit" class="btn btn-primary">💾 Guardar</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm('form-user')">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Table: Display all USERs -->
+    <div class="card">
+      <div class="card-header"><h3>Listado de Usuarios</h3></div>
+      <div class="card-body" style="overflow-x:auto;">
+        <table class="data-table" id="tbl-users">
+          <thead>
+            <tr>
+              <th>user_id</th>
+              <th>name</th>
+              <th>email</th>
+              <th>password_hash</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION: ADDRESSES
+       ════════════════════════════════════ -->
+  <section id="sec-addresses" class="section">
+    <div class="page-header">
+      <h2>Direcciones</h2>
+      <span class="badge">ADDRESS</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Crear / Editar Dirección</h3>
+        <button class="btn btn-secondary btn-sm" onclick="resetForm('form-address')">✕ Limpiar</button>
+      </div>
+      <div class="card-body">
+        <form id="form-address" onsubmit="saveAddress(); return false;">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="addr-address_id">address_id (PK)</label>
+              <input type="number" id="addr-address_id" name="address_id" readonly placeholder="Auto" />
+            </div>
+
+            <!-- FK to USER — dropdown populated from db.users -->
+            <div class="form-group">
+              <label for="addr-user_id">user_id (FK) *</label>
+              <select id="addr-user_id" name="user_id" required>
+                <option value="">— seleccionar —</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="addr-street">street *</label>
+              <input type="text" id="addr-street" name="street" maxlength="200" required placeholder="Av. Hidalgo 42" />
+            </div>
+
+            <div class="form-group">
+              <label for="addr-city">city *</label>
+              <input type="text" id="addr-city" name="city" maxlength="100" required placeholder="Córdoba" />
+            </div>
+
+            <div class="form-group">
+              <label for="addr-state">state *</label>
+              <input type="text" id="addr-state" name="state" maxlength="100" required placeholder="Veracruz" />
+            </div>
+
+            <!-- CHECK: length >= 3 -->
+            <div class="form-group">
+              <label for="addr-postal_code">postal_code * <small>(3-10 chars)</small></label>
+              <input type="text" id="addr-postal_code" name="postal_code" maxlength="10" minlength="3" required placeholder="94500" />
+            </div>
+
+          </div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button type="submit" class="btn btn-primary">💾 Guardar</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm('form-address')">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Listado de Direcciones</h3></div>
+      <div class="card-body" style="overflow-x:auto;">
+        <table class="data-table" id="tbl-addresses">
+          <thead>
+            <tr>
+              <th>address_id</th>
+              <th>usuario</th>
+              <th>street</th>
+              <th>city</th>
+              <th>state</th>
+              <th>postal_code</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION: TABLES (mesas)
+       ════════════════════════════════════ -->
+  <section id="sec-tables" class="section">
+    <div class="page-header">
+      <h2>Mesas</h2>
+      <span class="badge">TABLES</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Crear / Editar Mesa</h3>
+        <button class="btn btn-secondary btn-sm" onclick="resetForm('form-table')">✕ Limpiar</button>
+      </div>
+      <div class="card-body">
+        <form id="form-table" onsubmit="saveTable(); return false;">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="tbl-table_id">table_id (PK)</label>
+              <input type="number" id="tbl-table_id" name="table_id" readonly placeholder="Auto" />
+            </div>
+
+            <!-- UNIQUE -->
+            <div class="form-group">
+              <label for="tbl-table_number">table_number * <small>(único)</small></label>
+              <input type="number" id="tbl-table_number" name="table_number" min="1" required placeholder="1" />
+            </div>
+
+            <!-- CHECK: capacity > 0 -->
+            <div class="form-group">
+              <label for="tbl-capacity">capacity * <small>(> 0)</small></label>
+              <input type="number" id="tbl-capacity" name="capacity" min="1" required placeholder="4" />
+            </div>
+
+          </div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button type="submit" class="btn btn-primary">💾 Guardar</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm('form-table')">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Listado de Mesas</h3></div>
+      <div class="card-body" style="overflow-x:auto;">
+        <table class="data-table" id="tbl-tables">
+          <thead>
+            <tr>
+              <th>table_id</th>
+              <th>table_number</th>
+              <th>capacity</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION: PRODUCTS
+       ════════════════════════════════════ -->
+  <section id="sec-products" class="section">
+    <div class="page-header">
+      <h2>Productos</h2>
+      <span class="badge">PRODUCT</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Crear / Editar Producto</h3>
+        <button class="btn btn-secondary btn-sm" onclick="resetForm('form-product')">✕ Limpiar</button>
+      </div>
+      <div class="card-body">
+        <form id="form-product" onsubmit="saveProduct(); return false;">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="prod-product_id">product_id (PK)</label>
+              <input type="number" id="prod-product_id" name="product_id" readonly placeholder="Auto" />
+            </div>
+
+            <!-- UNIQUE -->
+            <div class="form-group">
+              <label for="prod-name">name * <small>(único)</small></label>
+              <input type="text" id="prod-name" name="name" maxlength="100" required placeholder="Espresso" />
+            </div>
+
+            <!-- DEFAULT NULL -->
+            <div class="form-group">
+              <label for="prod-description">description <small>(opcional)</small></label>
+              <input type="text" id="prod-description" name="description" maxlength="255" placeholder="Descripción breve" />
+            </div>
+
+            <!-- CHECK: price >= 0 -->
+            <div class="form-group">
+              <label for="prod-price">price * <small>(≥ 0, decimal 10,2)</small></label>
+              <input type="number" id="prod-price" name="price" min="0" step="0.01" required placeholder="35.00" />
+            </div>
+
+          </div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button type="submit" class="btn btn-primary">💾 Guardar</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm('form-product')">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Listado de Productos</h3></div>
+      <div class="card-body" style="overflow-x:auto;">
+        <table class="data-table" id="tbl-products">
+          <thead>
+            <tr>
+              <th>product_id</th>
+              <th>name</th>
+              <th>description</th>
+              <th>price</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION: ORDERS
+       ════════════════════════════════════ -->
+  <section id="sec-orders" class="section">
+    <div class="page-header">
+      <h2>Órdenes</h2>
+      <span class="badge">ORDER</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Crear / Editar Orden</h3>
+        <button class="btn btn-secondary btn-sm" onclick="resetForm('form-order')">✕ Limpiar</button>
+      </div>
+      <div class="card-body">
+        <form id="form-order" onsubmit="saveOrder(); return false;">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="ord-order_id">order_id (PK)</label>
+              <input type="number" id="ord-order_id" name="order_id" readonly placeholder="Auto" />
+            </div>
+
+            <!-- FK → USER -->
+            <div class="form-group">
+              <label for="ord-user_id">user_id (FK) *</label>
+              <select id="ord-user_id" name="user_id" required>
+                <option value="">— seleccionar —</option>
+              </select>
+            </div>
+
+            <!-- FK → TABLES -->
+            <div class="form-group">
+              <label for="ord-table_id">table_id (FK) *</label>
+              <select id="ord-table_id" name="table_id" required>
+                <option value="">— seleccionar —</option>
+              </select>
+            </div>
+
+            <!-- DEFAULT CURRENT_DATE -->
+            <div class="form-group">
+              <label for="ord-order_date">order_date *</label>
+              <input type="date" id="ord-order_date" name="order_date" required />
+            </div>
+
+            <!-- ENUM status — DEFAULT 'pending' -->
+            <div class="form-group">
+              <label for="ord-status">status *</label>
+              <select id="ord-status" name="status" required>
+                <option value="pending"     selected>pending</option>
+                <option value="in_progress">in_progress</option>
+                <option value="delivered">delivered</option>
+                <option value="cancelled">cancelled</option>
+              </select>
+            </div>
+
+          </div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button type="submit" class="btn btn-primary">💾 Guardar</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm('form-order')">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Listado de Órdenes</h3></div>
+      <div class="card-body" style="overflow-x:auto;">
+        <table class="data-table" id="tbl-orders">
+          <thead>
+            <tr>
+              <th>order_id</th>
+              <th>order_date</th>
+              <th>usuario</th>
+              <th>mesa</th>
+              <th>status</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION: ORDER DETAILS
+       ════════════════════════════════════ -->
+  <section id="sec-order-details" class="section">
+    <div class="page-header">
+      <h2>Detalles de Orden</h2>
+      <span class="badge">ORDER_DETAIL</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Crear / Editar Detalle</h3>
+        <button class="btn btn-secondary btn-sm" onclick="resetForm('form-detail')">✕ Limpiar</button>
+      </div>
+      <div class="card-body">
+        <form id="form-detail" onsubmit="saveDetail(); return false;">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="od-detail_id">detail_id (PK)</label>
+              <input type="number" id="od-detail_id" name="detail_id" readonly placeholder="Auto" />
+            </div>
+
+            <!-- FK → ORDER -->
+            <div class="form-group">
+              <label for="od-order_id">order_id (FK) *</label>
+              <select id="od-order_id" name="order_id" required>
+                <option value="">— seleccionar —</option>
+              </select>
+            </div>
+
+            <!-- FK → PRODUCT -->
+            <div class="form-group">
+              <label for="od-product_id">product_id (FK) *</label>
+              <select id="od-product_id" name="product_id" required>
+                <option value="">— seleccionar —</option>
+              </select>
+            </div>
+
+            <!-- CHECK: quantity >= 0 -->
+            <div class="form-group">
+              <label for="od-quantity">quantity * <small>(≥ 0)</small></label>
+              <input type="number" id="od-quantity" name="quantity" min="0" required placeholder="1" />
+            </div>
+
+            <!-- Historical price snapshot — CHECK: unit_price >= 0 -->
+            <div class="form-group">
+              <label for="od-unit_price">unit_price * <small>(precio histórico)</small></label>
+              <input type="number" id="od-unit_price" name="unit_price" min="0" step="0.01" required placeholder="35.00" />
+            </div>
+
+          </div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button type="submit" class="btn btn-primary">💾 Guardar</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm('form-detail')">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Listado de Detalles</h3></div>
+      <div class="card-body" style="overflow-x:auto;">
+        <table class="data-table" id="tbl-order-details">
+          <thead>
+            <tr>
+              <th>detail_id</th>
+              <th>order_id</th>
+              <th>producto</th>
+              <th>quantity</th>
+              <th>unit_price</th>
+              <th>subtotal</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SECTION: INVENTORY MOVEMENTS
+       ════════════════════════════════════ -->
+  <section id="sec-inventory" class="section">
+    <div class="page-header">
+      <h2>Movimientos de Inventario</h2>
+      <span class="badge">INVENTORY_MOVEMENTS</span>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Registrar / Editar Movimiento</h3>
+        <button class="btn btn-secondary btn-sm" onclick="resetForm('form-inventory')">✕ Limpiar</button>
+      </div>
+      <div class="card-body">
+        <form id="form-inventory" onsubmit="saveMovement(); return false;">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="inv-inventory_id">inventory_id (PK)</label>
+              <input type="number" id="inv-inventory_id" name="inventory_id" readonly placeholder="Auto" />
+            </div>
+
+            <!-- FK → PRODUCT -->
+            <div class="form-group">
+              <label for="inv-product_id">product_id (FK) *</label>
+              <select id="inv-product_id" name="product_id" required>
+                <option value="">— seleccionar —</option>
+              </select>
+            </div>
+
+            <!-- DEFAULT CURRENT_DATE -->
+            <div class="form-group">
+              <label for="inv-movement_date">movement_date *</label>
+              <input type="date" id="inv-movement_date" name="movement_date" required />
+            </div>
+
+            <!-- ENUM: SALE | RESTOCK -->
+            <div class="form-group">
+              <label for="inv-movement_type">movement_type *</label>
+              <select id="inv-movement_type" name="movement_type" required>
+                <option value="">— seleccionar —</option>
+                <option value="SALE">SALE (salida)</option>
+                <option value="RESTOCK">RESTOCK (entrada)</option>
+              </select>
+            </div>
+
+            <!-- CHECK: quantity >= 0 -->
+            <div class="form-group">
+              <label for="inv-quantity">quantity * <small>(≥ 0)</small></label>
+              <input type="number" id="inv-quantity" name="quantity" min="0" required placeholder="10" />
+            </div>
+
+          </div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button type="submit" class="btn btn-primary">💾 Guardar</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm('form-inventory')">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Listado de Movimientos</h3></div>
+      <div class="card-body" style="overflow-x:auto;">
+        <table class="data-table" id="tbl-inventory">
+          <thead>
+            <tr>
+              <th>inventory_id</th>
+              <th>producto</th>
+              <th>movement_date</th>
+              <th>movement_type</th>
+              <th>quantity</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main><!-- /main -->
+
+<!-- Toast styles (inline for self-contained portability) -->
+<style>
+.toast {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  background: var(--ink);
+  color: #fff;
+  padding: 11px 20px;
+  border-radius: var(--radius);
+  font-size: .85rem;
+  font-family: var(--font-body);
+  box-shadow: 0 4px 20px rgba(0,0,0,.25);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+  z-index: 999;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.toast-error   { background: var(--danger); }
+.toast.toast-success { background: var(--success); }
+</style>
+
+<script src="scripts/app.js"></script</body></html>
