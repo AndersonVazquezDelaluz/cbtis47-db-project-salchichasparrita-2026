@@ -85,15 +85,6 @@
 
 ---
 
-## 4. MÓDULO ÓRDENES
-
-**Test 1: Fecha inválida**  
-- **Input usado:** `2026-02-30`  
-- **Debería haber pasado:** Validar que la fecha sea real y lógica.  
-- **Qué pasó:** La aplicación la aceptó sin problema.
-
----
-
 ## 5. MÓDULO PRODUCTOS
 
 **Test 1: XSS en NAME**  
