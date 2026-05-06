@@ -211,4 +211,4 @@ erDiagram
 - Add edge cases
 ---
  
-**Chicaffe — CBTis 47 · 2026**
+**Chicaffe web **
