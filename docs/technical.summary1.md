@@ -20,8 +20,6 @@ Functional requirements describe **what the system must do**.
 ### 1.3 Product & Inventory
 **FR-10.** The system must allow creating, updating, and deleting products  
 **FR-11.** The system must manage inventory movements (SALE / RESTOCK)  
-**FR-12.** Products with zero stock must be marked as "Out of stock"  
-**FR-13.** The system must prevent adding products to orders if stock is insufficient  
 
 ### 1.4 Tables
 **FR-14.** The system must allow managing tables (number and capacity)  
