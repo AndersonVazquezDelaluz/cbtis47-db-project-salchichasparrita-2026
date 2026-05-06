@@ -1,0 +1,136 @@
+# Registro Completo de Pruebas - Café Admin
+
+**Proyecto:** Sistema de Administración de Café  
+**Tester:** Anuar David  
+**Rol:** SQL Tester / Bug Hunter  
+**Entorno:** XAMPP + PHP + phpMyAdmin + localhost  
+**Fecha:** 06 de Mayo de 2026
+
+---
+
+## 1. MÓDULO USUARIOS
+
+**Test 1: SQL Injection**  
+- **Input usado:** `' OR '1'='1` y `'; DROP TABLE usuarios;--`  
+- **Debería haber pasado:** El sistema debería sanitizar o rechazar los caracteres especiales y comandos SQL para evitar manipulación de la base de datos (inyección SQL).  
+- **Qué pasó:** No funcionó la inyección. Fue rechazada correctamente.
+
+**Test 2: Nombre muy largo**  
+- **Input usado:** Texto de más de 1000 caracteres  
+- **Debería haber pasado:** Tener validación de longitud máxima tanto en frontend como en backend para evitar problemas de rendimiento y truncamiento de datos.  
+- **Qué pasó:** La aplicación lo aceptó sin problema.
+
+**Test 3: XSS en campo NAME**  
+- **Input usado:** `<script>alert(1)</script>`  
+- **Debería haber pasado:** Escapar las etiquetas HTML (`htmlspecialchars()`) o rechazarlas para prevenir ataques de Cross-Site Scripting (Stored XSS).  
+- **Qué pasó:** Se guardó en la base de datos pero aparece en blanco en la interfaz.
+
+**Test 4: Email duplicado**  
+- **Input usado:** Mismo correo en dos registros diferentes  
+- **Debería haber pasado:** Rechazar el registro por violar la restricción UNIQUE del campo email.  
+- **Qué pasó:** Fue rechazado correctamente.
+
+**Test 5: Password larga y emojis**  
+- **Input usado:** Contraseña con más de 100 caracteres y emojis  
+- **Debería haber pasado:** Limitar la longitud (máximo 60-72 caracteres para bcrypt) y rechazar caracteres no recomendados.  
+- **Qué pasó:** Aceptó más de 60 caracteres y emojis.
+
+---
+
+## 2. MÓDULO DIRECCIONES
+
+**Test 1: SQL Injection**  
+- **Input usado:** `'; DROP TABLE direcciones;--`  
+- **Debería haber pasado:** Rechazar comandos SQL peligrosos y guardar solo texto limpio.  
+- **Qué pasó:** Se guardó como texto normal.
+
+**Test 2: XSS**  
+- **Input usado:** `<img src=x onerror=alert(1)>`  
+- **Debería haber pasado:** No ejecutar código JavaScript al mostrar los datos.  
+- **Qué pasó:** Se guardó y se ejecutó la alerta JavaScript.
+
+**Test 3: SQL Injection (OR)**  
+- **Input usado:** `' OR '1'='1' --`  
+- **Debería haber pasado:** Sanitizar correctamente la entrada.  
+- **Qué pasó:** Se guardó como texto normal.
+
+**Test 4: Longitud extrema**  
+- **Input usado:** Más de 2000 caracteres  
+- **Debería haber pasado:** Rechazar o truncar según la definición de la columna.  
+- **Qué pasó:** Limitó según VARCHAR(100).
+
+**Test 5: Caracteres especiales y vacíos**  
+- **Input usado:** Emojis, espacios en blanco y campos vacíos  
+- **Debería haber pasado:** Tener validaciones claras.  
+- **Qué pasó:** Se guardaron (algunos campos aparecen en blanco en la interfaz).
+
+---
+
+## 3. MÓDULO MESAS
+
+**Test 1: Números muy grandes**  
+- **Input usado:** `999999999999999999`  
+- **Debería haber pasado:** Tener límites razonables para evitar datos inconsistentes o problemas de visualización.  
+- **Qué pasó:** La aplicación lo aceptó.
+
+**Test 2: Números negativos y cero**  
+- **Input usado:** `-50` y `0`  
+- **Debería haber pasado:** Rechazar valores ilógicos.  
+- **Qué pasó:** Rechazados correctamente.
+
+**Test 3: Números decimales**  
+- **Input usado:** `10.5`  
+- **Debería haber pasado:** Rechazar decimales (se espera número entero).  
+- **Qué pasó:** Rechazados correctamente.
+
+---
+
+## 4. MÓDULO ÓRDENES
+
+**Test 1: Fecha inválida**  
+- **Input usado:** `2026-02-30`  
+- **Debería haber pasado:** Validar que la fecha sea real y lógica.  
+- **Qué pasó:** La aplicación la aceptó sin problema.
+
+---
+
+## 5. MÓDULO PRODUCTOS
+
+**Test 1: XSS en NAME**  
+- **Input usado:** `<script>alert(1)</script>`  
+- **Debería haber pasado:** Escapar correctamente las etiquetas HTML.  
+- **Qué pasó:** Se guardó en BD pero no se muestra en la lista (queda en blanco).
+
+**Test 2: Precio extremo**  
+- **Input usado:** `999999999999.99`  
+- **Debería haber pasado:** Tener un límite máximo razonable de precio.  
+- **Qué pasó:** Lo aceptó (solo limita a 2 decimales).
+
+**Test 3: Precio negativo**  
+- **Input usado:** `-500`  
+- **Debería haber pasado:** Rechazar precios negativos.  
+- **Qué pasó:** Rechazado correctamente.
+
+**Test 4: Nombre largo + caracteres especiales**  
+- **Input usado:** Texto largo + emojis + comandos SQL + XSS  
+- **Debería haber pasado:** Manejar correctamente la longitud y caracteres especiales.  
+- **Qué pasó:** Se guardó pero provocó salto de ID (de 4 a 5).
+
+**Test 5: Nombre duplicado**  
+- **Input usado:** Mismo nombre (variando mayúsculas/minúsculas)  
+- **Debería haber pasado:** Rechazar duplicados por ser campo UNIQUE.  
+- **Qué pasó:** No permitió duplicados.
+
+---
+
+## Observaciones Generales
+- Se detectaron posibles vulnerabilidades de **Stored XSS** en varios módulos.
+- Mala validación de longitud y rangos en algunos campos.
+- Buena protección contra SQL Injection básica.
+- Problemas de visualización cuando se insertan caracteres especiales o HTML.
+
+---
+
+**Listo para copiar y pegar.**  
+
+¿Quieres que te agregue una sección de **Hallazgos Principales** y **Recomendaciones** al final? Dime y te la agrego.
