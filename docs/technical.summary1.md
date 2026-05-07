@@ -211,4 +211,4 @@ erDiagram
 - Add edge cases
 ---
  
-**Chicaffe web **
+**Chicaffe web debemos cambiar el backlog fuera de y tamben hacer uno para 1 y 2 parcial creo, (preguntar al [profe la siguiente clase, hasta aqui mireporte joaquin ) **
