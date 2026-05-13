@@ -1,4 +1,4 @@
-# ☕ Café Admin — Panel de Administración
+# ☕ Chicaffe— Panel de Administración
 
 Aplicación web para la gestión de un café/restaurante: productos, mesas, órdenes, usuarios e inventario.
 Proyecto escolar desarrollado en el **CBTIS 47**, 2026.
