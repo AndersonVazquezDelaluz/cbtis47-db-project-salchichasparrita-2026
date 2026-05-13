@@ -5,88 +5,87 @@
 ![MySQL](https://img.shields.io/badge/database-MySQL-blue)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-Aplicación web para la gestión de una cafetería/restaurante.
-El sistema permite administrar usuarios, productos, mesas, órdenes e inventario mediante una interfaz web conectada a una base de datos MySQL.
-
-Proyecto académico desarrollado en el **CBTIS 47 — 2026**.
+Web application for restaurant management.
+The system allows administrators to manage users, products, tables, orders, and inventory through a web interface connected to a MySQL database.
+Academic project developed at **CBTIS 47 — 2026**.
 
 ---
 
 # 📚 Table of Contents
 
-* [Descripción](#-descripción)
-* [Características](#-características)
-* [Tecnologías utilizadas](#-tecnologías-utilizadas)
-* [Arquitectura del proyecto](#-arquitectura-del-proyecto)
-* [Estructura del proyecto](#-estructura-del-proyecto)
-* [Instalación local](#-instalación-local-con-xampp)
-* [Uso del sistema](#-uso-del-sistema)
-* [API Endpoints](#-api--endpoints-disponibles)
+* [Description](#-description)
+* [Features](#-features)
+* [Technologies Used](#-technologies-used)
+* [Project Architecture](#-project-architecture)
+* [Project Structure](#-project-structure)
+* [Local Installation](#-local-installation-with-xampp)
+* [System Usage](#-system-usage)
+* [API Endpoints](#-api--available-endpoints)
 * [Testing](#-testing)
-* [Metodología Ágil](#-metodología-ágil)
-* [Equipo](#-equipo)
-* [Problemas frecuentes](#-problemas-frecuentes)
-* [Licencia](#-licencia)
+* [Agile Methodology](#-agile-methodology)
+* [Team](#-team)
+* [Common Issues](#-common-issues)
+* [License](#-license)
 
 ---
 
-# 📖 Descripción
+# 📖 Description
 
-Chicaffe es un sistema de administración para cafeterías desarrollado como proyecto escolar.
-El objetivo principal es centralizar la gestión de:
+Chicaffe is a cafeteria management system developed as a school project.
+The main goal is to centralize the management of:
 
-* Usuarios
-* Productos
-* Mesas
-* Órdenes
-* Inventario
+* Users
+* Products
+* Tables
+* Orders
+* Inventory
 
-El sistema permite realizar operaciones CRUD completas utilizando Node.js, Express y MySQL.
-
----
-
-# ✨ Características
-
-* Gestión de usuarios
-* Gestión de productos
-* Control de inventario
-* Administración de órdenes
-* Gestión de mesas
-* API REST básica
-* Persistencia de datos con MySQL
-* Interfaz web administrativa
-* Validación de relaciones con Foreign Keys
+The system supports full CRUD operations using Node.js, Express, and MySQL.
 
 ---
 
-# 🛠️ Tecnologías utilizadas
+# ✨ Features
 
-| Área                 | Tecnología               |
+* User management
+* Product management
+* Inventory control
+* Order administration
+* Table management
+* Basic REST API
+* Data persistence with MySQL
+* Administrative web interface
+* Relationship validation with Foreign Keys
+
+---
+
+# 🛠️ Technologies Used
+
+| Area                 | Technology               |
 | -------------------- | ------------------------ |
 | Backend              | Node.js                  |
 | Framework            | Express.js               |
-| Base de Datos        | MySQL                    |
-| Entorno Local        | XAMPP                    |
+| Database             | MySQL                    |
+| Local Environment    | XAMPP                    |
 | Frontend             | HTML5, CSS3, JavaScript  |
-| Conector DB          | mysql2                   |
+| DB Connector         | mysql2                   |
 | Dev Tooling          | Nodemon                  |
 | API Testing          | Thunder Client / Postman |
-| Control de versiones | Git + GitHub             |
+| Version Control      | Git + GitHub             |
 
 ---
 
-# 🏗️ Arquitectura del proyecto
+# 🏗️ Project Architecture
 
-El proyecto sigue una arquitectura cliente-servidor:
+The project follows a client-server architecture:
 
-* Frontend desarrollado con HTML, CSS y JavaScript vanilla
-* Backend desarrollado con Express.js
-* Base de datos relacional en MySQL
-* Comunicación mediante API REST
+* Frontend built with HTML, CSS, and vanilla JavaScript
+* Backend built with Express.js
+* Relational database in MySQL
+* Communication via REST API
 
 ---
 
-# 📁 Estructura del proyecto
+# 📁 Project Structure
 
 ```bash
 cbtis47-db-project-salchichasparrita-2026/
@@ -127,41 +126,41 @@ cbtis47-db-project-salchichasparrita-2026/
 
 ---
 
-# ⚙️ Instalación local (con XAMPP)
+# ⚙️ Local Installation (with XAMPP)
 
-## ✅ Requisitos previos
+## ✅ Prerequisites
 
-* Node.js v18 o superior
-* XAMPP con MySQL activo
-* Git instalado
+* Node.js v18 or higher
+* XAMPP with MySQL running
+* Git installed
 
 ---
 
-## 🚀 Instalación
+## 🚀 Installation
 
 ```bash
-# Clonar repositorio
+# Clone the repository
 git clone https://github.com/AndersonVazquezDelaluz/cbtis47-db-project-salchichasparrita-2026.git
 
-# Entrar al proyecto
+# Enter the project directory
 cd cbtis47-db-project-salchichasparrita-2026
 
-# Instalar dependencias
+# Install dependencies
 npm install
 ```
 
 ---
 
-## 🗄️ Configuración de base de datos
+## 🗄️ Database Configuration
 
-1. Abrir phpMyAdmin
-2. Crear la base de datos:
+1. Open phpMyAdmin
+2. Create the database:
 
 ```sql
 CREATE DATABASE restaurant_db;
 ```
 
-3. Ejecutar los scripts SQL en este orden:
+3. Run the SQL scripts in this order:
 
 ```text
 src/01_schema.sql
@@ -171,9 +170,9 @@ src/03_users.sql
 
 ---
 
-## 🔧 Configuración del servidor
+## 🔧 Server Configuration
 
-Editar credenciales en `server.js`:
+Edit the credentials in `server.js`:
 
 ```js
 const pool = mysql.createPool({
@@ -187,19 +186,19 @@ const pool = mysql.createPool({
 
 ---
 
-## ▶️ Ejecutar proyecto
+## ▶️ Run the Project
 
 ```bash
 npm start
 ```
 
-Modo desarrollo:
+Development mode:
 
 ```bash
 npm run dev
 ```
 
-Abrir en navegador:
+Open in browser:
 
 ```text
 http://localhost:3000
@@ -207,20 +206,20 @@ http://localhost:3000
 
 ---
 
-# 💻 Uso del sistema
+# 💻 System Usage
 
-El sistema permite:
+The system allows you to:
 
-* Crear usuarios
-* Registrar productos
-* Administrar mesas
-* Crear órdenes
-* Registrar movimientos de inventario
-* Consultar reportes básicos
+* Create users
+* Register products
+* Manage tables
+* Create orders
+* Record inventory movements
+* View basic reports
 
 ---
 
-# 🌐 API — Endpoints disponibles
+# 🌐 API — Available Endpoints
 
 Base URL:
 
@@ -228,46 +227,46 @@ Base URL:
 http://localhost:3000
 ```
 
-| Método     | Endpoint         | Descripción |
+| Method     | Endpoint         | Description |
 | ---------- | ---------------- | ----------- |
-| GET / POST | `/api/users`     | Usuarios    |
-| GET / POST | `/api/products`  | Productos   |
-| GET / POST | `/api/orders`    | Órdenes     |
-| GET / POST | `/api/tables`    | Mesas       |
-| GET / POST | `/api/inventory` | Inventario  |
+| GET / POST | `/api/users`     | Users       |
+| GET / POST | `/api/products`  | Products    |
+| GET / POST | `/api/orders`    | Orders      |
+| GET / POST | `/api/tables`    | Tables      |
+| GET / POST | `/api/inventory` | Inventory   |
 
 ---
 
 # 🧪 Testing
 
-Los casos de prueba y reportes de errores se encuentran en:
+Test cases and bug reports are located in:
 
 ```text
 /tests
 ```
 
-Archivos principales:
+Main files:
 
 * `bug_report.md`
 * `test_cases.sql`
 
 ---
 
-# 📌 Metodología Ágil
+# 📌 Agile Methodology
 
-El proyecto fue desarrollado utilizando principios básicos de Scrum:
+The project was developed using basic Scrum principles:
 
 * Daily Scrum
 * Product Backlog
-* Historias de Usuario
-* Trabajo por Sprints
-* Control de versiones con GitHub
+* User Stories
+* Sprint-based workflow
+* Version control with GitHub
 
 ---
 
-# 👥 Equipo
+# 👥 Team
 
-| Integrante       | Rol                    |
+| Member           | Role                   |
 | ---------------- | ---------------------- |
 | Anderson Vázquez | Analyst & Designer     |
 | Jayden Reyes     | SQL Developer          |
@@ -277,21 +276,21 @@ El proyecto fue desarrollado utilizando principios básicos de Scrum:
 
 ---
 
-# ⚠️ Problemas frecuentes
+# ⚠️ Common Issues
 
-## Error de conexión MySQL
+## MySQL Connection Error
 
-Verificar:
+Check:
 
-* XAMPP encendido
-* Puerto 3306 activo
-* Credenciales correctas
+* XAMPP is running
+* Port 3306 is active
+* Credentials are correct
 
 ---
 
 ## Cannot find module 'express'
 
-Ejecutar:
+Run:
 
 ```bash
 npm install
@@ -299,9 +298,9 @@ npm install
 
 ---
 
-## Puerto 3000 ocupado
+## Port 3000 already in use
 
-Modificar:
+Modify:
 
 ```js
 const PORT = process.env.PORT || 3001;
@@ -309,8 +308,8 @@ const PORT = process.env.PORT || 3001;
 
 ---
 
-# 📄 Licencia
+# 📄 License
 
-Proyecto desarrollado con fines educativos para CBTIS 47.
+Project developed for educational purposes at CBTIS 47.
 
 MIT License.
