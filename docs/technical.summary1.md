@@ -44,7 +44,7 @@ Los requisitos funcionales describen **qué debe hacer el sistema**.
 
 ---
 
-## 2. Epics y Prioridades
+## 2. Epics
 
 | ID      | Epic                    | Prioridad | Sprint Sugerido |
 |---------|-------------------------|-----------|-----------------|
