@@ -92,7 +92,61 @@ Functional requirements describe **what the system must do**.
 ```mermaid
 erDiagram
     USER ||--o{ ORDER : places
-    TABLE ||--o{ ORDER : assigned
+    TABLE ||--o{ ORDER : assigned_to
+    PRODUCT ||--o{ INVENTORY_MOVEMENTS:tracks
     ORDER ||--|{ ORDER_DETAIL : contains
-    PRODUCT ||--o{ ORDER_DETAIL : included
-    PRODUCT ||--o{ INVENTORY : tracked
+    PRODUCT }|..|{  ORDER_DETAIL : included_in
+    USER ||--o{ ADDRESS : has
+    
+
+    USER {
+    int user_id PK
+    string name
+    string email
+    char(60) password_hash
+    }
+
+    ADDRESS {
+        int address_id PK
+        int user_id FK
+        string street
+        string city
+        string state
+        string postal_code
+    }
+
+    TABLE {
+        int table_id PK
+        int table_number
+        int capacity
+    }
+
+    ORDER {
+        int order_id PK
+        date order_date
+        int user_id FK
+        int table_id FK
+        enum status
+    }
+
+    ORDER_DETAIL {
+        int detail_id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        decimal unit_price
+    }
+
+    PRODUCT {
+        int product_id PK
+        string name
+        string description
+        decimal price
+    }
+    INVENTORY_MOVEMENTS{
+        int inventory_id PK
+        int product_id FK
+        date movement_date
+        enum movement_type
+        int quantity
+    }
