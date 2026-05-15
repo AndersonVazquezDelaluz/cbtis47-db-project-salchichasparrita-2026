@@ -1,198 +1,93 @@
 # Technical Summary — Chicaffe
 
-## 1. Functional Requirements (Agile & UI/UX)
+**Proyecto:** Chicaffe Web  
+**Versión del documento:** 1.1  
+**Fecha:** 14 de mayo de 2026  
+**Elaborado por:** Anderson Vázquez
 
-Functional requirements describe **what the system must do**.
+---
+
+## 1. Functional Requirements
+
+Los requisitos funcionales describen **qué debe hacer el sistema**.
 
 ### 1.1 Authentication
-**FR-01.** The system must allow administrators to register users with name, email, and password  
-**FR-02.** The system must validate that the email is unique  
-**FR-03.** The system must display validation messages for empty fields  
-**FR-04.** The system must authenticate users using Supabase Auth  
-**FR-05.** The system must redirect users to the dashboard after login  
-**FR-06.** The system must allow logout at any time  
-**FR-07.** Protected routes must require authentication  
+- **FR-01.** El sistema debe permitir a los administradores registrar usuarios con nombre, email y contraseña.
+- **FR-02.** El sistema debe validar que el email sea único.
+- **FR-03.** El sistema debe mostrar mensajes de validación para campos vacíos.
+- **FR-04.** El sistema debe autenticar usuarios utilizando Supabase Auth.
+- **FR-05.** El sistema debe redirigir al usuario al dashboard después de iniciar sesión.
+- **FR-06.** El sistema debe permitir cerrar sesión en cualquier momento.
+- **FR-07.** Las rutas protegidas deben requerir autenticación.
 
 ### 1.2 User Management
-**FR-08.** The system must allow administrators to view all users  
-**FR-09.** The system must allow searching users by name  
+- **FR-08.** El sistema debe permitir a los administradores ver todos los usuarios.
+- **FR-09.** El sistema debe permitir buscar usuarios por nombre.
 
-### 1.3 Product & Inventory
-**FR-10.** The system must allow creating, updating, and deleting products  
-**FR-11.** The system must manage inventory movements (SALE / RESTOCK)  
+### 1.3 Products & Inventory
+- **FR-10.** El sistema debe permitir crear, actualizar y eliminar productos.
+- **FR-11.** El sistema debe gestionar movimientos de inventario (SALE / RESTOCK).
 
 ### 1.4 Tables
-**FR-14.** The system must allow managing tables (number and capacity)  
+- **FR-14.** El sistema debe permitir gestionar mesas (número y capacidad).
 
 ### 1.5 Orders
-**FR-15.** The system must allow creating orders linked to a user and table  
-**FR-16.** The system must allow adding products to an order  
-**FR-17.** The system must manage order lifecycle (pending → in_progress → delivered → cancelled)  
-**FR-18.** The system must decrease inventory when products are added  
-**FR-19.** The system must restore inventory when an order is cancelled  
-**FR-20.** The system must prevent invalid order status transitions  
+- **FR-15.** El sistema debe permitir crear órdenes vinculadas a un usuario y una mesa.
+- **FR-16.** El sistema debe permitir agregar productos a una orden.
+- **FR-17.** El sistema debe gestionar el ciclo de vida de las órdenes (pending → in_progress → delivered → cancelled).
+- **FR-18.** El sistema debe disminuir el inventario al agregar productos a una orden.
+- **FR-19.** El sistema debe restaurar el inventario cuando se cancela una orden.
+- **FR-20.** El sistema debe prevenir transiciones de estado inválidas en las órdenes.
 
 ### 1.6 Reports
-**FR-21.** The system must generate daily sales reports based on delivered orders  
+- **FR-21.** El sistema debe generar reportes diarios de ventas basados en órdenes entregadas.
 
 ---
 
-## 2. Agile Requirements
-**AG-01.** The project must be organized into Sprints  
-**AG-02.** User Stories must follow the format: *As a [user], I want to [action], so that [benefit]*  
-**AG-03.** Each User Story must include Gherkin acceptance criteria  
-**AG-04.** Each User Story must have Story Points  
-**AG-05.** Code must be version-controlled with GitHub  
+## 2. Epics y Prioridades
+
+| ID      | Epic                    | Prioridad | Sprint Sugerido |
+|---------|-------------------------|-----------|-----------------|
+| EP-01   | Authentication          | **Alta**  | Sprint 1        |
+| EP-02   | User Management         | **Alta**  | Sprint 1        |
+| EP-03   | Products & Inventory    | **Alta**  | Sprint 1        |
+| EP-05   | Orders                  | **Alta**  | Sprint 2        |
+| EP-04   | Tables                  | **Media** | Sprint 2        |
+| EP-06   | Reports                 | **Media** | Sprint 3        |
 
 ---
 
-## 3. UI/UX
-**UX-01.** Consistent visual identity  
-**UX-02.** Responsive design  
-**UX-03.** Sidebar navigation  
-**UX-04.** Confirmation for destructive actions  
-**UX-05.** Visual indicator for out-of-stock products  
-**UX-06.** Search bar in tables  
+## 3. Agile Requirements
+- **AG-01.** El proyecto debe organizarse en Sprints.
+- **AG-02.** Las User Stories deben seguir el formato: *As a [user], I want to [action], so that [benefit]*.
+- **AG-03.** Cada User Story debe incluir criterios de aceptación en Gherkin.
+- **AG-04.** Cada User Story debe tener Story Points asignados.
+- **AG-05.** El código debe estar versionado con GitHub.
 
 ---
 
-## 4. Non-Functional
-**NFR-01.** Data must load in under 3 seconds  
-**NFR-02.** Save operations must complete in under 2 seconds  
-**NFR-03.** Passwords must be securely handled by Supabase Auth  
-**NFR-04.** The system must detect internet disconnection  
-**NFR-05.** Product price must be preserved at order time  
-**NFR-06.** The system must use only HTML, CSS, JS, and Supabase  
-**NFR-07.** The system must run on Chromium browsers  
+## 4. UI/UX Requirements
+- **UX-01.** Identidad visual consistente.
+- **UX-02.** Diseño totalmente responsive.
+- **UX-03.** Navegación con sidebar.
+- **UX-04.** Confirmación antes de acciones destructivas.
+- **UX-05.** Indicador visual para productos sin stock.
+- **UX-06.** Barra de búsqueda en las tablas.
 
 ---
 
-## 5. Product Backlog
-
-### 🎯 Goal
-Centralize cafeteria operations and reduce manual errors.
-
-### 📦 Epics
-
-| ID | Epic | Priority |
-|---|---|---|
-| EP-01 | Authentication | High |
-| EP-02 | User Management | High |
-| EP-03 | Products & Inventory | High |
-| EP-04 | Tables | Medium |
-| EP-05 | Orders | High |
-| EP-06 | Reports | Medium |
+## 5. Non-Functional Requirements
+- **NFR-01.** Los datos deben cargarse en menos de 3 segundos.
+- **NFR-02.** Las operaciones de guardado deben completarse en menos de 2 segundos.
+- **NFR-03.** Las contraseñas deben manejarse de forma segura mediante Supabase Auth.
+- **NFR-04.** El sistema debe detectar desconexión de internet.
+- **NFR-05.** El precio del producto debe conservarse en el momento de la creación de la orden.
+- **NFR-06.** El sistema debe estar construido solo con HTML, CSS, JavaScript y Supabase.
+- **NFR-07.** El sistema debe funcionar en navegadores basados en Chromium.
 
 ---
 
-## 6. Gherkin
-
-```gherkin
-Feature: Authentication
-
-Scenario: Successful registration
-  Given the admin is on the registration form
-  When valid user data is submitted
-  Then the system creates a new user account
-
-Scenario: Registration fails due to duplicate email
-  Given an existing email in the system
-  When the admin submits the form
-  Then the system displays an error message
-
-Scenario: Successful login
-  Given a registered user
-  When correct credentials are entered
-  Then access is granted and redirected to dashboard
-
-Scenario: Logout
-  Given an active session
-  When the user logs out
-  Then the session is terminated
-
-
-Feature: User Management
-
-Scenario: View users
-  When the admin accesses user list
-  Then all users are displayed
-
-Scenario: Search users
-  Given a search input
-  When typing a name
-  Then filtered results are shown
-
-
-Feature: Inventory
-
-Scenario: Restock product
-  Given a product exists
-  When restock is registered
-  Then inventory increases
-
-Scenario: Prevent sale without stock
-  Given a product with zero stock
-  When attempting to add to order
-  Then the system blocks the action
-
-
-Feature: Orders
-
-Scenario: Create order
-  Given a user and table selected
-  When order is created
-  Then status is set to pending
-
-Scenario: Add products to order
-  Given available stock
-  When products are added
-  Then inventory decreases
-
-Scenario: Cancel order
-  Given an existing order
-  When it is cancelled
-  Then inventory is restored
-
-Scenario: Invalid status transition
-  Given an order delivered
-  When attempting to revert status
-  Then the system denies the action
-
-
-Feature: Reports
-
-Scenario: Generate daily sales report
-  Given delivered orders exist
-  When report is generated
-  Then total sales are calculated
-
-  ---
- 
-## 7. Data Structure
- 
-```mermaid
-erDiagram
-    USER ||--o{ ORDER : places
-    TABLE ||--o{ ORDER : assigned
-    ORDER ||--|{ ORDER_DETAIL : contains
-    PRODUCT ||--o{ ORDER_DETAIL : included
-    PRODUCT ||--o{ INVENTORY : tracked
-```
- 
----
- 
-## 8. Development Team
- 
-| Name             | Role    |
-| ---------------- | ------- |
-| Anderson Vazquez | Analyst |
-| Jayden Reyes     | SQL Dev |
-| Matthew Venegas  | DBA     |
-| Axel de la Cruz  | Query   |
-| Anuar Contreras  | Tester  |
- 
----
- 
+## 6. Data Model 
 ## 9. Scope
  
 ### In
@@ -211,4 +106,4 @@ erDiagram
 - Add edge cases
 ---
  
-**Chicaffe web debemos cambiar el backlog fuera de y tamben hacer uno para 1 y 2 parcial creo, (preguntar al [profe la siguiente clase, hasta aqui mireporte joaquin ) **
+**Chicaffe web**
