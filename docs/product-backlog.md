@@ -1,605 +1,342 @@
+**✅ Aquí tienes el archivo completo listo para copiar:**
+
+```markdown
 # 📋 Product Backlog — Chicaffe
-**Proyecto:** Sistema de Gestión de Cafetería (cbtis47-db-project-salchichasparrita-2026)  
+
+**Project:** Chicaffe - Cafeteria Management System  
+**Repository:** cbtis47-db-project-salchichasparrita-2026  
 **Stack:** HTML · CSS · JavaScript · Supabase  
-**Equipo:** Anderson Vazquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
+**Team:** Anderson Vazquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras  
+**Document Version:** 1.2  
+**Date:** May 14, 2026
 
 ---
 
-## 🗺️ Épicas del Proyecto
+## 🗺️ Project Epics
 
-| ID | Épica | Prioridad | Parcial |
-|----|-------|-----------|---------|
-| EP-01 | Autenticación | Alta | 1er Parcial |
-| EP-02 | Gestión de Usuarios | Alta | 1er Parcial |
-| EP-03 | Productos e Inventario | Alta | 1er Parcial |
-| EP-04 | Mesas | Media | 2do Parcial |
-| EP-05 | Órdenes | Alta | 2do Parcial |
-| EP-06 | Reportes | Media | 2do Parcial |
-
----
-
----
-
-# 🟦 PRIMER PARCIAL
-
-> **Objetivo:** Establecer la base del sistema: autenticación segura, administración de usuarios y gestión completa del catálogo de productos con su inventario.
+| ID     | Epic                       | Priority | Partial       |
+|--------|----------------------------|----------|---------------|
+| EP-01  | Authentication             | High     | 1st Partial   |
+| EP-02  | User Management            | High     | 1st Partial   |
+| EP-03  | Products & Inventory       | High     | 1st Partial   |
+| EP-04  | Tables                     | Medium   | 2nd Partial   |
+| EP-05  | Orders                     | High     | 2nd Partial   |
+| EP-06  | Reports                    | Medium   | 2nd Partial   |
+| EP-07  | Enhancements & Polish      | Medium   | 3rd Partial   |
 
 ---
 
-## Sprint 1 — Autenticación (EP-01)
-**Duración estimada:** 1 semana  
-**Objetivo del sprint:** El sistema debe permitir registro, inicio de sesión, cierre de sesión y protección de rutas mediante Supabase Auth.
+# 🟦 FIRST PARTIAL
 
----
+## Sprint 1 — Authentication (EP-01)
 
-### US-01 · Registro de usuario por administrador
-**Historia:** Como administrador, quiero registrar nuevos usuarios con nombre, correo y contraseña, para que el personal pueda acceder al sistema.
-
+### US-01 · User Registration by Administrator
+**User Story:** As an administrator, I want to register new users with name, email and password so that staff can access the system.  
 **Story Points:** 5
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Registro de usuario
+Feature: User Registration
+  Scenario: Successful registration
+    Given the admin is on the registration form
+    And all fields are completed
+    When the admin submits the form
+    Then the system creates the account in Supabase Auth
+    And shows a success message
 
-  Scenario: Registro exitoso
-    Given el administrador está en el formulario de registro
-    And todos los campos (nombre, correo, contraseña) están completos
-    When el administrador envía el formulario
-    Then el sistema crea la cuenta en Supabase Auth
-    And muestra un mensaje de confirmación
+  Scenario: Duplicate email
+    Given an account with that email already exists
+    When the admin tries to register the user
+    Then the system shows "This email is already registered"
 
-  Scenario: Correo duplicado
-    Given ya existe una cuenta con el correo ingresado
-    When el administrador intenta registrar al usuario
-    Then el sistema muestra el mensaje "Este correo ya está registrado"
-    And no crea una cuenta nueva
-
-  Scenario: Campos vacíos
-    Given el administrador deja algún campo en blanco
-    When intenta enviar el formulario
-    Then el sistema resalta los campos faltantes
-    And muestra el mensaje de validación correspondiente
+  Scenario: Empty fields
+    Given the admin leaves any field empty
+    When the form is submitted
+    Then the system highlights the missing fields and shows validation messages
 ```
 
-**Tareas técnicas:**
-- Crear `register.html` con formulario (nombre, email, password)
-- Función `registerUser()` en JS llamando a `supabase.auth.signUp()`
-- Validación de campos vacíos con mensajes en UI
-- Verificar unicidad de email (manejo del error de Supabase)
-
----
-
-### US-02 · Inicio de sesión
-**Historia:** Como usuario registrado, quiero iniciar sesión con mi correo y contraseña, para que pueda acceder al dashboard del sistema.
-
+### US-02 · User Login
+**User Story:** As a registered user, I want to log in with my email and password to access the dashboard.  
 **Story Points:** 3
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Inicio de sesión
+Feature: User Login
+  Scenario: Successful login
+    Given a registered user
+    When correct email and password are entered
+    Then the system authenticates and redirects to the dashboard
 
-  Scenario: Login exitoso
-    Given un usuario registrado con credenciales válidas
-    When ingresa su correo y contraseña correctamente
-    Then el sistema autentica con Supabase Auth
-    And redirige al dashboard principal
-
-  Scenario: Credenciales incorrectas
-    Given un usuario con correo o contraseña incorrectos
-    When intenta iniciar sesión
-    Then el sistema muestra "Correo o contraseña incorrectos"
-    And no redirige al dashboard
+  Scenario: Invalid credentials
+    Given incorrect email or password
+    When login is attempted
+    Then the system shows "Invalid email or password"
 ```
 
-**Tareas técnicas:**
-- Crear `login.html` con formulario
-- Función `loginUser()` con `supabase.auth.signInWithPassword()`
-- Redirección a `dashboard.html` si la sesión es válida
-
----
-
-### US-03 · Cierre de sesión
-**Historia:** Como usuario autenticado, quiero poder cerrar sesión en cualquier momento, para que mi cuenta quede protegida al terminar mi turno.
-
+### US-03 · Logout
+**User Story:** As an authenticated user, I want to log out at any time.  
 **Story Points:** 2
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Cierre de sesión
-
-  Scenario: Logout exitoso
-    Given el usuario tiene una sesión activa
-    When hace clic en "Cerrar sesión"
-    Then el sistema termina la sesión con Supabase
-    And redirige a la página de login
+Feature: Logout
+  Scenario: Successful logout
+    Given the user has an active session
+    When the user clicks "Logout"
+    Then the session is terminated
+    And the user is redirected to the login page
 ```
 
-**Tareas técnicas:**
-- Botón de logout en el sidebar/navbar
-- Función `logoutUser()` con `supabase.auth.signOut()`
-- Limpiar estado local y redirigir a `login.html`
-
----
-
-### US-04 · Protección de rutas
-**Historia:** Como administrador del sistema, quiero que las páginas privadas solo sean accesibles a usuarios autenticados, para que nadie sin credenciales pueda ver la información del negocio.
-
+### US-04 · Protected Routes
+**User Story:** As an administrator, I want protected pages to be accessible only by authenticated users.  
 **Story Points:** 3
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Rutas protegidas
+Feature: Protected Routes
+  Scenario: Access without session
+    Given the user is not logged in
+    When trying to access a protected page
+    Then the system redirects to the login page
 
-  Scenario: Acceso sin sesión
-    Given el usuario no ha iniciado sesión
-    When intenta acceder directamente a una página protegida
-    Then el sistema redirige automáticamente al login
-
-  Scenario: Acceso con sesión válida
-    Given el usuario tiene sesión activa
-    When navega a cualquier página protegida
-    Then el sistema muestra el contenido normalmente
+  Scenario: Access with valid session
+    Given the user is logged in
+    When accessing a protected page
+    Then the page loads normally
 ```
 
-**Tareas técnicas:**
-- Función `checkAuth()` usando `supabase.auth.getSession()`
-- Incluir `checkAuth()` en el `<head>` de cada página protegida
-- Redirección automática a `login.html` si no hay sesión
-
 ---
 
-## Sprint 2 — Gestión de Usuarios (EP-02)
-**Duración estimada:** 1 semana  
-**Objetivo del sprint:** El administrador puede visualizar y buscar todos los usuarios registrados en el sistema.
+## Sprint 2 — User Management (EP-02)
 
----
-
-### US-05 · Listado de usuarios
-**Historia:** Como administrador, quiero ver todos los usuarios registrados en una tabla, para que pueda tener visibilidad del personal con acceso al sistema.
-
+### US-05 · View Users List
+**User Story:** As an administrator, I want to see all registered users in a table.  
 **Story Points:** 3
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Listado de usuarios
-
-  Scenario: Ver todos los usuarios
-    Given el administrador está en la sección de usuarios
-    When la página carga
-    Then el sistema muestra una tabla con todos los usuarios registrados
-    And cada fila muestra nombre, correo y fecha de registro
+Feature: Users List
+  Scenario: Display all users
+    Given the admin is on the users page
+    When the page loads
+    Then all registered users are shown in a table
 ```
 
-**Tareas técnicas:**
-- Crear `users.html` con tabla HTML
-- Query a Supabase tabla `profiles` o equivalente
-- Renderizar filas dinámicamente con JS
-
----
-
-### US-06 · Búsqueda de usuarios por nombre
-**Historia:** Como administrador, quiero buscar usuarios por nombre, para que pueda encontrar rápidamente a un empleado específico.
-
+### US-06 · Search Users by Name
+**User Story:** As an administrator, I want to search users by name.  
 **Story Points:** 2
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Búsqueda de usuarios
-
-  Scenario: Búsqueda con resultados
-    Given el administrador está en la lista de usuarios
-    When escribe un nombre en la barra de búsqueda
-    Then la tabla filtra y muestra solo los usuarios que coinciden
-
-  Scenario: Búsqueda sin resultados
-    Given no existe ningún usuario con el nombre buscado
-    When el administrador escribe en la barra de búsqueda
-    Then la tabla muestra el mensaje "No se encontraron usuarios"
+Feature: Search Users
+  Scenario: Search with results
+    Given the users list is loaded
+    When the admin types a name
+    Then only matching users are shown
 ```
 
-**Tareas técnicas:**
-- Input de búsqueda con evento `oninput`
-- Filtro del array local o query `.ilike()` a Supabase
-
 ---
 
-## Sprint 3 — Productos e Inventario (EP-03)
-**Duración estimada:** 1–2 semanas  
-**Objetivo del sprint:** CRUD completo de productos y registro de movimientos de inventario (SALE / RESTOCK).
+## Sprint 3 — Products & Inventory (EP-03)
 
----
-
-### US-07 · Crear producto
-**Historia:** Como administrador, quiero agregar nuevos productos con nombre, precio y stock inicial, para que estén disponibles al momento de crear órdenes.
-
+### US-07 · Create Product
+**User Story:** As an administrator, I want to create new products with name, price and initial stock.  
 **Story Points:** 5
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Creación de producto
-
-  Scenario: Producto creado exitosamente
-    Given el administrador está en el formulario de nuevo producto
-    And todos los campos están completos
-    When envía el formulario
-    Then el sistema guarda el producto en Supabase
-    And aparece en la lista de productos
-
-  Scenario: Campos faltantes
-    Given el administrador no llena todos los campos
-    When intenta guardar
-    Then el sistema muestra los errores de validación correspondientes
+Feature: Create Product
+  Scenario: Successful creation
+    Given the admin is on the new product form
+    When all required fields are filled and submitted
+    Then the product is saved and appears in the products list
 ```
 
-**Tareas técnicas:**
-- Crear `products.html` con formulario de alta
-- Insert a tabla `products` en Supabase con `name`, `price`, `stock`
-- Refresh de la lista tras inserción exitosa
-
----
-
-### US-08 · Editar y eliminar producto
-**Historia:** Como administrador, quiero poder editar y eliminar productos existentes, para que el catálogo siempre esté actualizado.
-
+### US-08 · Edit and Delete Product
+**User Story:** As an administrator, I want to edit and delete existing products.  
 **Story Points:** 5
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Edición y eliminación de producto
+Feature: Edit and Delete Product
+  Scenario: Edit product
+    Given a product exists
+    When the admin edits and saves
+    Then the changes are updated
 
-  Scenario: Edición exitosa
-    Given el administrador selecciona un producto
-    When modifica sus datos y confirma
-    Then los cambios se guardan en la base de datos
-
-  Scenario: Eliminación con confirmación
-    Given el administrador quiere eliminar un producto
-    When hace clic en eliminar
-    Then el sistema muestra un modal de confirmación
-    And solo elimina el producto si el admin confirma
+  Scenario: Delete product
+    Given a product exists
+    When the admin deletes it with confirmation
+    Then the product is removed from the system
 ```
 
-**Tareas técnicas:**
-- Botones de editar/eliminar por fila
-- Modal de confirmación para eliminar (UX-04)
-- Update/Delete en Supabase con el `id` del producto
-
----
-
-### US-09 · Reabastecimiento de inventario (RESTOCK)
-**Historia:** Como administrador, quiero registrar entradas de inventario para un producto, para que el stock disponible se mantenga correcto.
-
+### US-09 · Restock Inventory
+**User Story:** As an administrator, I want to restock products.  
 **Story Points:** 5
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Reabastecimiento de inventario
-
-  Scenario: Restock exitoso
-    Given el administrador selecciona un producto con stock bajo
-    When registra una cantidad de reabastecimiento
-    Then el sistema incrementa el stock del producto
-    And registra un movimiento tipo RESTOCK en el historial
-
-  Scenario: Cantidad inválida
-    Given el administrador ingresa una cantidad negativa o cero
-    When intenta guardar
-    Then el sistema muestra un error de validación
+Feature: Restock Inventory
+  Scenario: Successful restock
+    Given a product exists
+    When a restock quantity is registered
+    Then the stock increases
 ```
 
-**Tareas técnicas:**
-- Formulario de restock en modal o sección aparte
-- Insert en tabla `inventory_movements` (tipo RESTOCK, cantidad, product_id)
-- Update del campo `stock` en tabla `products`
-
----
-
-### US-10 · Indicador visual de producto sin stock
-**Historia:** Como cualquier usuario, quiero ver visualmente qué productos están agotados, para que pueda evitar agregar a una orden productos no disponibles.
-
+### US-10 · Out of Stock Visual Indicator
+**User Story:** As a user, I want to visually identify out-of-stock products.  
 **Story Points:** 2
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Indicador de sin stock
-
-  Scenario: Producto agotado visible
-    Given un producto tiene stock = 0
-    When se muestra en la lista de productos
-    Then aparece con una etiqueta visual o fondo diferente que indica "Agotado"
+Feature: Out of Stock Indicator
+  Scenario: Product without stock
+    Given a product has zero stock
+    When it is displayed
+    Then it shows a clear visual indicator "Out of Stock"
 ```
 
-**Tareas técnicas:**
-- Clase CSS condicional según `stock === 0`
-- Badge o etiqueta "Sin stock" en la UI
-
 ---
 
-### 📊 Resumen del 1er Parcial
+# 🟩 SECOND PARTIAL
 
-| User Story | Épica | SP | Sprint |
-|------------|-------|----|--------|
-| US-01 Registro de usuario | EP-01 | 5 | 1 |
-| US-02 Inicio de sesión | EP-01 | 3 | 1 |
-| US-03 Cierre de sesión | EP-01 | 2 | 1 |
-| US-04 Protección de rutas | EP-01 | 3 | 1 |
-| US-05 Listado de usuarios | EP-02 | 3 | 2 |
-| US-06 Búsqueda de usuarios | EP-02 | 2 | 2 |
-| US-07 Crear producto | EP-03 | 5 | 3 |
-| US-08 Editar/Eliminar producto | EP-03 | 5 | 3 |
-| US-09 Reabastecimiento (RESTOCK) | EP-03 | 5 | 3 |
-| US-10 Indicador sin stock | EP-03 | 2 | 3 |
-| **TOTAL** | | **35 SP** | |
+## Sprint 4 — Tables (EP-04)
 
----
-
----
-
-# 🟩 SEGUNDO PARCIAL
-
-> **Objetivo:** Implementar la operativa completa del negocio: gestión de mesas, ciclo de vida de órdenes, descuentos automáticos de inventario y generación de reportes de ventas.
-
----
-
-## Sprint 4 — Mesas (EP-04)
-**Duración estimada:** 1 semana  
-**Objetivo del sprint:** El sistema permite crear y administrar las mesas disponibles del negocio.
-
----
-
-### US-11 · Gestión de mesas (CRUD)
-**Historia:** Como administrador, quiero crear, editar y eliminar mesas con su número y capacidad, para que el sistema refleje la distribución real del local.
-
+### US-11 · Tables Management (CRUD)
+**User Story:** As an administrator, I want to create, edit and delete tables.  
 **Story Points:** 5
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Gestión de mesas
-
-  Scenario: Crear mesa
-    Given el administrador está en la sección de mesas
-    When ingresa el número y capacidad y guarda
-    Then la mesa aparece en la lista
-
-  Scenario: Editar mesa
-    Given una mesa existente
-    When el administrador modifica su número o capacidad y confirma
-    Then los cambios se reflejan en la base de datos
-
-  Scenario: Eliminar mesa con confirmación
-    Given una mesa existente
-    When el administrador hace clic en eliminar
-    Then aparece un modal de confirmación
-    And solo se elimina si el admin confirma
+Feature: Tables Management
+  Scenario: Create table
+    Given the admin is on the tables section
+    When entering number and capacity
+    Then the table is created successfully
 ```
 
-**Tareas técnicas:**
-- Crear `tables.html` con listado y formulario
-- CRUD sobre tabla `tables` en Supabase (`number`, `capacity`)
-- Modal de confirmación para eliminar
-
 ---
 
-## Sprint 5 — Órdenes (EP-05)
-**Duración estimada:** 2 semanas  
-**Objetivo del sprint:** Creación de órdenes vinculadas a mesa y usuario, agregar productos, manejar el ciclo de vida completo y gestionar inventario automáticamente.
+## Sprint 5 — Orders (EP-05)
 
----
-
-### US-12 · Crear orden
-**Historia:** Como empleado, quiero crear una nueva orden vinculada a un usuario y una mesa, para que quede registrado quién atendió qué mesa.
-
+### US-12 · Create Order
+**User Story:** As an employee, I want to create a new order linked to a user and table.  
 **Story Points:** 5
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Creación de orden
-
-  Scenario: Orden creada exitosamente
-    Given el empleado selecciona un usuario y una mesa disponible
-    When confirma la creación
-    Then el sistema registra la orden con estado "pending"
-    And aparece en la lista de órdenes activas
-
-  Scenario: Mesa o usuario sin seleccionar
-    Given el empleado no seleccionó mesa o usuario
-    When intenta crear la orden
-    Then el sistema muestra un mensaje de validación
+Feature: Create Order
+  Scenario: Successful order creation
+    Given a user and table are selected
+    When the order is created
+    Then the order is registered with status "pending"
 ```
 
-**Tareas técnicas:**
-- Crear `orders.html` con selects de usuario y mesa
-- Insert en tabla `orders` con `user_id`, `table_id`, `status: 'pending'`
-
----
-
-### US-13 · Agregar productos a una orden
-**Historia:** Como empleado, quiero agregar productos disponibles a una orden activa, para que se registre lo que el cliente va a consumir y el inventario se descuente automáticamente.
-
+### US-13 · Add Products to Order
+**User Story:** As an employee, I want to add products to an order with automatic inventory deduction.  
 **Story Points:** 8
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Agregar productos a orden
+Feature: Add Products to Order
+  Scenario: Add product with stock
+    Given available stock
+    When the product is added to the order
+    Then inventory is decreased and the product is added
 
-  Scenario: Producto agregado y stock descontado
-    Given una orden en estado "pending" o "in_progress"
-    And el producto tiene stock disponible
-    When el empleado agrega el producto a la orden
-    Then se registra en `order_details` con el precio vigente
-    And el stock del producto disminuye en la cantidad indicada
-    And se registra un movimiento SALE en inventario
-
-  Scenario: Producto sin stock
-    Given el producto tiene stock = 0
-    When el empleado intenta agregarlo a la orden
-    Then el sistema bloquea la acción
-    And muestra "Producto sin stock disponible"
+  Scenario: Product out of stock
+    Given the product has zero stock
+    When trying to add it
+    Then the system blocks the action
 ```
 
-**Tareas técnicas:**
-- Sección de productos en la vista de orden
-- Insert en `order_details` (`order_id`, `product_id`, `quantity`, `unit_price`)
-- Decrementar `stock` en `products` y registrar movimiento SALE
-- Capturar precio actual en el momento de agregar (NFR-05)
-
----
-
-### US-14 · Cambio de estado de la orden
-**Historia:** Como empleado, quiero cambiar el estado de una orden (pending → in_progress → delivered), para que el equipo sepa el progreso de cada mesa.
-
+### US-14 · Change Order Status
+**User Story:** As an employee, I want to change the order status.  
 **Story Points:** 5
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Ciclo de vida de la orden
+Feature: Order Status Change
+  Scenario: Valid transition
+    Given an order in valid status
+    When changing to the next status
+    Then the status is updated
 
-  Scenario: Transición válida
-    Given una orden en estado "pending"
-    When el empleado cambia el estado a "in_progress"
-    Then el sistema actualiza el estado en la base de datos
-
-  Scenario: Transición inválida
-    Given una orden en estado "delivered"
-    When el empleado intenta revertir el estado
-    Then el sistema rechaza la acción
-    And muestra "Esta transición de estado no está permitida"
+  Scenario: Invalid transition
+    Given a delivered order
+    When trying to revert the status
+    Then the system prevents the change
 ```
 
-**Tareas técnicas:**
-- Botones de cambio de estado según estado actual (lógica de transiciones permitidas)
-- Update en tabla `orders` con validación de transición en JS
-- Deshabilitar/ocultar botones para transiciones no permitidas
-
----
-
-### US-15 · Cancelar orden y restaurar inventario
-**Historia:** Como empleado, quiero cancelar una orden y que el inventario se restaure automáticamente, para que el stock no se pierda si el cliente cancela su pedido.
-
+### US-15 · Cancel Order and Restore Inventory
+**User Story:** As an employee, I want to cancel an order and restore inventory.  
 **Story Points:** 8
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Cancelación de orden
-
-  Scenario: Cancelación con restauración de stock
-    Given una orden con productos en estado "pending" o "in_progress"
-    When el empleado cancela la orden (con confirmación)
-    Then el estado cambia a "cancelled"
-    And el stock de cada producto del detalle se restaura
-    And se registran movimientos RESTOCK en inventario
-
-  Scenario: Confirmar antes de cancelar
-    Given el empleado hace clic en "Cancelar orden"
-    When aparece el modal de confirmación
-    And el empleado confirma
-    Then se ejecuta la cancelación
+Feature: Cancel Order
+  Scenario: Cancel with stock restoration
+    Given an active order with products
+    When the order is cancelled
+    Then status changes to "cancelled" and inventory is restored
 ```
 
-**Tareas técnicas:**
-- Modal de confirmación para cancelar
-- Consulta de `order_details` para saber qué restaurar
-- Update de `stock` en cada producto relacionado
-- Insert de movimientos RESTOCK en `inventory_movements`
-- Update de status a `cancelled`
-
 ---
 
-## Sprint 6 — Reportes (EP-06)
-**Duración estimada:** 1 semana  
-**Objetivo del sprint:** Generación del reporte diario de ventas basado en órdenes entregadas.
+## Sprint 6 — Reports (EP-06)
 
----
-
-### US-16 · Reporte diario de ventas
-**Historia:** Como administrador, quiero generar un reporte de ventas del día, para que pueda saber cuánto ingresó el negocio en base a las órdenes entregadas.
-
+### US-16 · Daily Sales Report
+**User Story:** As an administrator, I want to generate a daily sales report.  
 **Story Points:** 8
 
-**Criterios de Aceptación (Gherkin):**
+**Acceptance Criteria (Gherkin):**
 ```gherkin
-Feature: Reporte de ventas
-
-  Scenario: Generar reporte con órdenes entregadas
-    Given existen órdenes con estado "delivered" para la fecha seleccionada
-    When el administrador genera el reporte
-    Then el sistema muestra el total de ventas del día
-    And muestra el detalle por orden (mesa, usuario, total)
-    And muestra los productos más vendidos
-
-  Scenario: Sin órdenes del día
-    Given no hay órdenes entregadas para la fecha seleccionada
-    When el administrador genera el reporte
-    Then el sistema muestra "No hay ventas registradas para esta fecha"
-```
-
-**Tareas técnicas:**
-- Crear `reports.html` con selector de fecha
-- Query de `orders` donde `status = 'delivered'` y fecha = seleccionada
-- JOIN con `order_details` y `products` para calcular totales
-- Mostrar tabla de resumen y total general
-
----
-
-### 📊 Resumen del 2do Parcial
-
-| User Story | Épica | SP | Sprint |
-|------------|-------|----|--------|
-| US-11 Gestión de mesas (CRUD) | EP-04 | 5 | 4 |
-| US-12 Crear orden | EP-05 | 5 | 5 |
-| US-13 Agregar productos a orden | EP-05 | 8 | 5 |
-| US-14 Cambio de estado de orden | EP-05 | 5 | 5 |
-| US-15 Cancelar orden y restaurar inventario | EP-05 | 8 | 5 |
-| US-16 Reporte diario de ventas | EP-06 | 8 | 6 |
-| **TOTAL** | | **39 SP** | |
-
----
-
----
-
-# 📐 Resumen General del Proyecto
-
-| Parcial | Sprints | User Stories | Story Points |
-|---------|---------|--------------|--------------|
-| 1er Parcial | 1, 2, 3 | US-01 al US-10 | 35 SP |
-| 2do Parcial | 4, 5, 6 | US-11 al US-16 | 39 SP |
-| **Total** | **6 Sprints** | **16 User Stories** | **74 SP** |
-
----
-
-## 🗂️ Mapa de Requerimientos ↔ User Stories
-
-| FR / NFR | User Story |
-|----------|-----------|
-| FR-01, FR-02, FR-03 | US-01 |
-| FR-04, FR-05 | US-02 |
-| FR-06 | US-03 |
-| FR-07 | US-04 |
-| FR-08 | US-05 |
-| FR-09 | US-06 |
-| FR-10 | US-07, US-08 |
-| FR-11 | US-09 |
-| UX-05 | US-10 |
-| FR-14 | US-11 |
-| FR-15 | US-12 |
-| FR-16, FR-18, NFR-05 | US-13 |
-| FR-17, FR-20 | US-14 |
-| FR-19 | US-15 |
-| FR-21 | US-16 |
-
----
-
-## 🏗️ Estructura de la Base de Datos (referencia)
-
-```
-users        → id, name, email (manejado por Supabase Auth)
-products     → id, name, price, stock
-tables       → id, number, capacity
-orders       → id, user_id, table_id, status, created_at
-order_details→ id, order_id, product_id, quantity, unit_price
-inventory_movements → id, product_id, type (SALE/RESTOCK), quantity, created_at
+Feature: Daily Sales Report
+  Scenario: Generate report
+    Given there are delivered orders
+    When the report is generated
+    Then total sales and details are displayed
 ```
 
 ---
 
-*Backlog generado con base en el Technical Summary de Chicaffe y el repositorio cbtis47-db-project-salchichasparrita-2026.*
+# 🟨 THIRD PARTIAL
+
+## Sprint 7 — Enhancements & Polish (EP-07)
+
+### US-17 · Advanced Sales Reports with Charts
+**User Story:** As an administrator, I want interactive charts and date range filters.  
+**Story Points:** 8
+
+### US-18 · Order History and Search
+**User Story:** As an administrator, I want to search and filter past orders.  
+**Story Points:** 6
+
+### US-19 · User Roles and Permissions
+**User Story:** As an administrator, I want to assign roles (admin / employee).  
+**Story Points:** 8
+
+### US-20 · Export Reports (PDF / CSV)
+**User Story:** As an administrator, I want to export reports.  
+**Story Points:** 5
+
+### US-21 · Performance Optimization
+**User Story:** As a developer, I want the system to load fast.  
+**Story Points:** 5
+
+### US-22 · Improved Error Handling
+**User Story:** As a user, I want clear and friendly error messages.  
+**Story Points:** 4
+
+---
+
+### 📊 Project Summary
+
+| Partial       | Sprints | User Stories | Story Points |
+|---------------|---------|--------------|--------------|
+| 1st Partial   | 1-3     | 10           | 35 SP        |
+| 2nd Partial   | 4-6     | 6            | 39 SP        |
+| 3rd Partial   | 7       | 6            | 36 SP        |
+| **Total**     | **7**   | **22**       | **110 SP**   |
+
+---
