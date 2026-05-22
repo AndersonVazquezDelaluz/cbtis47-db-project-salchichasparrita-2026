@@ -1,4 +1,4 @@
-# 🏃 Sprint Backlog — Chicaffe
+#  Sprint Backlog — Chicaffe
 
 **Project:** Chicaffe - Cafeteria Management System
 **Repository:** `cbtis47-db-project-salchichasparrita-2026`
@@ -8,7 +8,7 @@
 
 ---
 
-## 📊 Sprint Overview
+## Sprint Overview
 
 | Sprint | Name | Epic | Partial | User Stories | Story Points |
 |---|---|---|---|---|---|
@@ -22,7 +22,7 @@
 
 ---
 
-# 🟦 FIRST PARTIAL
+# 1 FIRST PARTIAL
 
 ---
 
@@ -106,7 +106,7 @@
 
 ---
 
-# 🟩 SECOND PARTIAL
+# 2 SECOND PARTIAL
 
 ---
 
@@ -182,7 +182,7 @@
 
 ---
 
-# 🟨 THIRD PARTIAL
+# 3 THIRD PARTIAL
 
 ---
 
@@ -225,7 +225,7 @@
 
 ---
 
-## 📊 Sprint Summary
+##  Sprint Summary
 
 | Sprint | Story Points | Cumulative SP |
 |---|---|---|
