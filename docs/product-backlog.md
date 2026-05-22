@@ -1,4 +1,4 @@
-# 📋 Product Backlog — Chicaffe
+#  Product Backlog — Chicaffe
 
 **Project:** Chicaffe - Cafeteria Management System
 **Repository:** `cbtis47-db-project-salchichasparrita-2026`
@@ -8,7 +8,7 @@
 
 ---
 
-## 🎯 Product Goal
+##  Product Goal
 
 > Develop a comprehensive cafeteria management system that enables efficient administration of users, inventory, tables, orders, and reports — optimizing daily operations, reducing manual errors, improving stock control, and increasing service speed for Chicaffe customers.
 
