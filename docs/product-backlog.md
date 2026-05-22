@@ -297,44 +297,131 @@ Feature: Daily Sales Report
 ```
 
 ---
+✅ Here you go, everything in English (clean for copy & paste):
 
-# 🟨 THIRD PARTIAL
+Product Goal: Develop a comprehensive cafeteria management system that allows efficient administration of users, inventory, tables, orders, and reports, with the aim of optimizing daily operations, reducing manual errors, improving inventory control, and increasing service speed for customers at Chicaffe.
 
-## Sprint 7 — Enhancements & Polish (EP-07)
+🟨 THIRD PARTIAL
+Sprint 7 — Enhancements & Polish (EP-07)
+US-17 · Advanced Sales Reports with Charts
+User Story: As an administrator, I want interactive charts and date range filters so that I can analyze sales trends more effectively. Story Points: 8
+Acceptance Criteria (Gherkin):
+Feature: Advanced Sales Reports
+  Scenario: Generate report with date filter
+    Given the admin is on the reports page
+    When selecting a date range and clicking "Generate"
+    Then the system shows total sales, number of orders, and top products
 
-### US-17 · Advanced Sales Reports with Charts
-**User Story:** As an administrator, I want interactive charts and date range filters.  
-**Story Points:** 8
+  Scenario: Interactive charts
+    Given a report is generated
+    When the page loads
+    Then bar charts, pie charts and line charts are displayed using Chart.js
 
-### US-18 · Order History and Search
-**User Story:** As an administrator, I want to search and filter past orders.  
-**Story Points:** 6
+  Scenario: No data in range
+    Given no orders in the selected period
+    When generating the report
+    Then the system shows "No sales data for the selected period"
+US-18 · Order History and Search
+User Story: As an administrator, I want to search and filter past orders to easily find specific transactions. Story Points: 6
+Acceptance Criteria (Gherkin):
+Feature: Order History
+  Scenario: View order history
+    Given the admin accesses the order history page
+    When the page loads
+    Then all past orders are displayed with date, table, total and status
 
-### US-19 · User Roles and Permissions
-**User Story:** As an administrator, I want to assign roles (admin / employee).  
-**Story Points:** 8
+  Scenario: Search and filter orders
+    Given the history is loaded
+    When the admin searches by order ID, customer name or date
+    Then only matching orders are shown
 
-### US-20 · Export Reports (PDF / CSV)
-**User Story:** As an administrator, I want to export reports.  
-**Story Points:** 5
+  Scenario: View order details
+    Given an order exists in history
+    When clicking on it
+    Then a modal shows all products, quantities and subtotal
+US-19 · User Roles and Permissions
+User Story: As an administrator, I want to assign roles (admin / employee) to control access to system features. Story Points: 8
+Acceptance Criteria (Gherkin):
+Feature: User Roles
+  Scenario: Assign role when creating user
+    Given the admin is registering a new user
+    When selecting a role (Admin or Employee)
+    Then the role is saved in the database
 
-### US-21 · Performance Optimization
-**User Story:** As a developer, I want the system to load fast.  
-**Story Points:** 5
+  Scenario: Role-based access
+    Given a user with "Employee" role
+    When trying to access user management or reports
+    Then access is denied and a message is shown
 
-### US-22 · Improved Error Handling
-**User Story:** As a user, I want clear and friendly error messages.  
-**Story Points:** 4
+  Scenario: Admin privileges
+    Given a user with "Admin" role
+    When accessing any section
+    Then full access is granted
+US-20 · Export Reports (PDF / CSV)
+User Story: As an administrator, I want to export reports in PDF and CSV formats. Story Points: 5
+Acceptance Criteria (Gherkin):
+Feature: Export Reports
+  Scenario: Export to CSV
+    Given a report is generated
+    When clicking "Export CSV"
+    Then a .csv file is downloaded with all report data
 
----
+  Scenario: Export to PDF
+    Given a report is generated
+    When clicking "Export PDF"
+    Then a formatted .pdf file is downloaded (using jsPDF)
+US-21 · Performance Optimization
+User Story: As a developer, I want the system to load fast and respond quickly to improve user experience. Story Points: 5
+Acceptance Criteria (Gherkin):
+Feature: Performance Optimization
+  Scenario: Fast page loading
+    Given the user navigates between pages
+    When loading any page
+    Then loading time is under 2 seconds
 
-### 📊 Project Summary
+  Scenario: Optimized queries
+    Given large amounts of data
+    When loading users, products or orders
+    Then pagination and indexing are applied
+US-22 · Improved Error Handling
+User Story: As a user, I want clear and friendly error messages so I understand what went wrong. Story Points: 4
+Acceptance Criteria (Gherkin):
+Feature: Error Handling
+  Scenario: Network error
+    Given there is no internet connection
+    When performing an action
+    Then a friendly message is shown: "Connection error. Please check your internet."
 
-| Partial       | Sprints | User Stories | Story Points |
-|---------------|---------|--------------|--------------|
-| 1st Partial   | 1-3     | 10           | 35 SP        |
-| 2nd Partial   | 4-6     | 6            | 39 SP        |
-| 3rd Partial   | 7       | 6            | 36 SP        |
-| **Total**     | **7**   | **22**       | **110 SP**   |
+  Scenario: Validation error
+    Given incorrect data is entered
+    When submitting a form
+    Then specific and clear validation messages are displayed
+
+  Scenario: Server error
+    Given an unexpected error occurs
+    When the action fails
+    Then "An unexpected error occurred. Please try again later." is shown
+
+📊 Project Summary
+Partial
+Sprints
+User Stories
+Story Points
+1st Partial
+1-3
+10
+35 SP
+2nd Partial
+4-6
+6
+39 SP
+3rd Partial
+7
+6
+36 SP
+Total
+7
+22
+110 SP
 
 ---
