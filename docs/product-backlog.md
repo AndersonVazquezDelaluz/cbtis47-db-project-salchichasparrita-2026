@@ -1,5 +1,3 @@
-**✅ Aquí tienes el archivo completo listo para copiar:**
-
 ```markdown
 # 📋 Product Backlog — Chicaffe
 
