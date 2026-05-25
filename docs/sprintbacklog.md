@@ -18,7 +18,7 @@
 
 ---
 
-# 🟦 FIRST PARTIAL
+#  FIRST PARTIAL
 
 ## Sprint 1 — Authentication `EP-01`
 
