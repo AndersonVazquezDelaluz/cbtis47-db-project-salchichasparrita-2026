@@ -1,4 +1,4 @@
-# ☕ Chicaffe — Administration Panel
+#  Chicaffe — Administration Panel
 
 ![Status](https://img.shields.io/badge/status-development-yellow)
 ![Node.js](https://img.shields.io/badge/node.js-v18-green)
@@ -11,7 +11,7 @@ Academic project developed at **CBTIS 47 — 2026**.
 
 ---
 
-# 📚 Table of Contents
+#  Table of Contents
 
 * [Description](#-description)
 * [Features](#-features)
@@ -29,7 +29,7 @@ Academic project developed at **CBTIS 47 — 2026**.
 
 ---
 
-# 📖 Description
+#  Description
 
 Chicaffe is a cafeteria management system developed as a school project.
 The main goal is to centralize the management of:
@@ -44,7 +44,7 @@ The system supports full CRUD operations using Node.js, Express, and MySQL.
 
 ---
 
-# ✨ Features
+#  Features
 
 * User management
 * Product management
@@ -58,7 +58,7 @@ The system supports full CRUD operations using Node.js, Express, and MySQL.
 
 ---
 
-# 🛠️ Technologies Used
+#  Technologies Used
 
 | Area                 | Technology               |
 | -------------------- | ------------------------ |
@@ -74,7 +74,7 @@ The system supports full CRUD operations using Node.js, Express, and MySQL.
 
 ---
 
-# 🏗️ Project Architecture
+#  Project Architecture
 
 The project follows a client-server architecture:
 
@@ -85,7 +85,7 @@ The project follows a client-server architecture:
 
 ---
 
-# 📁 Project Structure
+#  Project Structure
 
 ```bash
 cbtis47-db-project-salchichasparrita-2026/
@@ -126,9 +126,9 @@ cbtis47-db-project-salchichasparrita-2026/
 
 ---
 
-# ⚙️ Local Installation (with XAMPP)
+#  Local Installation (with XAMPP)
 
-## ✅ Prerequisites
+##  Prerequisites
 
 * Node.js v18 or higher
 * XAMPP with MySQL running
@@ -136,7 +136,7 @@ cbtis47-db-project-salchichasparrita-2026/
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 ```bash
 # Clone the repository
@@ -151,7 +151,7 @@ npm install
 
 ---
 
-## 🗄️ Database Configuration
+##  Database Configuration
 
 1. Open phpMyAdmin
 2. Create the database:
@@ -170,7 +170,7 @@ src/03_users.sql
 
 ---
 
-## 🔧 Server Configuration
+##  Server Configuration
 
 Edit the credentials in `server.js`:
 
@@ -186,7 +186,7 @@ const pool = mysql.createPool({
 
 ---
 
-## ▶️ Run the Project
+##  Run the Project
 
 ```bash
 npm start
@@ -206,7 +206,7 @@ http://localhost:3000
 
 ---
 
-# 💻 System Usage
+#  System Usage
 
 The system allows you to:
 
@@ -219,7 +219,7 @@ The system allows you to:
 
 ---
 
-# 🌐 API — Available Endpoints
+#  API — Available Endpoints
 
 Base URL:
 
@@ -252,7 +252,7 @@ Main files:
 
 ---
 
-# 📌 Agile Methodology
+#  Agile Methodology
 
 The project was developed using basic Scrum principles:
 
@@ -264,7 +264,7 @@ The project was developed using basic Scrum principles:
 
 ---
 
-# 👥 Team
+#  Team
 
 | Member           | Role                   |
 | ---------------- | ---------------------- |
@@ -276,7 +276,7 @@ The project was developed using basic Scrum principles:
 
 ---
 
-# ⚠️ Common Issues
+#  Common Issues
 
 ## MySQL Connection Error
 
