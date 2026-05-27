@@ -28,7 +28,7 @@
 
 ---
 
-### US-01 · User Registration by Administrator
+### US-CC-01-01 · User Registration by Administrator
 
 | Field | Detail |
 |---|---|
@@ -84,7 +84,7 @@ Feature: User Registration
 
 ---
 
-### US-02 · User Login
+### US-Cc-01-02 · User Login
 
 | Field | Detail |
 |---|---|
@@ -141,7 +141,7 @@ Feature: User Login
 
 ---
 
-### US-03 · Logout
+### US-Cc-01-03 · Logout
 
 | Field | Detail |
 |---|---|
@@ -184,7 +184,7 @@ Feature: Logout
 
 ---
 
-### US-04 · Protected Routes
+### US-Cc-01-04 · Protected Routes
 
 | Field | Detail |
 |---|---|
@@ -222,7 +222,7 @@ Feature: Protected Routes
 
 ---
 
-### US-05 · View Users List
+### US-cc-02-05 · View Users List
 
 | Field | Detail |
 |---|---|
@@ -255,7 +255,7 @@ Feature: Users List
 
 ---
 
-### US-06 · Search Users by Name
+### US-Cc-02-06 · Search Users by Name
 
 | Field | Detail |
 |---|---|
@@ -285,7 +285,7 @@ Feature: Search Users
 
 ---
 
-### US-07 · Create Product
+### US-Cc-03-07 · Create Product
 
 | Field | Detail |
 |---|---|
@@ -313,7 +313,7 @@ Feature: Create Product
 
 ---
 
-### US-08 · Edit and Delete Product
+### US-Cc-03-08 · Edit and Delete Product
 
 | Field | Detail |
 |---|---|
@@ -349,7 +349,7 @@ Feature: Delete Product
 
 ---
 
-### US-09 · Restock Inventory
+### US-Cc-03-09 · Restock Inventory
 
 | Field | Detail |
 |---|---|
@@ -377,7 +377,7 @@ Feature: Restock Inventory
 
 ---
 
-### US-10 · Out of Stock Visual Indicator
+### US-Cc-03-10 · Out of Stock Visual Indicator
 
 | Field | Detail |
 |---|---|
@@ -409,7 +409,7 @@ Feature: Out of Stock Indicator
 
 ---
 
-### US-11 · Tables Management (CRUD)
+### US-Cc-04-11 · Tables Management (CRUD)
 
 | Field | Detail |
 |---|---|
@@ -457,7 +457,7 @@ Feature: Delete Table
 
 ---
 
-### US-12 · Create Order
+### US-Cc-05-12 · Create Order
 
 | Field | Detail |
 |---|---|
@@ -484,7 +484,7 @@ Feature: Create Order
 
 ---
 
-### US-13 · Add Products to Order
+### US-Cc-05-13 · Add Products to Order
 
 | Field | Detail |
 |---|---|
@@ -512,7 +512,7 @@ Feature: Add Products to Order
 
 ---
 
-### US-14 · Change Order Status
+### US-Cc-05-14 · Change Order Status
 
 | Field | Detail |
 |---|---|
@@ -540,7 +540,7 @@ Feature: Order Status Change
 
 ---
 
-### US-15 · Cancel Order and Restore Inventory
+### US-Cc-05-15 · Cancel Order and Restore Inventory
 
 | Field | Detail |
 |---|---|
@@ -572,7 +572,7 @@ Feature: Cancel Order
 
 ---
 
-### US-16 · Daily Sales Report
+### US-Cc-06-16 · Daily Sales Report
 
 | Field | Detail |
 |---|---|
@@ -605,7 +605,7 @@ Feature: Daily Sales Report
 
 ---
 
-### US-17 · Advanced Sales Reports with Charts
+### US-Cc-07-17 · Advanced Sales Reports with Charts
 
 | Field | Detail |
 |---|---|
@@ -637,7 +637,7 @@ Feature: Advanced Sales Reports
 
 ---
 
-### US-18 · Order History and Search
+### US-Cc-07-18 · Order History and Search
 
 | Field | Detail |
 |---|---|
@@ -668,7 +668,7 @@ Feature: Order History
 
 ---
 
-### US-19 · User Roles and Permissions
+### US-Cc-07-19 · User Roles and Permissions
 
 | Field | Detail |
 |---|---|
@@ -700,7 +700,7 @@ Feature: User Roles and Permissions
 
 ---
 
-### US-20 · Export Reports (PDF / CSV)
+### US-Cc-07-20 · Export Reports (PDF / CSV)
 
 | Field | Detail |
 |---|---|
@@ -732,7 +732,7 @@ Feature: Export Reports
 
 ---
 
-### US-21 · Performance Optimization
+### US-Cc-07-21 · Performance Optimization
 
 | Field | Detail |
 |---|---|
@@ -758,7 +758,7 @@ Feature: Performance Optimization
 
 ---
 
-### US-22 · Improved Error Handling
+### US-Cc-07-22 · Improved Error Handling
 
 | Field | Detail |
 |---|---|
