@@ -1,4 +1,4 @@
-#  Product Backlog — Chicaffe
+# Product Backlog — Chicaffe
 
 **Project:** Chicaffe - Cafeteria Management System
 **Repository:** `cbtis47-db-project-salchichasparrita-2026`
@@ -8,13 +8,13 @@
 
 ---
 
-##  Product Goal
+## Product Goal
 
 > Develop a comprehensive cafeteria management system that enables efficient administration of users, inventory, tables, orders, and reports — optimizing daily operations, reducing manual errors, improving stock control, and increasing service speed for Chicaffe customers.
 
 ---
 
-## 🗺️ Epics
+## Epics
 
 | ID | Epic | Priority | Partial |
 |---|---|---|---|
@@ -41,7 +41,7 @@
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to register new users with name, email and password so that staff can access the system. |
+| **User Story** | As an administrator, I want to register new users with name, email, and password so that staff members can access the system. |
 | **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
@@ -50,21 +50,21 @@
 Feature: User Registration
 
   Scenario: Successful registration
-    Given the admin is on the registration form
-    And all fields are completed
-    When the admin submits the form
-    Then the system creates the account in Supabase Auth
-    And shows a success message
+    Given the administrator is on the registration form
+    When all required fields are completed and the form is submitted
+    Then the system creates the account
+    And a success message is displayed
 
   Scenario: Duplicate email
-    Given an account with that email already exists
-    When the admin tries to register the user
-    Then the system shows "This email is already registered"
+    Given an account with that email already exists in the system
+    When the administrator attempts to register a new user with that email
+    Then the system displays the message "This email is already registered"
 
   Scenario: Empty fields
-    Given the admin leaves any field empty
+    Given the administrator leaves one or more fields empty
     When the form is submitted
-    Then the system highlights the missing fields and shows validation messages
+    Then the system highlights the missing fields
+    And displays a validation message for each empty field
 ```
 
 ---
@@ -74,7 +74,7 @@ Feature: User Registration
 | Field | Detail |
 |---|---|
 | **Role** | Registered user |
-| **User Story** | As a registered user, I want to log in with my email and password so that I can access the dashboard. |
+| **User Story** | As a registered user, I want to log in with my email and password so that I can access the system dashboard. |
 | **Story Points** | 3 SP |
 
 **Acceptance Criteria:**
@@ -83,14 +83,16 @@ Feature: User Registration
 Feature: User Login
 
   Scenario: Successful login
-    Given a registered user
-    When correct email and password are entered
-    Then the system authenticates and redirects to the dashboard
+    Given a registered user is on the login page
+    When the correct email and password are entered and submitted
+    Then the system authenticates the user
+    And redirects them to the dashboard
 
   Scenario: Invalid credentials
-    Given incorrect email or password
-    When login is attempted
-    Then the system shows "Invalid email or password"
+    Given a user is on the login page
+    When an incorrect email or password is entered
+    Then the system displays the message "Invalid email or password"
+    And the user remains on the login page
 ```
 
 ---
@@ -110,7 +112,7 @@ Feature: Logout
 
   Scenario: Successful logout
     Given the user has an active session
-    When the user clicks "Logout"
+    When the user clicks the "Logout" button
     Then the session is terminated
     And the user is redirected to the login page
 ```
@@ -130,14 +132,14 @@ Feature: Logout
 ```gherkin
 Feature: Protected Routes
 
-  Scenario: Access without session
+  Scenario: Access attempt without an active session
     Given the user is not logged in
-    When trying to access a protected page
-    Then the system redirects to the login page
+    When the user tries to access a protected page
+    Then the system redirects them to the login page
 
-  Scenario: Access with valid session
-    Given the user is logged in
-    When accessing a protected page
+  Scenario: Access with a valid session
+    Given the user is logged in with a valid session
+    When the user navigates to a protected page
     Then the page loads normally
 ```
 
@@ -145,7 +147,7 @@ Feature: Protected Routes
 
 ## Sprint 2 — User Management `EP-02`
 
-**Sprint Goal:** Provide admins with full visibility and searchability over registered system users.
+**Sprint Goal:** Provide administrators with full visibility and searchability over all registered system users.
 
 ---
 
@@ -154,7 +156,7 @@ Feature: Protected Routes
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to see all registered users in a table so that I have full visibility of the system's staff. |
+| **User Story** | As an administrator, I want to see all registered users displayed in a table so that I have full visibility of the system's staff. |
 | **Story Points** | 3 SP |
 
 **Acceptance Criteria:**
@@ -163,9 +165,9 @@ Feature: Protected Routes
 Feature: Users List
 
   Scenario: Display all users
-    Given the admin is on the users page
-    When the page loads
-    Then all registered users are shown in a table
+    Given the administrator is on the users page
+    When the page finishes loading
+    Then all registered users are shown in a table with their name, email, role, and status
 ```
 
 ---
@@ -175,7 +177,7 @@ Feature: Users List
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to search users by name so that I can quickly find a specific user. |
+| **User Story** | As an administrator, I want to search for users by name so that I can quickly locate a specific staff member. |
 | **Story Points** | 2 SP |
 
 **Acceptance Criteria:**
@@ -183,17 +185,22 @@ Feature: Users List
 ```gherkin
 Feature: Search Users
 
-  Scenario: Search with results
-    Given the users list is loaded
-    When the admin types a name
-    Then only matching users are shown
+  Scenario: Search returns matching results
+    Given the users list is loaded on the page
+    When the administrator types a name in the search field
+    Then only users whose names match the search input are displayed
+
+  Scenario: Search returns no results
+    Given the users list is loaded on the page
+    When the administrator types a name that does not match any user
+    Then the system displays a message indicating no users were found
 ```
 
 ---
 
 ## Sprint 3 — Products & Inventory `EP-03`
 
-**Sprint Goal:** Give admins full CRUD control over products and maintain accurate real-time inventory.
+**Sprint Goal:** Give administrators full control over the product catalog and maintain accurate real-time inventory.
 
 ---
 
@@ -202,7 +209,7 @@ Feature: Search Users
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to create new products with name, price and initial stock so that the catalog stays up to date. |
+| **User Story** | As an administrator, I want to create new products with a name, price, and initial stock so that the product catalog stays up to date. |
 | **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
@@ -210,10 +217,17 @@ Feature: Search Users
 ```gherkin
 Feature: Create Product
 
-  Scenario: Successful creation
-    Given the admin is on the new product form
-    When all required fields are filled and submitted
-    Then the product is saved and appears in the products list
+  Scenario: Successful product creation
+    Given the administrator is on the new product form
+    When all required fields are filled in and the form is submitted
+    Then the product is saved in the system
+    And it appears in the products list
+
+  Scenario: Missing required fields
+    Given the administrator leaves one or more required fields empty
+    When the form is submitted
+    Then the system highlights the missing fields
+    And displays a validation message for each one
 ```
 
 ---
@@ -223,23 +237,25 @@ Feature: Create Product
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to edit and delete existing products so that the catalog remains accurate. |
+| **User Story** | As an administrator, I want to edit and delete existing products so that the catalog remains accurate and current. |
 | **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
 
 ```gherkin
-Feature: Edit and Delete Product
+Feature: Edit Product
 
-  Scenario: Edit product
-    Given a product exists
-    When the admin edits and saves
-    Then the changes are updated
+  Scenario: Successful product edit
+    Given a product exists in the catalog
+    When the administrator modifies the product details and saves the changes
+    Then the updated information is reflected in the products list
 
-  Scenario: Delete product
-    Given a product exists
-    When the admin deletes it with confirmation
-    Then the product is removed from the system
+Feature: Delete Product
+
+  Scenario: Successful product deletion
+    Given a product exists in the catalog
+    When the administrator selects delete and confirms the action
+    Then the product is permanently removed from the system
 ```
 
 ---
@@ -249,7 +265,7 @@ Feature: Edit and Delete Product
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to restock products so that stock levels are always accurate. |
+| **User Story** | As an administrator, I want to restock products by adding units so that stock levels are always accurate. |
 | **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
@@ -258,9 +274,14 @@ Feature: Edit and Delete Product
 Feature: Restock Inventory
 
   Scenario: Successful restock
-    Given a product exists
-    When a restock quantity is registered
-    Then the stock increases accordingly
+    Given a product exists in the system
+    When the administrator enters a restock quantity and confirms
+    Then the product's stock level increases by the entered amount
+
+  Scenario: Invalid restock quantity
+    Given a product exists in the system
+    When the administrator enters a quantity of zero or a negative number
+    Then the system displays a validation error and does not update the stock
 ```
 
 ---
@@ -270,7 +291,7 @@ Feature: Restock Inventory
 | Field | Detail |
 |---|---|
 | **Role** | User |
-| **User Story** | As a user, I want to visually identify out-of-stock products so that I avoid attempting to order unavailable items. |
+| **User Story** | As a user, I want to visually identify out-of-stock products so that I can avoid attempting to order unavailable items. |
 | **Story Points** | 2 SP |
 
 **Acceptance Criteria:**
@@ -278,10 +299,15 @@ Feature: Restock Inventory
 ```gherkin
 Feature: Out of Stock Indicator
 
-  Scenario: Product without stock
-    Given a product has zero stock
-    When it is displayed in the list
-    Then a clear visual indicator "Out of Stock" is shown
+  Scenario: Product with zero stock is displayed
+    Given a product has a stock level of zero
+    When it is shown in the product list
+    Then a clear "Out of Stock" badge is displayed on that product
+
+  Scenario: Out-of-stock product cannot be added to an order
+    Given a product has a stock level of zero
+    When the user views the product in the order interface
+    Then the option to add the product to an order is disabled
 ```
 
 ---
@@ -290,7 +316,7 @@ Feature: Out of Stock Indicator
 
 ## Sprint 4 — Tables `EP-04`
 
-**Sprint Goal:** Allow admins to manage physical cafeteria tables to support order assignment.
+**Sprint Goal:** Allow administrators to manage physical cafeteria tables to support accurate order assignment.
 
 ---
 
@@ -299,28 +325,38 @@ Feature: Out of Stock Indicator
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to create, edit and delete tables so that orders can be accurately assigned to physical tables. |
+| **User Story** | As an administrator, I want to create, edit, and delete cafeteria tables so that orders can be accurately assigned to physical tables. |
 | **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
 
 ```gherkin
-Feature: Tables Management
+Feature: Create Table
 
-  Scenario: Create table
-    Given the admin is on the tables section
-    When entering a number and capacity and confirming
-    Then the table is created successfully
+  Scenario: Successful table creation
+    Given the administrator is on the tables management page
+    When a table number and capacity are entered and the form is submitted
+    Then the new table is saved and appears in the tables list
 
-  Scenario: Edit table
-    Given a table exists
-    When the admin updates its details
-    Then the changes are saved
+Feature: Edit Table
 
-  Scenario: Delete table
-    Given a table exists with no active orders
-    When the admin deletes it
+  Scenario: Successful table edit
+    Given a table exists in the system
+    When the administrator updates the table details and saves
+    Then the changes are reflected in the tables list
+
+Feature: Delete Table
+
+  Scenario: Successful table deletion
+    Given a table exists with no active orders linked to it
+    When the administrator selects delete and confirms the action
     Then the table is removed from the system
+
+  Scenario: Delete table with active orders
+    Given a table has one or more active orders linked to it
+    When the administrator attempts to delete the table
+    Then the system prevents the deletion
+    And displays a message indicating the table has active orders
 ```
 
 ---
@@ -336,7 +372,7 @@ Feature: Tables Management
 | Field | Detail |
 |---|---|
 | **Role** | Employee |
-| **User Story** | As an employee, I want to create a new order linked to a user and table so that customer requests are tracked from the start. |
+| **User Story** | As an employee, I want to create a new order linked to a customer and a table so that customer requests are tracked from the start. |
 | **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
@@ -345,9 +381,10 @@ Feature: Tables Management
 Feature: Create Order
 
   Scenario: Successful order creation
-    Given a user and a table are selected
-    When the order is created
-    Then the order is registered with status "pending"
+    Given the employee selects a customer and a table
+    When the new order is submitted
+    Then the order is registered in the system with status "pending"
+    And it appears in the active orders list
 ```
 
 ---
@@ -357,7 +394,7 @@ Feature: Create Order
 | Field | Detail |
 |---|---|
 | **Role** | Employee |
-| **User Story** | As an employee, I want to add products to an order with automatic inventory deduction so that stock is always kept accurate. |
+| **User Story** | As an employee, I want to add products to an order with automatic inventory deduction so that stock levels are always kept accurate. |
 | **Story Points** | 8 SP |
 
 **Acceptance Criteria:**
@@ -366,14 +403,16 @@ Feature: Create Order
 Feature: Add Products to Order
 
   Scenario: Add product with available stock
-    Given the product has available stock
-    When the product is added to the order
-    Then inventory is decreased and the product appears in the order
+    Given a product has available stock
+    When the employee adds the product to the order
+    Then the product appears in the order
+    And the product's stock is decreased by the selected quantity
 
-  Scenario: Product out of stock
-    Given the product has zero stock
-    When trying to add it to the order
-    Then the system blocks the action and shows a warning
+  Scenario: Attempt to add out-of-stock product
+    Given a product has a stock level of zero
+    When the employee attempts to add it to the order
+    Then the system blocks the action
+    And displays a warning message indicating the product is out of stock
 ```
 
 ---
@@ -383,7 +422,7 @@ Feature: Add Products to Order
 | Field | Detail |
 |---|---|
 | **Role** | Employee |
-| **User Story** | As an employee, I want to change the order status through valid transitions so that order progress is accurately tracked. |
+| **User Story** | As an employee, I want to update the order status through valid transitions so that order progress is accurately tracked. |
 | **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
@@ -392,14 +431,15 @@ Feature: Add Products to Order
 Feature: Order Status Change
 
   Scenario: Valid status transition
-    Given an order in a valid status
-    When changing to the next allowed status
-    Then the status is updated
+    Given an order is in a status that allows a forward transition
+    When the employee changes it to the next allowed status
+    Then the order status is updated successfully
 
   Scenario: Invalid status transition
-    Given a delivered order
-    When trying to revert the status
-    Then the system prevents the change and shows a message
+    Given an order has a status of "delivered" or "cancelled"
+    When the employee attempts to revert or change the status to a previous one
+    Then the system prevents the change
+    And displays a message explaining the transition is not allowed
 ```
 
 ---
@@ -409,7 +449,7 @@ Feature: Order Status Change
 | Field | Detail |
 |---|---|
 | **Role** | Employee |
-| **User Story** | As an employee, I want to cancel an active order and restore the consumed stock so that inventory stays accurate even when orders are cancelled. |
+| **User Story** | As an employee, I want to cancel an active order and have the consumed stock automatically restored so that inventory remains accurate even when orders are cancelled. |
 | **Story Points** | 8 SP |
 
 **Acceptance Criteria:**
@@ -417,18 +457,18 @@ Feature: Order Status Change
 ```gherkin
 Feature: Cancel Order
 
-  Scenario: Cancel with stock restoration
-    Given an active order containing products
-    When the order is cancelled
-    Then the status changes to "cancelled"
-    And the inventory for each product is restored
+  Scenario: Successful order cancellation with stock restoration
+    Given an active order contains one or more products
+    When the employee cancels the order and confirms the action
+    Then the order status changes to "cancelled"
+    And the inventory for each product in the order is restored to its previous level
 ```
 
 ---
 
 ## Sprint 6 — Reports `EP-06`
 
-**Sprint Goal:** Provide administrators with actionable daily sales insights.
+**Sprint Goal:** Provide administrators with actionable daily sales insights to support informed decision-making.
 
 ---
 
@@ -437,7 +477,7 @@ Feature: Cancel Order
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to generate a daily sales report so that I can monitor revenue and order volume. |
+| **User Story** | As an administrator, I want to generate a daily sales report so that I can monitor revenue and order volume for any given day. |
 | **Story Points** | 8 SP |
 
 **Acceptance Criteria:**
@@ -445,15 +485,15 @@ Feature: Cancel Order
 ```gherkin
 Feature: Daily Sales Report
 
-  Scenario: Generate report
+  Scenario: Generate report with available data
     Given there are delivered orders for the selected day
-    When the report is generated
-    Then total sales, order count, and product details are displayed
+    When the administrator generates the report
+    Then the system displays the total sales amount, total order count, and a breakdown by product
 
-  Scenario: No orders for the day
-    Given no orders were delivered that day
-    When the report is generated
-    Then the system shows "No sales data for the selected period"
+  Scenario: No orders for the selected day
+    Given no orders were delivered on the selected day
+    When the administrator generates the report
+    Then the system displays the message "No sales data for the selected period"
 ```
 
 ---
@@ -462,7 +502,7 @@ Feature: Daily Sales Report
 
 ## Sprint 7 — Enhancements & Polish `EP-07`
 
-**Sprint Goal:** Elevate the system with advanced analytics, role-based security, export capabilities, and production-grade reliability.
+**Sprint Goal:** Elevate the system with advanced analytics, role-based access control, export capabilities, and production-grade reliability.
 
 ---
 
@@ -471,7 +511,7 @@ Feature: Daily Sales Report
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want interactive charts and date range filters so that I can analyze sales trends more effectively. |
+| **User Story** | As an administrator, I want to view interactive charts and filter reports by date range so that I can analyze sales trends more effectively. |
 | **Story Points** | 8 SP |
 
 **Acceptance Criteria:**
@@ -479,20 +519,20 @@ Feature: Daily Sales Report
 ```gherkin
 Feature: Advanced Sales Reports
 
-  Scenario: Generate report with date filter
-    Given the admin is on the reports page
-    When selecting a date range and clicking "Generate"
-    Then the system shows total sales, number of orders, and top products
+  Scenario: Generate report with a date range filter
+    Given the administrator is on the reports page
+    When a start date and end date are selected and the report is generated
+    Then the system displays total sales, number of orders, and top-selling products for that period
 
-  Scenario: Interactive charts
-    Given a report has been generated
-    When the page loads
-    Then bar charts, pie charts and line charts are displayed using Chart.js
+  Scenario: Interactive charts are rendered
+    Given a report has been successfully generated
+    When the results are displayed
+    Then bar, pie, and line charts are shown representing the sales data
 
-  Scenario: No data in range
-    Given no orders exist in the selected period
-    When generating the report
-    Then the system shows "No sales data for the selected period"
+  Scenario: No data available for the selected range
+    Given no orders exist within the selected date range
+    When the report is generated
+    Then the system displays the message "No sales data for the selected period"
 ```
 
 ---
@@ -502,7 +542,7 @@ Feature: Advanced Sales Reports
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to search and filter past orders so that I can easily find specific transactions. |
+| **User Story** | As an administrator, I want to search and filter past orders so that I can easily locate specific transactions. |
 | **Story Points** | 6 SP |
 
 **Acceptance Criteria:**
@@ -510,20 +550,20 @@ Feature: Advanced Sales Reports
 ```gherkin
 Feature: Order History
 
-  Scenario: View order history
-    Given the admin accesses the order history page
+  Scenario: View all past orders
+    Given the administrator accesses the order history page
     When the page loads
-    Then all past orders are displayed with date, table, total and status
+    Then all past orders are displayed with their date, table, total, and status
 
   Scenario: Search and filter orders
-    Given the history is loaded
-    When searching by order ID, customer name or date
-    Then only matching orders are shown
+    Given the order history is loaded
+    When the administrator searches by order ID, customer name, or date
+    Then only orders matching the search criteria are displayed
 
   Scenario: View order details
-    Given an order exists in history
-    When clicking on it
-    Then a modal shows all products, quantities and subtotal
+    Given an order exists in the history
+    When the administrator clicks on it
+    Then a detail view shows all products, quantities, and subtotals for that order
 ```
 
 ---
@@ -533,7 +573,7 @@ Feature: Order History
 | Field | Detail |
 |---|---|
 | **Role** | Administrator |
-| **User Story** | As an administrator, I want to assign roles (Admin / Employee) to control access to system features so that each user only sees what they are authorized to use. |
+| **User Story** | As an administrator, I want to assign roles (Admin or Employee) to users so that each person only has access to the features they are authorized to use. |
 | **Story Points** | 8 SP |
 
 **Acceptance Criteria:**
@@ -541,20 +581,21 @@ Feature: Order History
 ```gherkin
 Feature: User Roles
 
-  Scenario: Assign role when creating user
-    Given the admin is registering a new user
-    When selecting a role (Admin or Employee)
-    Then the role is saved in the database
+  Scenario: Assign role during user creation
+    Given the administrator is registering a new user
+    When a role is selected (Admin or Employee) and the form is submitted
+    Then the assigned role is saved and associated with the user account
 
-  Scenario: Role-based access — Employee
-    Given a user with "Employee" role
-    When trying to access user management or reports
-    Then access is denied and an informational message is shown
+  Scenario: Role-based access — Employee restrictions
+    Given a user with the "Employee" role is logged in
+    When the user attempts to access user management or reports sections
+    Then access is denied
+    And an informational message is displayed explaining the restriction
 
-  Scenario: Role-based access — Admin
-    Given a user with "Admin" role
-    When accessing any section of the system
-    Then full access is granted
+  Scenario: Role-based access — Admin full access
+    Given a user with the "Admin" role is logged in
+    When the user navigates to any section of the system
+    Then full access is granted without restrictions
 ```
 
 ---
@@ -572,15 +613,15 @@ Feature: User Roles
 ```gherkin
 Feature: Export Reports
 
-  Scenario: Export to CSV
-    Given a report has been generated
-    When clicking "Export CSV"
-    Then a .csv file is downloaded with all report data
+  Scenario: Export report to CSV
+    Given a report has been generated with data
+    When the administrator clicks "Export CSV"
+    Then a .csv file containing all the report data is downloaded
 
-  Scenario: Export to PDF
-    Given a report has been generated
-    When clicking "Export PDF"
-    Then a formatted .pdf file is downloaded (generated via jsPDF)
+  Scenario: Export report to PDF
+    Given a report has been generated with data
+    When the administrator clicks "Export PDF"
+    Then a formatted .pdf file containing the report is downloaded
 ```
 
 ---
@@ -590,7 +631,7 @@ Feature: Export Reports
 | Field | Detail |
 |---|---|
 | **Role** | Developer |
-| **User Story** | As a developer, I want the system to load fast and respond quickly so that the user experience is smooth even with large data sets. |
+| **User Story** | As a developer, I want the system to load quickly and respond efficiently so that the user experience remains smooth even with large volumes of data. |
 | **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
@@ -600,13 +641,13 @@ Feature: Performance Optimization
 
   Scenario: Fast page loading
     Given the user navigates between pages
-    When any page is loaded
-    Then loading time is under 2 seconds
+    When any page is loaded under normal conditions
+    Then the page is fully loaded within 2 seconds
 
-  Scenario: Optimized queries
-    Given large volumes of data exist
-    When loading users, products or orders
-    Then pagination and indexing are applied
+  Scenario: Optimized data queries
+    Given a large volume of records exists in the system
+    When the user loads a list of users, products, or orders
+    Then pagination is applied and the data loads without delays
 ```
 
 ---
@@ -616,7 +657,7 @@ Feature: Performance Optimization
 | Field | Detail |
 |---|---|
 | **Role** | User |
-| **User Story** | As a user, I want clear and friendly error messages so that I understand what went wrong and can take corrective action. |
+| **User Story** | As a user, I want to receive clear and friendly error messages so that I understand what went wrong and can take the appropriate corrective action. |
 | **Story Points** | 4 SP |
 
 **Acceptance Criteria:**
@@ -624,25 +665,25 @@ Feature: Performance Optimization
 ```gherkin
 Feature: Error Handling
 
-  Scenario: Network error
+  Scenario: Network connection error
     Given there is no internet connection
-    When performing any action
-    Then the message "Connection error. Please check your internet." is shown
+    When the user attempts to perform any action
+    Then the system displays the message "Connection error. Please check your internet connection."
 
-  Scenario: Validation error
-    Given incorrect data is entered in a form
-    When submitting
-    Then specific and clear validation messages are displayed per field
+  Scenario: Form validation error
+    Given incorrect or incomplete data is entered in a form
+    When the form is submitted
+    Then specific validation messages are displayed next to each invalid field
 
-  Scenario: Server error
-    Given an unexpected server-side error occurs
-    When the action fails
-    Then the message "An unexpected error occurred. Please try again later." is shown
+  Scenario: Unexpected server error
+    Given an unexpected error occurs on the server side
+    When the user's action fails
+    Then the system displays the message "An unexpected error occurred. Please try again later."
 ```
 
 ---
 
-## 📊 Project Summary
+## Project Summary
 
 | Partial | Sprints | User Stories | Story Points |
 |---|---|---|---|
@@ -650,36 +691,3 @@ Feature: Error Handling
 | 2nd Partial | 4 – 6 | 6 | 39 SP |
 | 3rd Partial | 7 | 6 | 36 SP |
 | **Total** | **7** | **22** | **110 SP** |
-
----
-
-## ⚙️ Functional Requirements (SRS)
-
-| ID | Requirement |
-|---|---|
-| RF-01 | The system shall allow administrators to register, edit, and deactivate users. |
-| RF-02 | The system shall authenticate users via Supabase Auth with email and password. |
-| RF-03 | The system shall enforce session-based protected routes; unauthenticated users are redirected to login. |
-| RF-04 | The system shall support full CRUD operations for products, including name, price, and stock. |
-| RF-05 | The system shall automatically decrease product stock when a product is added to an order. |
-| RF-06 | The system shall restore product stock when an order is cancelled. |
-| RF-07 | The system shall prevent adding out-of-stock products to an order. |
-| RF-08 | The system shall allow orders to transition through defined statuses: `pending → in-progress → delivered / cancelled`. |
-| RF-09 | The system shall generate daily and date-ranged sales reports with totals and top products. |
-| RF-10 | The system shall support role-based access control (Admin / Employee). |
-| RF-11 | The system shall allow exporting reports in CSV and PDF formats. |
-| RF-12 | The system shall display interactive charts (bar, pie, line) in the reports section. |
-
----
-
-## 🔒 Non-Functional Requirements (SRS)
-
-| ID | Category | Requirement |
-|---|---|---|
-| RNF-01 | Performance | Any page must load within 2 seconds under normal conditions. |
-| RNF-02 | Security | All routes must be protected; passwords handled exclusively by Supabase Auth. |
-| RNF-03 | Usability | The UI must be responsive and functional on screens ≥ 768 px wide. |
-| RNF-04 | Availability | The system must maintain 99% uptime during school operating hours. |
-| RNF-05 | Scalability | Queries must use pagination and indexing when data exceeds 500 records. |
-| RNF-06 | Maintainability | Code must follow consistent naming conventions and be modularized by feature. |
-| RNF-07 | Error Handling | All API errors must be caught and surfaced as user-friendly messages. |
