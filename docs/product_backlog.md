@@ -815,12 +815,3 @@ Feature: Error Handling
 ```
 
 ---
-
-## Project Summary
-
-| Partial | Epics | User Stories | Story Points |
-|---|---|---|---|
-| 1st Partial | EP-01, EP-02, EP-03 | US-01 – US-10 | 35 SP |
-| 2nd Partial | EP-04, EP-05, EP-06 | US-11 – US-16 | 39 SP |
-| 3rd Partial | EP-07 | US-17 – US-22 | 36 SP |
-| **Total** | **7** | **22** | **110 SP** |
