@@ -32,16 +32,6 @@
 |---|---|
 | **User Story** | **As an** administrator, **I want** to register new users with name, email, password, and role **so that** staff members can access the system with the appropriate permissions. |
 
-#### Input Fields
-
-| Field | Type | Required | Constraints |
-|---|---|---|---|
-| Full Name | Text | Yes | 3–100 characters. Alphabetic characters, spaces, and hyphens only. No digits or special characters. |
-| Email Address | Email | Yes | Must follow RFC 5322 format (`user@domain.tld`). Must be unique in the system. Maximum 254 characters. |
-| Password | Password | Yes | 8–64 characters. Must include at least one uppercase letter, one lowercase letter, one digit, and one special character (`!@#$%^&*`). |
-| Confirm Password | Password | Yes | Must match the value entered in the Password field exactly. |
-| Role | Select | Yes | Must be one of the predefined values: `Administrator` or `Employee`. |
-
 #### Acceptance Criteria
 
 ```gherkin
@@ -128,18 +118,11 @@
 
 ---
 
-### US-Cc-01-02 · User Login
+### US-CC-01-02 · User Login
 
 | Field | Detail |
 |---|---|
 | **User Story** | **As a** registered user, **I want** to log in with my email and password **so that** I can access the system dashboard. |
-
-#### Input Fields
-
-| Field | Type | Required | Constraints |
-|---|---|---|---|
-| Email Address | Email | Yes | Must follow format `user@domain.tld`. Maximum 254 characters. |
-| Password | Password | Yes | Non-empty. Submitted as plaintext and validated against stored hash on the server. |
 
 #### Acceptance Criteria
 
@@ -214,7 +197,7 @@
 
 ---
 
-### US-Cc-01-03 · Logout
+### US-CC-01-03 · Logout
 
 | Field | Detail |
 |---|---|
@@ -257,7 +240,7 @@
 
 ---
 
-### US-Cc-01-04 · Protected Routes
+### US-CC-01-04 · Protected Routes
 
 | Field | Detail |
 |---|---|
@@ -293,7 +276,7 @@
 
 ---
 
-### US-cc-02-05 · View Users List
+### US-CC-02-05 · View Users List
 
 | Field | Detail |
 |---|---|
@@ -324,7 +307,7 @@
 
 ---
 
-### US-Cc-02-06 · Search Users by Name
+### US-CC-02-06 · Search Users by Name
 
 | Field | Detail |
 |---|---|
@@ -353,19 +336,11 @@
 
 ---
 
-### US-Cc-03-07 · Create Product
+### US-CC-03-07 · Create Product
 
 | Field | Detail |
 |---|---|
 | **User Story** | **As an** administrator, **I want** to create new products with a name, price, and initial stock quantity **so that** the product catalog stays up to date. |
-
-#### Input Fields
-
-| Field | Type | Required | Constraints |
-|---|---|---|---|
-| Product Name | Text | Yes | 2–100 characters. Must be unique in the catalog. |
-| Price | Decimal | Yes | Must be a positive number greater than 0. Maximum 2 decimal places. |
-| Initial Stock | Integer | Yes | Must be a non-negative integer (≥ 0). |
 
 #### Acceptance Criteria
 
@@ -408,7 +383,7 @@
 
 ---
 
-### US-Cc-03-08 · Edit and Delete Product
+### US-CC-03-08 · Edit and Delete Product
 
 | Field | Detail |
 |---|---|
@@ -516,7 +491,7 @@
 
 ---
 
-### US-Cc-03-09 · Restock Inventory
+### US-CC-03-09 · Restock Inventory
 
 | Field | Detail |
 |---|---|
@@ -542,7 +517,7 @@
 
 ---
 
-### US-Cc-03-10 · Out of Stock Visual Indicator
+### US-CC-03-10 · Out of Stock Visual Indicator
 
 | Field | Detail |
 |---|---|
@@ -572,18 +547,11 @@
 
 ---
 
-### US-Cc-04-11 · Tables Management (CRUD)
+### US-CC-04-11 · Tables Management (CRUD)
 
 | Field | Detail |
 |---|---|
 | **User Story** | **As an** administrator, **I want** to create, edit, and delete cafeteria tables **so that** orders can be accurately assigned to the corresponding physical tables. |
-
-#### Input Fields
-
-| Field | Type | Required | Constraints |
-|---|---|---|---|
-| Table Number | Integer | Yes | Must be a positive integer greater than 0. Must be unique. |
-| Seating Capacity | Integer | Yes | Must be a positive integer between 1 and 50. |
 
 #### Acceptance Criteria — Create Table
 
@@ -720,7 +688,7 @@
 
 ---
 
-### US-Cc-05-12 · Create Order
+### US-CC-05-12 · Create Order
 
 | Field | Detail |
 |---|---|
@@ -745,7 +713,7 @@
 
 ---
 
-### US-Cc-05-13 · Add Products to Order
+### US-CC-05-13 · Add Products to Order
 
 | Field | Detail |
 |---|---|
@@ -771,7 +739,7 @@
 
 ---
 
-### US-Cc-05-14 · Change Order Status
+### US-CC-05-14 · Change Order Status
 
 | Field | Detail |
 |---|---|
@@ -797,7 +765,7 @@
 
 ---
 
-### US-Cc-05-15 · Cancel Order and Restore Inventory
+### US-CC-05-15 · Cancel Order and Restore Inventory
 
 | Field | Detail |
 |---|---|
@@ -827,7 +795,7 @@
 
 ---
 
-### US-Cc-06-16 · Daily Sales Report
+### US-CC-06-16 · Daily Sales Report
 
 | Field | Detail |
 |---|---|
@@ -858,7 +826,7 @@
 
 ---
 
-### US-Cc-07-17 · Advanced Sales Reports with Charts
+### US-CC-07-17 · Advanced Sales Reports with Charts
 
 | Field | Detail |
 |---|---|
@@ -888,7 +856,7 @@
 
 ---
 
-### US-Cc-07-18 · Order History and Search
+### US-CC-07-18 · Order History and Search
 
 | Field | Detail |
 |---|---|
@@ -917,7 +885,7 @@
 
 ---
 
-### US-Cc-07-19 · User Roles and Permissions
+### US-CC-07-19 · User Roles and Permissions
 
 | Field | Detail |
 |---|---|
@@ -947,7 +915,7 @@
 
 ---
 
-### US-Cc-07-20 · Export Reports (PDF / CSV)
+### US-CC-07-20 · Export Reports (PDF / CSV)
 
 | Field | Detail |
 |---|---|
@@ -977,7 +945,7 @@
 
 ---
 
-### US-Cc-07-21 · Performance Optimization
+### US-CC-07-21 · Performance Optimization
 
 | Field | Detail |
 |---|---|
@@ -1001,7 +969,7 @@
 
 ---
 
-### US-Cc-07-22 · Improved Error Handling
+### US-CC-07-22 · Improved Error Handling
 
 | Field | Detail |
 |---|---|
@@ -1033,5 +1001,3 @@
 ```
 
 ---
-
-*Document Version: 2.0 — Last updated: 2026*
