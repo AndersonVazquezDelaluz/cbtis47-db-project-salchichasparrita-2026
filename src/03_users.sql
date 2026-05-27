@@ -1,79 +1,80 @@
--- ============================================================
--- 03_users.sql - User Management and Security Strategy
--- Author: Matthew Venegas Rojas - Database Administrator
--- Date: May 2026
--- ============================================================
+-- =============================================
+-- 03_users_security.sql
+-- Database Administration: Security & Permissions
+-- Chicaffe Project - CBTIS 47 (2026)
+-- Role: Database Administrator (Matthew Venegas)
+-- =============================================
 
-USE restaurant_db;
+USE chicaffe_db;   -- Cambia al nombre real de tu base de datos
 
--- ------------------------------------------------------------
--- 1. CLEANUP (Make script idempotent)
--- ------------------------------------------------------------
-DROP USER IF EXISTS 'restaurant_app_user'@'localhost';
-DROP USER IF EXISTS 'restaurant_readonly'@'localhost';
+-- =============================================
+-- 1. CREACIÓN DE USUARIOS (Least Privilege Principle)
+-- =============================================
 
--- ------------------------------------------------------------
--- 2. CREATE APPLICATION USERS
--- ------------------------------------------------------------
-CREATE USER IF NOT EXISTS 'restaurant_app_user'@'localhost' 
-    IDENTIFIED BY 'CambiaEstaContraseñaPorUnaMuyFuerte2026!';
+-- Usuario para la Aplicación Web (Node.js) - Solo operaciones necesarias
+CREATE USER IF NOT EXISTS 'chicaffe_app'@'localhost' 
+IDENTIFIED BY 'Chicaffe2026_SecurePass!';
 
-CREATE USER IF NOT EXISTS 'restaurant_readonly'@'localhost' 
-    IDENTIFIED BY 'SoloLectura2026!';
+-- Usuario para Reportes / Query Master
+CREATE USER IF NOT EXISTS 'chicaffe_reports'@'localhost' 
+IDENTIFIED BY 'Reports2026_Secure!';
 
--- ------------------------------------------------------------
--- 3. GRANT PRIVILEGES - Application User (Least Privilege)
--- ------------------------------------------------------------
--- USER table: Protect password_hash (No DELETE allowed)
-GRANT SELECT, INSERT, UPDATE ON restaurant_db.`USER` TO 'restaurant_app_user'@'localhost';
+-- Usuario para Administrador (con más privilegios)
+CREATE USER IF NOT EXISTS 'chicaffe_admin'@'localhost' 
+IDENTIFIED BY 'Admin2026_StrongPass!!';
 
--- Operational tables
-GRANT SELECT, INSERT, UPDATE, DELETE ON restaurant_db.ADDRESS TO 'restaurant_app_user'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON restaurant_db.PRODUCT TO 'restaurant_app_user'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON restaurant_db.TABLES TO 'restaurant_app_user'@'localhost';
+-- =============================================
+-- 2. ASIGNACIÓN DE PRIVILEGIOS (GRANT)
+-- =============================================
 
--- Orders: Only UPDATE status (soft delete) - No hard DELETE
-GRANT SELECT, INSERT, UPDATE ON restaurant_db.`ORDER` TO 'restaurant_app_user'@'localhost';
-GRANT SELECT, INSERT, UPDATE ON restaurant_db.ORDER_DETAIL TO 'restaurant_app_user'@'localhost';
+-- Usuario de la Aplicación Web (mínimos privilegios necesarios)
+GRANT SELECT, INSERT, UPDATE, DELETE 
+ON chicaffe_db.* 
+TO 'chicaffe_app'@'localhost';
 
--- Inventory: Full control (movements can be deleted if needed)
-GRANT SELECT, INSERT, UPDATE, DELETE ON restaurant_db.INVENTORY_MOVEMENTS TO 'restaurant_app_user'@'localhost';
+-- Usuario para reportes (solo lectura)
+GRANT SELECT 
+ON chicaffe_db.* 
+TO 'chicaffe_reports'@'localhost';
 
--- ------------------------------------------------------------
--- 4. READ-ONLY USER (For reports and analytics)
--- ------------------------------------------------------------
-GRANT SELECT ON restaurant_db.* TO 'restaurant_readonly'@'localhost';
+-- Usuario Administrador (control total)
+GRANT ALL PRIVILEGES 
+ON chicaffe_db.* 
+TO 'chicaffe_admin'@'localhost';
 
--- ------------------------------------------------------------
--- 5. APPLY AND VERIFY
--- ------------------------------------------------------------
+-- =============================================
+-- 3. REVOCACIÓN DE PRIVILEGIOS PELIGROSOS
+-- =============================================
+
+REVOKE CREATE, DROP, ALTER, INDEX 
+ON chicaffe_db.* 
+FROM 'chicaffe_app'@'localhost';
+
+REVOKE CREATE, DROP, ALTER 
+ON chicaffe_db.* 
+FROM 'chicaffe_reports'@'localhost';
+
+-- =============================================
+-- 4. APLICAR CAMBIOS
+-- =============================================
+
 FLUSH PRIVILEGES;
 
-SHOW GRANTS FOR 'restaurant_app_user'@'localhost';
-SHOW GRANTS FOR 'restaurant_readonly'@'localhost';
+-- =============================================
+-- 5. VERIFICACIÓN
+-- =============================================
 
--- ============================================================
--- USER MANAGEMENT AND BACKUP STRATEGY
--- ============================================================
+SHOW GRANTS FOR 'chicaffe_app'@'localhost';
+SHOW GRANTS FOR 'chicaffe_reports'@'localhost';
+SHOW GRANTS FOR 'chicaffe_admin'@'localhost';
+
+-- =============================================
+-- COMENTARIOS FINALES
+-- =============================================
 /*
-USER MANAGEMENT STRATEGY (DBA - Matthew Venegas):
-
-1. Principle of Least Privilege Applied:
-   - restaurant_app_user → Controlled write access
-   - No DELETE on USER, ORDER and ORDER_DETAIL (use status = 'cancelled')
-   - restaurant_readonly → Safe user for Power BI / reports
-
-2. Password Security (Critical):
-   - NEVER commit real passwords in Git.
-   - Use .env + dotenv in server.js
-   - Rotate passwords every 90 days.
-
-3. Backup Strategy (DBA Responsibility):
-   - Daily Full Backup:
-     mysqldump -u root -p --single-transaction --routines --triggers restaurant_db > backups/backup_$(date +%Y%m%d).sql
-   - Weekly compressed backup with 30-day rotation
-   - Store backups encrypted in external location (Google Drive / S3)
-   - Monthly restore test procedure
-   - Point-in-time recovery ready (Binary Logs enabled)
+Best Practices aplicadas:
+- Principio de Menor Privilegio (Least Privilege)
+- Usuarios específicos por rol
+- Contraseñas fuertes
+- Revocación de privilegios peligrosos (CREATE, DROP, etc.)
 */
-
