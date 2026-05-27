@@ -1,4 +1,4 @@
-#  Sprint Backlog — Chicaffe
+# Sprint Backlog — Chicaffe
 
 **Project:** Chicaffe - Cafeteria Management System
 **Repository:** `cbtis47-db-project-salchichasparrita-2026`
@@ -22,7 +22,7 @@
 
 ---
 
-# 1 FIRST PARTIAL
+# 🟦 FIRST PARTIAL
 
 ---
 
@@ -42,23 +42,23 @@
 
 | # | Task | US | Status |
 |---|---|---|---|
-| T-01 | Set up Supabase Auth project and credentials | US-01 | ⬜ To Do |
-| T-02 | Build registration form (name, email, password) | US-01 | ⬜ To Do |
-| T-03 | Connect registration form to Supabase Auth | US-01 | ⬜ To Do |
+| T-01 | Set up Supabase Auth project and configure credentials | US-01 | ⬜ To Do |
+| T-02 | Build the registration form (name, email, password) | US-01 | ⬜ To Do |
+| T-03 | Connect the registration form to Supabase Auth | US-01 | ⬜ To Do |
 | T-04 | Add duplicate email and empty field validations | US-01 | ⬜ To Do |
-| T-05 | Build login form (email, password) | US-02 | ⬜ To Do |
-| T-06 | Connect login form to Supabase Auth | US-02 | ⬜ To Do |
-| T-07 | Handle invalid credentials error message | US-02 | ⬜ To Do |
-| T-08 | Implement logout button and session termination | US-03 | ⬜ To Do |
-| T-09 | Redirect to login page after logout | US-03 | ⬜ To Do |
-| T-10 | Create route guard / session check function | US-04 | ⬜ To Do |
-| T-11 | Redirect unauthenticated users to login | US-04 | ⬜ To Do |
+| T-05 | Build the login form (email, password) | US-02 | ⬜ To Do |
+| T-06 | Connect the login form to Supabase Auth | US-02 | ⬜ To Do |
+| T-07 | Handle and display invalid credentials error message | US-02 | ⬜ To Do |
+| T-08 | Implement logout button and session termination logic | US-03 | ⬜ To Do |
+| T-09 | Redirect user to login page after logout | US-03 | ⬜ To Do |
+| T-10 | Create route guard and session check function | US-04 | ⬜ To Do |
+| T-11 | Redirect unauthenticated users to the login page | US-04 | ⬜ To Do |
 
 ---
 
 ## Sprint 2 — User Management `EP-02`
 
-**Sprint Goal:** Provide admins with full visibility and searchability over registered system users.
+**Sprint Goal:** Provide administrators with full visibility and searchability over all registered system users.
 
 | US | Title | Story Points | Priority |
 |---|---|---|---|
@@ -70,16 +70,16 @@
 
 | # | Task | US | Status |
 |---|---|---|---|
-| T-12 | Query all users from Supabase and render in table | US-05 | ⬜ To Do |
-| T-13 | Style users table (name, email, role, status columns) | US-05 | ⬜ To Do |
-| T-14 | Add search input field to users page | US-06 | ⬜ To Do |
-| T-15 | Implement real-time filter by name on user list | US-06 | ⬜ To Do |
+| T-12 | Query all users from Supabase and render them in a table | US-05 | ⬜ To Do |
+| T-13 | Style the users table (name, email, role, status columns) | US-05 | ⬜ To Do |
+| T-14 | Add a search input field to the users page | US-06 | ⬜ To Do |
+| T-15 | Implement real-time filter by name on the users list | US-06 | ⬜ To Do |
 
 ---
 
 ## Sprint 3 — Products & Inventory `EP-03`
 
-**Sprint Goal:** Give admins full CRUD control over products and maintain accurate real-time inventory.
+**Sprint Goal:** Give administrators full control over the product catalog and maintain accurate real-time inventory.
 
 | US | Title | Story Points | Priority |
 |---|---|---|---|
@@ -94,25 +94,25 @@
 | # | Task | US | Status |
 |---|---|---|---|
 | T-16 | Create `products` table in Supabase (name, price, stock) | US-07 | ⬜ To Do |
-| T-17 | Build new product form and connect to Supabase | US-07 | ⬜ To Do |
-| T-18 | Render products list on admin page | US-07 | ⬜ To Do |
-| T-19 | Build edit product modal with pre-filled data | US-08 | ⬜ To Do |
-| T-20 | Implement update product in Supabase | US-08 | ⬜ To Do |
+| T-17 | Build the new product form and connect it to Supabase | US-07 | ⬜ To Do |
+| T-18 | Render the products list on the admin page | US-07 | ⬜ To Do |
+| T-19 | Build the edit product modal with pre-filled data | US-08 | ⬜ To Do |
+| T-20 | Implement update product functionality in Supabase | US-08 | ⬜ To Do |
 | T-21 | Implement delete product with confirmation dialog | US-08 | ⬜ To Do |
-| T-22 | Build restock form (add quantity to existing stock) | US-09 | ⬜ To Do |
-| T-23 | Update stock value in Supabase on restock | US-09 | ⬜ To Do |
-| T-24 | Add "Out of Stock" badge when stock = 0 | US-10 | ⬜ To Do |
-| T-25 | Disable add-to-order button when product is out of stock | US-10 | ⬜ To Do |
+| T-22 | Build the restock form (add quantity to existing stock) | US-09 | ⬜ To Do |
+| T-23 | Update stock value in Supabase on restock submission | US-09 | ⬜ To Do |
+| T-24 | Display "Out of Stock" badge when stock equals 0 | US-10 | ⬜ To Do |
+| T-25 | Disable the add-to-order button when product is out of stock | US-10 | ⬜ To Do |
 
 ---
 
-# 2 SECOND PARTIAL
+# 🟩 SECOND PARTIAL
 
 ---
 
 ## Sprint 4 — Tables `EP-04`
 
-**Sprint Goal:** Allow admins to manage physical cafeteria tables to support order assignment.
+**Sprint Goal:** Allow administrators to manage physical cafeteria tables to support accurate order assignment.
 
 | US | Title | Story Points | Priority |
 |---|---|---|---|
@@ -124,10 +124,11 @@
 | # | Task | US | Status |
 |---|---|---|---|
 | T-26 | Create `tables` table in Supabase (number, capacity, status) | US-11 | ⬜ To Do |
-| T-27 | Build create table form | US-11 | ⬜ To Do |
-| T-28 | Render tables list on admin page | US-11 | ⬜ To Do |
+| T-27 | Build the create table form | US-11 | ⬜ To Do |
+| T-28 | Render the tables list on the admin page | US-11 | ⬜ To Do |
 | T-29 | Implement edit table functionality | US-11 | ⬜ To Do |
-| T-30 | Implement delete table with confirmation | US-11 | ⬜ To Do |
+| T-30 | Implement delete table with confirmation dialog | US-11 | ⬜ To Do |
+| T-31 | Block table deletion if active orders are linked to it | US-11 | ⬜ To Do |
 
 ---
 
@@ -147,24 +148,24 @@
 
 | # | Task | US | Status |
 |---|---|---|---|
-| T-31 | Create `orders` table in Supabase (user, table, status, date) | US-12 | ⬜ To Do |
-| T-32 | Build new order form (select user and table) | US-12 | ⬜ To Do |
-| T-33 | Save new order with status "pending" | US-12 | ⬜ To Do |
-| T-34 | Create `order_items` table (order_id, product_id, quantity) | US-13 | ⬜ To Do |
-| T-35 | Build add-product-to-order UI | US-13 | ⬜ To Do |
-| T-36 | Deduct stock automatically when product is added | US-13 | ⬜ To Do |
-| T-37 | Block adding out-of-stock products with error message | US-13 | ⬜ To Do |
-| T-38 | Build order status selector (pending / in-progress / delivered) | US-14 | ⬜ To Do |
-| T-39 | Validate allowed status transitions | US-14 | ⬜ To Do |
-| T-40 | Block invalid transitions and show error message | US-14 | ⬜ To Do |
-| T-41 | Implement cancel order action | US-15 | ⬜ To Do |
-| T-42 | Restore stock of each product on cancellation | US-15 | ⬜ To Do |
+| T-32 | Create `orders` table in Supabase (user, table, status, date) | US-12 | ⬜ To Do |
+| T-33 | Build the new order form (select customer and table) | US-12 | ⬜ To Do |
+| T-34 | Save the new order with initial status "pending" | US-12 | ⬜ To Do |
+| T-35 | Create `order_items` table (order_id, product_id, quantity) | US-13 | ⬜ To Do |
+| T-36 | Build the add-product-to-order interface | US-13 | ⬜ To Do |
+| T-37 | Automatically deduct stock when a product is added to an order | US-13 | ⬜ To Do |
+| T-38 | Block adding out-of-stock products and display error message | US-13 | ⬜ To Do |
+| T-39 | Build the order status selector (pending / in-progress / delivered) | US-14 | ⬜ To Do |
+| T-40 | Validate and enforce allowed status transitions | US-14 | ⬜ To Do |
+| T-41 | Block invalid transitions and display an explanatory message | US-14 | ⬜ To Do |
+| T-42 | Implement the cancel order action with confirmation | US-15 | ⬜ To Do |
+| T-43 | Restore the stock of each product upon order cancellation | US-15 | ⬜ To Do |
 
 ---
 
 ## Sprint 6 — Reports `EP-06`
 
-**Sprint Goal:** Provide administrators with actionable daily sales insights.
+**Sprint Goal:** Provide administrators with actionable daily sales insights to support informed decision-making.
 
 | US | Title | Story Points | Priority |
 |---|---|---|---|
@@ -175,20 +176,20 @@
 
 | # | Task | US | Status |
 |---|---|---|---|
-| T-43 | Query delivered orders filtered by selected date | US-16 | ⬜ To Do |
-| T-44 | Calculate total sales and order count | US-16 | ⬜ To Do |
-| T-45 | Render report table (product, qty sold, subtotal) | US-16 | ⬜ To Do |
-| T-46 | Show "No sales data" message when no results found | US-16 | ⬜ To Do |
+| T-44 | Query delivered orders filtered by selected date | US-16 | ⬜ To Do |
+| T-45 | Calculate total sales amount and total order count | US-16 | ⬜ To Do |
+| T-46 | Render the report table (product, quantity sold, subtotal) | US-16 | ⬜ To Do |
+| T-47 | Display "No sales data for the selected period" when no results are found | US-16 | ⬜ To Do |
 
 ---
 
-# 3 THIRD PARTIAL
+# 🟨 THIRD PARTIAL
 
 ---
 
 ## Sprint 7 — Enhancements & Polish `EP-07`
 
-**Sprint Goal:** Elevate the system with advanced analytics, role-based security, export capabilities, and production-grade reliability.
+**Sprint Goal:** Elevate the system with advanced analytics, role-based access control, export capabilities, and production-grade reliability.
 
 | US | Title | Story Points | Priority |
 |---|---|---|---|
@@ -204,28 +205,28 @@
 
 | # | Task | US | Status |
 |---|---|---|---|
-| T-47 | Add date range picker to reports page | US-17 | ⬜ To Do |
-| T-48 | Filter report queries by selected date range | US-17 | ⬜ To Do |
-| T-49 | Integrate Chart.js and render bar chart (sales by day) | US-17 | ⬜ To Do |
-| T-50 | Add pie chart (top products) and line chart (trend) | US-17 | ⬜ To Do |
-| T-51 | Build order history page with full list | US-18 | ⬜ To Do |
-| T-52 | Add search/filter by order ID, customer, or date | US-18 | ⬜ To Do |
-| T-53 | Build order detail modal (products, qty, subtotals) | US-18 | ⬜ To Do |
-| T-54 | Add `role` column to users table (admin / employee) | US-19 | ⬜ To Do |
-| T-55 | Save role on user creation | US-19 | ⬜ To Do |
-| T-56 | Implement role check on protected sections | US-19 | ⬜ To Do |
-| T-57 | Show access denied message for unauthorized roles | US-19 | ⬜ To Do |
-| T-58 | Implement CSV export with all report data | US-20 | ⬜ To Do |
-| T-59 | Integrate jsPDF and implement PDF export | US-20 | ⬜ To Do |
-| T-60 | Add pagination to users, products, and orders lists | US-21 | ⬜ To Do |
-| T-61 | Add indexes to frequently queried Supabase columns | US-21 | ⬜ To Do |
-| T-62 | Add global network error handler | US-22 | ⬜ To Do |
-| T-63 | Add per-field validation messages to all forms | US-22 | ⬜ To Do |
-| T-64 | Add generic server error fallback message | US-22 | ⬜ To Do |
+| T-48 | Add a date range picker to the reports page | US-17 | ⬜ To Do |
+| T-49 | Filter report queries by the selected date range | US-17 | ⬜ To Do |
+| T-50 | Integrate Chart.js and render a bar chart (sales by day) | US-17 | ⬜ To Do |
+| T-51 | Add a pie chart (top products) and a line chart (sales trend) | US-17 | ⬜ To Do |
+| T-52 | Build the order history page with a full orders list | US-18 | ⬜ To Do |
+| T-53 | Add search and filter by order ID, customer name, or date | US-18 | ⬜ To Do |
+| T-54 | Build the order detail modal (products, quantities, subtotals) | US-18 | ⬜ To Do |
+| T-55 | Add `role` column to the users table (admin / employee) | US-19 | ⬜ To Do |
+| T-56 | Save the assigned role when a user is created | US-19 | ⬜ To Do |
+| T-57 | Implement role-based access checks on protected sections | US-19 | ⬜ To Do |
+| T-58 | Display an access denied message for unauthorized roles | US-19 | ⬜ To Do |
+| T-59 | Implement CSV export with all report data | US-20 | ⬜ To Do |
+| T-60 | Integrate jsPDF and implement PDF report export | US-20 | ⬜ To Do |
+| T-61 | Add pagination to users, products, and orders lists | US-21 | ⬜ To Do |
+| T-62 | Add indexes to frequently queried columns in Supabase | US-21 | ⬜ To Do |
+| T-63 | Add a global network error handler | US-22 | ⬜ To Do |
+| T-64 | Add per-field validation messages to all forms | US-22 | ⬜ To Do |
+| T-65 | Add a generic server error fallback message | US-22 | ⬜ To Do |
 
 ---
 
-##  Sprint Summary
+## Sprint Summary
 
 | Sprint | Story Points | Cumulative SP |
 |---|---|---|
@@ -237,3 +238,38 @@
 | Sprint 6 | 8 SP | 74 SP |
 | Sprint 7 | 36 SP | 110 SP |
 | **Total** | **110 SP** | |
+
+---
+
+# Software Requirements Specification (SRS)
+
+## Functional Requirements
+
+| ID | Requirement |
+|---|---|
+| RF-01 | The system shall allow administrators to register, edit, and deactivate user accounts. |
+| RF-02 | The system shall authenticate users via email and password. |
+| RF-03 | The system shall enforce session-based route protection; unauthenticated users are automatically redirected to the login page. |
+| RF-04 | The system shall support full CRUD operations for products, including name, price, and stock quantity. |
+| RF-05 | The system shall automatically decrease product stock when a product is added to an active order. |
+| RF-06 | The system shall automatically restore product stock when an order is cancelled. |
+| RF-07 | The system shall prevent adding out-of-stock products to any order. |
+| RF-08 | The system shall allow orders to transition through the following defined statuses only: `pending → in-progress → delivered` or `pending → cancelled`. |
+| RF-09 | The system shall generate daily and date-range sales reports showing totals, order count, and top-selling products. |
+| RF-10 | The system shall enforce role-based access control distinguishing between Admin and Employee roles. |
+| RF-11 | The system shall allow administrators to export reports in CSV and PDF formats. |
+| RF-12 | The system shall display interactive charts (bar, pie, and line) in the reports section. |
+
+---
+
+## Non-Functional Requirements
+
+| ID | Category | Requirement |
+|---|---|---|
+| RNF-01 | Performance | Any page must fully load within 2 seconds under normal operating conditions. |
+| RNF-02 | Security | All routes must be protected; passwords must be managed exclusively through the authentication service. |
+| RNF-03 | Usability | The interface must be responsive and fully functional on screens with a minimum width of 768 px. |
+| RNF-04 | Availability | The system must maintain 99% uptime during school operating hours. |
+| RNF-05 | Scalability | Queries must apply pagination and database indexing when data sets exceed 500 records. |
+| RNF-06 | Maintainability | The codebase must follow consistent naming conventions and be organized into modules by feature. |
+| RNF-07 | Error Handling | All API errors must be caught and displayed to the user as clear, friendly messages. |
