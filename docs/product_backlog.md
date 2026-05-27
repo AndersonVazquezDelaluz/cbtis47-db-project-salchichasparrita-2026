@@ -32,7 +32,6 @@
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to register new users with name, email, and password **so that** staff members can access the system. |
 
 **Acceptance Criteria:**
@@ -89,7 +88,6 @@ Feature: User Registration
 
 | Field | Detail |
 |---|---|
-| **Role** | Registered user |
 | **User Story** | **As a** registered user, **I want** to log in with my email and password **so that** I can access the system dashboard. |
 
 **Acceptance Criteria:**
@@ -147,7 +145,6 @@ Feature: User Login
 
 | Field | Detail |
 |---|---|
-| **Role** | Authenticated user |
 | **User Story** | **As an** authenticated user, **I want** to log out at any time **so that** my session is safely terminated. |
 
 **Acceptance Criteria:**
@@ -191,7 +188,6 @@ Feature: Logout
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** protected pages to be accessible only by authenticated users **so that** unauthorized access is prevented. |
 
 **Acceptance Criteria:**
@@ -230,7 +226,6 @@ Feature: Protected Routes
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to see all registered users displayed in a table **so that** I have full visibility of the system's staff. |
 
 **Acceptance Criteria:**
@@ -264,7 +259,6 @@ Feature: Users List
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to search for users by name **so that** I can quickly locate a specific staff member. |
 
 **Acceptance Criteria:**
@@ -295,7 +289,6 @@ Feature: Search Users
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to create new products with a name, price, and initial stock quantity **so that** the product catalog stays up to date. |
 
 **Acceptance Criteria:**
@@ -324,7 +317,6 @@ Feature: Create Product
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to edit and delete existing products **so that** the product catalog remains accurate and current. |
 
 **Acceptance Criteria:**
@@ -361,7 +353,6 @@ Feature: Delete Product
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to restock products by adding units **so that** inventory levels are always accurate. |
 
 **Acceptance Criteria:**
@@ -390,7 +381,6 @@ Feature: Restock Inventory
 
 | Field | Detail |
 |---|---|
-| **Role** | User |
 | **User Story** | **As a** user, **I want** to visually identify out-of-stock products **so that** I can avoid attempting to order unavailable items. |
 
 **Acceptance Criteria:**
@@ -423,7 +413,6 @@ Feature: Out of Stock Indicator
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to create, edit, and delete cafeteria tables **so that** orders can be accurately assigned to the corresponding physical tables. |
 
 **Acceptance Criteria:**
@@ -472,7 +461,6 @@ Feature: Delete Table
 
 | Field | Detail |
 |---|---|
-| **Role** | Employee |
 | **User Story** | **As an** employee, **I want** to create a new order linked to a customer and a table **so that** customer requests are tracked from the start of service. |
 
 **Acceptance Criteria:**
@@ -500,7 +488,6 @@ Feature: Create Order
 
 | Field | Detail |
 |---|---|
-| **Role** | Employee |
 | **User Story** | **As an** employee, **I want** to add products to an active order with automatic inventory deduction **so that** stock levels are kept accurate at all times. |
 
 **Acceptance Criteria:**
@@ -529,7 +516,6 @@ Feature: Add Products to Order
 
 | Field | Detail |
 |---|---|
-| **Role** | Employee |
 | **User Story** | **As an** employee, **I want** to update the order status through valid transitions **so that** the progress of each order is accurately tracked. |
 
 **Acceptance Criteria:**
@@ -558,7 +544,6 @@ Feature: Order Status Change
 
 | Field | Detail |
 |---|---|
-| **Role** | Employee |
 | **User Story** | **As an** employee, **I want** to cancel an active order and have the consumed stock automatically restored **so that** inventory remains accurate even when orders are cancelled. |
 
 **Acceptance Criteria:**
@@ -591,7 +576,6 @@ Feature: Cancel Order
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to generate a daily sales report **so that** I can monitor revenue and order volume for any selected day. |
 
 **Acceptance Criteria:**
@@ -625,7 +609,6 @@ Feature: Daily Sales Report
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to view interactive charts and apply date range filters to reports **so that** I can analyze sales trends more effectively. |
 
 **Acceptance Criteria:**
@@ -658,7 +641,6 @@ Feature: Advanced Sales Reports
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to search and filter past orders **so that** I can easily locate specific transactions in the system's history. |
 
 **Acceptance Criteria:**
@@ -690,7 +672,6 @@ Feature: Order History
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to assign roles to users (Administrator or Employee) **so that** each person only has access to the system features they are authorized to use. |
 
 **Acceptance Criteria:**
@@ -723,7 +704,6 @@ Feature: User Roles and Permissions
 
 | Field | Detail |
 |---|---|
-| **Role** | Administrator |
 | **User Story** | **As an** administrator, **I want** to export generated reports in PDF and CSV formats **so that** I can share and archive sales data externally. |
 
 **Acceptance Criteria:**
@@ -756,7 +736,6 @@ Feature: Export Reports
 
 | Field | Detail |
 |---|---|
-| **Role** | Developer |
 | **User Story** | **As a** developer, **I want** the system to load quickly and respond efficiently **so that** the user experience remains smooth even with large volumes of data. |
 
 **Acceptance Criteria:**
@@ -783,7 +762,6 @@ Feature: Performance Optimization
 
 | Field | Detail |
 |---|---|
-| **Role** | User |
 | **User Story** | **As a** user, **I want** to receive clear and friendly error messages **so that** I understand what went wrong and can take the appropriate corrective action. |
 
 **Acceptance Criteria:**
