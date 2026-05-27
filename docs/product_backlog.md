@@ -10,21 +10,21 @@
 
 ## Epics
 
-| ID | Epic | Priority | Partial |
+| ID | Epic | Priority | Story Points |
 |---|---|---|---|
-| EP-01 | Authentication | High | 1st Partial |
-| EP-02 | User Management | High | 1st Partial |
-| EP-03 | Products & Inventory | High | 1st Partial |
-| EP-04 | Tables | Medium | 2nd Partial |
-| EP-05 | Orders | High | 2nd Partial |
-| EP-06 | Reports | Medium | 2nd Partial |
-| EP-07 | Enhancements & Polish | Medium | 3rd Partial |
+| EP-01 | Authentication | High | 5 sp|
+| EP-02 | User Management | High | 3 sp|
+| EP-03 | Products & Inventory | High | 2 sp |
+| EP-04 | Tables | Medium | 3 sp |
+| EP-05 | Orders | High | 3 sp |
+| EP-06 | Reports | Medium | 2 sp |
+| EP-07 | Enhancements & Polish | Medium | 5 sp |
 
 ---
 
-# 🟦 FIRST PARTIAL
+# FIRST EPICS
 
-## Sprint 1 — Authentication `EP-01`
+## Epic 1 — Authentication `EP-01`
 
 **Sprint Goal:** Enable secure access to the system through registration, login, logout, and protected routes.
 
@@ -36,7 +36,6 @@
 |---|---|
 | **Role** | Administrator |
 | **User Story** | As an administrator, I want to register new users with name, email, and password so that staff members can access the system. |
-| **Story Points** | 5 SP |
 
 **Acceptance Criteria:**
 
@@ -69,7 +68,6 @@ Feature: User Registration
 |---|---|
 | **Role** | Registered user |
 | **User Story** | As a registered user, I want to log in with my email and password so that I can access the system dashboard. |
-| **Story Points** | 3 SP |
 
 **Acceptance Criteria:**
 
@@ -97,7 +95,6 @@ Feature: User Login
 |---|---|
 | **Role** | Authenticated user |
 | **User Story** | As an authenticated user, I want to log out at any time so that my session is safely terminated. |
-| **Story Points** | 2 SP |
 
 **Acceptance Criteria:**
 
@@ -119,7 +116,6 @@ Feature: Logout
 |---|---|
 | **Role** | Administrator |
 | **User Story** | As an administrator, I want protected pages to be accessible only by authenticated users so that unauthorized access is prevented. |
-| **Story Points** | 3 SP |
 
 **Acceptance Criteria:**
 
@@ -139,7 +135,7 @@ Feature: Protected Routes
 
 ---
 
-## Sprint 2 — User Management `EP-02`
+## epic 2 — User Management `EP-02`
 
 **Sprint Goal:** Provide administrators with full visibility and searchability over all registered system users.
 
@@ -151,7 +147,7 @@ Feature: Protected Routes
 |---|---|
 | **Role** | Administrator |
 | **User Story** | As an administrator, I want to see all registered users displayed in a table so that I have full visibility of the system's staff. |
-| **Story Points** | 3 SP |
+
 
 **Acceptance Criteria:**
 
