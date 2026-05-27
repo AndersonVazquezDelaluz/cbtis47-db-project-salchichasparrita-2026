@@ -1,5 +1,5 @@
 -- =============================================
--- 03_users_security.sql
+-- 03_users.sql
 -- Database Administration: Security & Permissions
 -- Chicaffe Project - CBTIS 47 (2026)
 -- Role: Database Administrator (Matthew Venegas)
