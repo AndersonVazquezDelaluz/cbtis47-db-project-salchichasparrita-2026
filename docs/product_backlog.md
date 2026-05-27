@@ -19,7 +19,6 @@
 | EP-05 | Orders | High | US-12, US-13, US-14, US-15 | 26 SP |
 | EP-06 | Reports | Medium | US-16 | 8 SP |
 | EP-07 | Enhancements & Polish | Medium | US-17, US-18, US-19, US-20, US-21, US-22 | 36 SP |
-| | | | **Total** | **110 SP** |
 
 ---
 
