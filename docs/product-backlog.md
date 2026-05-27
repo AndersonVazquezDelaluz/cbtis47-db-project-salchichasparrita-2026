@@ -2,7 +2,6 @@
 
 **Project:** Chicaffe - Cafeteria Management System
 **Repository:** `cbtis47-db-project-salchichasparrita-2026`
-**Stack:** HTML · CSS · JavaScript · Supabase
 **Team:** Anderson Vazquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
 **Version:** 1.2 | **Date:** May 14, 2026
 
