@@ -1,7 +1,5 @@
 # Product Backlog — Chicaffe
 
-
-
 ## Product Goal
 
 > Develop a comprehensive cafeteria management system that enables efficient administration of users, inventory, tables, orders, and reports — optimizing daily operations, reducing manual errors, improving stock control, and increasing service speed for Chicaffe customers.
@@ -32,54 +30,100 @@
 
 | Field | Detail |
 |---|---|
-| **User Story** | **As an** administrator, **I want** to register new users with name, email, and password **so that** staff members can access the system. |
+| **User Story** | **As an** administrator, **I want** to register new users with name, email, password, and role **so that** staff members can access the system with the appropriate permissions. |
 
-**Acceptance Criteria:**
+#### Input Fields
+
+| Field | Type | Required | Constraints |
+|---|---|---|---|
+| Full Name | Text | Yes | 3–100 characters. Alphabetic characters, spaces, and hyphens only. No digits or special characters. |
+| Email Address | Email | Yes | Must follow RFC 5322 format (`user@domain.tld`). Must be unique in the system. Maximum 254 characters. |
+| Password | Password | Yes | 8–64 characters. Must include at least one uppercase letter, one lowercase letter, one digit, and one special character (`!@#$%^&*`). |
+| Confirm Password | Password | Yes | Must match the value entered in the Password field exactly. |
+| Role | Select | Yes | Must be one of the predefined values: `Administrator` or `Employee`. |
+
+#### Acceptance Criteria
 
 ```gherkin
-Feature: User Registration
-
-  Scenario: Successful registration
+  Scenario: Successful registration with valid data
     Given the administrator is on the user registration form
-    When all required fields are completed with valid data and the form is submitted
-    Then the system creates the user account in the database
-    And the system displays the message "User registered successfully"
-    And the new user appears in the registered users list
+    When all required fields are completed with valid data according to the field constraints
+    And the form is submitted
+    Then the system must save the new user account in the database with the assigned role
+    And the password must be stored as a cryptographic hash (bcrypt, minimum cost factor 10)
+    And the system must display the message "User registered successfully"
+    And the new user must appear immediately in the registered users list
 
   Scenario: Registration with a duplicate email address
-    Given an active user account with the same email address already exists in the system
-    When the administrator attempts to register a new user with that email address
-    Then the system rejects the submission
-    And the system displays the message "This email address is already registered"
-    And no new account is created in the database
+    Given a user account with email "staff@chicaffe.com" already exists in the system
+    When the administrator attempts to register a new user with the same email address
+    Then the system must reject the submission before contacting the database
+    And the system must display the message "This email address is already registered"
+    And no new account must be created in the database
 
-  Scenario: Registration form submitted with empty required fields
+  Scenario: Registration with an invalid email format
+    Given the administrator is on the user registration form
+    When an email address is entered that does not conform to the format "user@domain.tld"
+    Then the system must reject the submission
+    And the Email field must be highlighted with a visual error indicator
+    And the system must display the message "Please enter a valid email address (e.g. name@domain.com)"
+
+  Scenario: Password does not meet security requirements
+    Given the administrator is on the user registration form
+    When a password is entered that is missing an uppercase letter, a digit, or a special character
+    Then the system must reject the submission
+    And the Password field must be highlighted with a visual error indicator
+    And the system must display the message "Password must be at least 8 characters and include one uppercase letter, one number, and one special character"
+
+  Scenario: Confirm Password does not match Password
+    Given the administrator has entered a valid password in the Password field
+    When a different value is entered in the Confirm Password field
+    Then the system must reject the submission
+    And the Confirm Password field must be highlighted with a visual error indicator
+    And the system must display the message "Passwords do not match"
+
+  Scenario: Submission with one or more empty required fields
     Given the administrator is on the user registration form
     When the form is submitted with one or more required fields left empty
-    Then the system halts the submission
-    And the system highlights each empty field with a visual indicator
-    And the system displays a specific validation message for each missing field
+    Then the system must halt the submission without sending a server request
+    And each empty field must be highlighted with a visual error indicator
+    And the system must display a specific validation message adjacent to each empty field
+    And the form must retain all data previously entered in the remaining fields
 
-  Scenario: Display loading screen during registration
-    Given the administrator has completed the registration form with valid data
+  Scenario: Full Name contains invalid characters
+    Given the administrator is on the user registration form
+    When a full name is entered that contains digits or special characters (e.g. "John123" or "Ana@Doe")
+    Then the system must reject the submission
+    And the Full Name field must be highlighted with a visual error indicator
+    And the system must display the message "Full name must contain letters and spaces only"
+
+  Scenario: No role is selected
+    Given the administrator is on the user registration form
+    When the form is submitted without selecting a role from the available options
+    Then the system must reject the submission
+    And the Role field must be highlighted with a visual error indicator
+    And the system must display the message "Please select a role for this user"
+
+  Scenario: Loading indicator displayed during processing
+    Given the administrator has completed the form with valid data
     When the form is submitted and the system is processing the request
-    Then the system must display a loading indicator
+    Then the system must display a loading indicator on the submit button
     And the system must show the message "Creating account, please wait..."
-    And the system must disable the submit button to prevent duplicate submission attempts
+    And the submit button must be disabled to prevent duplicate submission attempts
 
-  Scenario: Registration attempt with a slow or degraded connection
+  Scenario: Registration with a slow or degraded connection
     Given the administrator has submitted a valid registration form
-    When the server response is delayed due to network congestion or high latency
+    When the server response is delayed beyond 5 seconds
     Then the system must maintain the loading indicator for the duration of the request
     And the system must display the message "This is taking longer than expected. Please wait..."
     And the system must not discard the submitted form data during the delay
 
   Scenario: Registration attempt without internet connection
     Given the administrator has completed the registration form
-    When the user attempts to submit the form without an active internet connection
+    When the form is submitted without an active internet connection
     Then the system must display the message "No internet connection. Please check your network settings."
     And the system must preserve all data entered in the form fields
-    And the system must provide an option to retry the submission once connectivity is restored
+    And the system must provide a visible option to retry the submission once connectivity is restored
 ```
 
 ---
@@ -90,53 +134,82 @@ Feature: User Registration
 |---|---|
 | **User Story** | **As a** registered user, **I want** to log in with my email and password **so that** I can access the system dashboard. |
 
-**Acceptance Criteria:**
+#### Input Fields
+
+| Field | Type | Required | Constraints |
+|---|---|---|---|
+| Email Address | Email | Yes | Must follow format `user@domain.tld`. Maximum 254 characters. |
+| Password | Password | Yes | Non-empty. Submitted as plaintext and validated against stored hash on the server. |
+
+#### Acceptance Criteria
 
 ```gherkin
-Feature: User Login
-
   Scenario: Successful login with valid credentials
     Given a registered user is on the login page
-    When a valid email address and the correct password are entered and submitted
-    Then the system authenticates the user against the database
-    And the system creates an active session for the authenticated user
-    And the system redirects the user to the main dashboard
+    When a valid email address and the correct password are entered and the form is submitted
+    Then the system must authenticate the user against the stored password hash
+    And the system must create a secure session token for the authenticated user
+    And the session token must be stored in an HttpOnly cookie or equivalent secure storage
+    And the system must redirect the user to the main dashboard
 
-  Scenario: Login attempt with invalid credentials
+  Scenario: Login with an invalid email format
     Given a user is on the login page
-    When an unrecognized email address or an incorrect password is entered
-    Then the system rejects the authentication attempt
-    And the system displays the message "Invalid email or password"
-    And the user remains on the login page with the password field cleared
-    And no session is created
+    When an email address is entered that does not conform to the format "user@domain.tld"
+    Then the system must reject the submission without sending a server request
+    And the Email field must be highlighted with a visual error indicator
+    And the system must display the message "Please enter a valid email address"
 
-  Scenario: Login attempt with empty fields
+  Scenario: Login with unrecognized email or incorrect password
     Given a user is on the login page
-    When the login form is submitted with one or more fields left empty
-    Then the system halts the submission
-    And the system highlights the empty fields with a visual indicator
-    And the system displays the message "All fields are required"
+    When an email address that does not exist in the system is entered
+    Or when a registered email is entered with an incorrect password
+    Then the system must reject the authentication attempt
+    And the system must display the generic message "Invalid email or password" without specifying which field is incorrect
+    And the password field must be cleared
+    And the user must remain on the login page
+    And no session must be created
 
-  Scenario: Display loading screen during login authentication
+  Scenario: Account locked after repeated failed attempts
+    Given a user has submitted incorrect credentials 5 consecutive times for the same account
+    When a sixth login attempt is made within the lockout window
+    Then the system must block the authentication attempt
+    And the system must display the message "Your account has been temporarily locked due to too many failed attempts. Please try again in 15 minutes."
+    And the system must log the event internally with the timestamp and IP address
+
+  Scenario: Submission with empty fields
+    Given a user is on the login page
+    When the form is submitted with one or more fields left empty
+    Then the system must halt the submission without sending a server request
+    And each empty field must be highlighted with a visual error indicator
+    And the system must display the message "All fields are required"
+
+  Scenario: Password field is empty but email is provided
+    Given a user has entered a valid email address on the login page
+    When the form is submitted with the password field empty
+    Then the system must reject the submission without a server request
+    And the Password field must be highlighted with a visual error indicator
+    And the system must display the message "Password is required"
+
+  Scenario: Loading indicator displayed during authentication
     Given the user has entered valid credentials on the login page
     When the form is submitted and the system is processing the authentication request
-    Then the system must display a loading indicator on the login button or screen
+    Then the system must display a loading indicator on the submit button
     And the system must show the message "Signing in..."
-    And the system must disable the submit button to prevent multiple submission attempts
+    And the submit button must be disabled to prevent multiple submission attempts
 
-  Scenario: Login attempt with a slow or degraded connection
-    Given the user has submitted valid login credentials
-    When the authentication request is delayed due to network congestion or high server latency
+  Scenario: Login with a slow or degraded connection
+    Given the user has submitted valid credentials
+    When the authentication request is delayed beyond 5 seconds
     Then the system must maintain the loading indicator for the duration of the request
     And the system must display the message "This is taking longer than expected. Please wait..."
-    And the system must not discard the entered credentials during the delay
+    And the entered credentials must not be discarded during the delay
 
   Scenario: Login attempt without internet connection
     Given the user is on the login page with credentials entered
-    When the user attempts to submit the form without an active internet connection
+    When the form is submitted without an active internet connection
     Then the system must display the message "No internet connection. Please check your network settings."
-    And the system must preserve the email address entered in the form
-    And the system must provide an option to retry the request once connectivity is restored
+    And the email address entered must be preserved in the form
+    And the system must provide a visible option to retry the request once connectivity is restored
 ```
 
 ---
@@ -147,39 +220,39 @@ Feature: User Login
 |---|---|
 | **User Story** | **As an** authenticated user, **I want** to log out at any time **so that** my session is safely terminated. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Logout
-
   Scenario: Successful logout
     Given the user has an active authenticated session
     When the user clicks the "Logout" button
-    Then the system terminates the active session
-    And the system clears all session tokens and authentication data from the client
-    And the system redirects the user to the login page
-    And the system displays the message "You have been logged out successfully"
+    Then the system must invalidate the session token on the server
+    And the system must clear all session tokens and authentication data from the client (cookies, localStorage, sessionStorage)
+    And the system must redirect the user to the login page
+    And the system must display the message "You have been logged out successfully"
+    And the user must not be able to navigate back to protected pages using the browser's back button
 
-  Scenario: Display loading screen during logout
+  Scenario: Loading indicator displayed during logout processing
     Given the user has clicked the "Logout" button
     When the system is processing the session termination request
     Then the system must display a loading indicator
     And the system must show the message "Signing out..."
     And the system must prevent the user from navigating or triggering other actions during the process
 
-  Scenario: Logout attempt with a slow or degraded connection
+  Scenario: Logout with a slow or degraded connection
     Given the user has initiated a logout request
-    When the server response is delayed due to network congestion or high latency
+    When the server response is delayed beyond 5 seconds
     Then the system must maintain the loading indicator for the duration of the request
     And the system must display the message "This is taking longer than expected. Please wait..."
-    And the system must not allow the session to remain active in the event of an incomplete request
+    And the session must not remain active if the server request fails to complete
 
   Scenario: Logout attempt without internet connection
     Given the user attempts to log out without an active internet connection
-    When the logout request cannot be sent to the server
-    Then the system must clear the local session data and tokens from the client
+    When the logout request cannot reach the server
+    Then the system must clear all local session data and tokens from the client immediately
     And the system must display the message "No internet connection. You have been logged out locally."
     And the system must redirect the user to the login page
+    And the server-side session must be invalidated as soon as connectivity is restored
 ```
 
 ---
@@ -190,14 +263,12 @@ Feature: Logout
 |---|---|
 | **User Story** | **As an** administrator, **I want** protected pages to be accessible only by authenticated users **so that** unauthorized access is prevented. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Protected Routes
-
   Scenario: Access attempt to a protected route without an active session
     Given the user does not have an active authenticated session
-    When the user attempts to navigate directly to a protected page
+    When the user attempts to navigate directly to a protected page via URL
     Then the system must block access to the requested page
     And the system must redirect the user to the login page
     And the system must display the message "Access denied. Please log in to continue."
@@ -206,7 +277,7 @@ Feature: Protected Routes
     Given the user has a valid and active authenticated session
     When the user navigates to any protected page
     Then the system must grant access and render the requested page normally
-    And the system must not interrupt the navigation flow
+    And the navigation flow must not be interrupted
 
   Scenario: Session expiration during active use
     Given the user has an authenticated session that has expired due to inactivity
@@ -228,11 +299,9 @@ Feature: Protected Routes
 |---|---|
 | **User Story** | **As an** administrator, **I want** to see all registered users displayed in a table **so that** I have full visibility of the system's staff. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Users List
-
   Scenario: Successful display of all registered users
     Given the administrator is on the user management page
     When the page finishes loading
@@ -243,9 +312,9 @@ Feature: Users List
     Given the system has no registered user accounts
     When the administrator navigates to the user management page
     Then the system must display the message "No users have been registered yet"
-    And the table must remain visible but empty
+    And the table structure must remain visible but with no data rows
 
-  Scenario: Page loading indicator while retrieving user data
+  Scenario: Loading indicator while retrieving user data
     Given the administrator has navigated to the user management page
     When the system is fetching user records from the database
     Then the system must display a loading indicator
@@ -261,22 +330,21 @@ Feature: Users List
 |---|---|
 | **User Story** | **As an** administrator, **I want** to search for users by name **so that** I can quickly locate a specific staff member. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Search Users
-
   Scenario: Search returns one or more matching results
     Given the users list is fully loaded on the user management page
     When the administrator types a full or partial name in the search input field
-    Then the system must filter the table in real time
+    Then the system must filter the table in real time (within 300ms of each keystroke)
     And only user records whose names match the search input must be displayed
+    And the search must be case-insensitive
 
   Scenario: Search returns no matching results
     Given the users list is fully loaded on the user management page
     When the administrator enters a name that does not correspond to any registered user
     Then the system must display the message "No users found matching your search"
-    And the table must display no records
+    And the table must display no data rows
 ```
 
 ---
@@ -291,24 +359,51 @@ Feature: Search Users
 |---|---|
 | **User Story** | **As an** administrator, **I want** to create new products with a name, price, and initial stock quantity **so that** the product catalog stays up to date. |
 
-**Acceptance Criteria:**
+#### Input Fields
+
+| Field | Type | Required | Constraints |
+|---|---|---|---|
+| Product Name | Text | Yes | 2–100 characters. Must be unique in the catalog. |
+| Price | Decimal | Yes | Must be a positive number greater than 0. Maximum 2 decimal places. |
+| Initial Stock | Integer | Yes | Must be a non-negative integer (≥ 0). |
+
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Create Product
-
   Scenario: Successful product creation
     Given the administrator is on the product registration form
     When all required fields are completed with valid data and the form is submitted
     Then the system must save the new product record in the database
     And the system must display the message "Product created successfully"
-    And the new product must appear in the product catalog list
+    And the new product must appear immediately in the product catalog list
 
-  Scenario: Product creation with missing required fields
+  Scenario: Product creation with a duplicate product name
+    Given a product named "Espresso" already exists in the catalog
+    When the administrator attempts to create a new product with the same name
+    Then the system must reject the submission
+    And the Product Name field must be highlighted with a visual error indicator
+    And the system must display the message "A product with this name already exists"
+
+  Scenario: Product creation with an invalid price value
+    Given the administrator is on the product registration form
+    When a price of zero, a negative number, or a non-numeric value is entered
+    Then the system must reject the submission
+    And the Price field must be highlighted with a visual error indicator
+    And the system must display the message "Price must be a positive number greater than zero"
+
+  Scenario: Product creation with an invalid stock quantity
+    Given the administrator is on the product registration form
+    When a negative number or a non-integer value is entered in the stock field
+    Then the system must reject the submission
+    And the Initial Stock field must be highlighted with a visual error indicator
+    And the system must display the message "Stock quantity must be a whole number of zero or greater"
+
+  Scenario: Submission with one or more empty required fields
     Given the administrator is on the product registration form
     When the form is submitted with one or more required fields left empty
-    Then the system must halt the submission
-    And the system must highlight each empty field with a visual indicator
-    And the system must display a specific validation message for each missing field
+    Then the system must halt the submission without sending a server request
+    And each empty field must be highlighted with a visual error indicator
+    And the system must display a specific validation message adjacent to each empty field
 ```
 
 ---
@@ -319,32 +414,104 @@ Feature: Create Product
 |---|---|
 | **User Story** | **As an** administrator, **I want** to edit and delete existing products **so that** the product catalog remains accurate and current. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria — Edit Product
 
 ```gherkin
-Feature: Edit Product
-
   Scenario: Successful product edit
     Given a product record exists in the system catalog
-    When the administrator modifies one or more product fields and saves the changes
-    Then the system must update the product record in the database
+    When the administrator opens the edit form, the system must pre-populate all fields with the current product data
+    And the administrator modifies one or more fields with valid data and saves the changes
+    Then the system must validate all fields before sending the request to the server
+    And the system must update the product record in the database
     And the system must display the message "Product updated successfully"
     And the updated information must be immediately reflected in the catalog list
 
-Feature: Delete Product
+  Scenario: Edit product with a duplicate name
+    Given a product named "Latte" already exists in the catalog with a different ID
+    When the administrator edits another product and changes its name to "Latte"
+    Then the system must reject the submission
+    And the Product Name field must be highlighted with a visual error indicator
+    And the system must display the message "A product with this name already exists"
+    And no changes must be saved to the database
 
+  Scenario: Edit product with an invalid price value
+    Given the administrator has opened the edit form for an existing product
+    When a price of zero, a negative number, or a non-numeric value is entered
+    Then the system must reject the submission
+    And the Price field must be highlighted with a visual error indicator
+    And the system must display the message "Price must be a positive number greater than zero"
+    And the original product data must remain unchanged in the database
+
+  Scenario: Edit product with an invalid stock quantity
+    Given the administrator has opened the edit form for an existing product
+    When a negative number or a non-integer value is entered in the stock field
+    Then the system must reject the submission
+    And the Initial Stock field must be highlighted with a visual error indicator
+    And the system must display the message "Stock quantity must be a whole number of zero or greater"
+
+  Scenario: Edit form submitted with one or more empty required fields
+    Given the administrator has opened the edit form for an existing product
+    When the form is submitted with one or more required fields cleared or empty
+    Then the system must halt the submission without sending a server request
+    And each empty field must be highlighted with a visual error indicator
+    And the system must display a specific validation message adjacent to each empty field
+
+  Scenario: Product record deleted by another user while the edit form is open
+    Given the administrator has the edit form open for product ID "P-042"
+    When the same product has been deleted by another session before the form is saved
+    And the administrator submits the edit form
+    Then the system must detect the 404 response from the server
+    And the system must display the message "This product no longer exists. It may have been deleted by another user."
+    And the system must close the edit form and refresh the catalog list
+
+  Scenario: Server error during product edit
+    Given the administrator has submitted valid changes for an existing product
+    When the server returns an unexpected error (5xx)
+    Then the system must display the message "An unexpected error occurred. Your changes were not saved. Please try again."
+    And the form must remain open with the entered data intact
+    And the original product data must remain unchanged in the database
+```
+
+#### Acceptance Criteria — Delete Product
+
+```gherkin
   Scenario: Successful product deletion with confirmation
     Given a product record exists in the system catalog
-    When the administrator initiates deletion and confirms the action in the confirmation dialog
-    Then the system must permanently remove the product record from the database
+    When the administrator clicks the Delete button for that product
+    Then the system must display a confirmation dialog with the message "Are you sure you want to delete this product? This action cannot be undone."
+    And when the administrator confirms the action
+    Then the system must send a DELETE request to the server using the product's unique ID
+    And the system must permanently remove the product record from the database
     And the system must display the message "Product deleted successfully"
     And the product must no longer appear in the catalog list
 
   Scenario: Product deletion cancelled by the administrator
     Given a product record exists in the system catalog
-    When the administrator initiates deletion but cancels the action in the confirmation dialog
-    Then the system must not delete the product record
-    And the product must remain unchanged in the catalog list
+    When the administrator clicks the Delete button and then cancels the action in the confirmation dialog
+    Then no DELETE request must be sent to the server
+    And the product record must remain unchanged in the database and the catalog list
+
+  Scenario: Deletion of a product that was already deleted by another user
+    Given the administrator attempts to delete product ID "P-042"
+    When the same product has already been deleted in another session
+    And the server returns a 404 response
+    Then the system must display the message "This product no longer exists. It may have already been deleted."
+    And the system must remove the stale entry from the catalog list automatically
+    And no further error dialogs must be shown to the user
+
+  Scenario: Frontend displays product after successful backend deletion (sync failure)
+    Given the server has confirmed successful deletion of a product
+    When the frontend fails to update the catalog list correctly
+    Then the system must attempt to re-fetch the catalog data from the server
+    And the deleted product must not appear in the refreshed list
+    And if the re-fetch also fails, the system must display the message "The list could not be refreshed. Please reload the page."
+
+  Scenario: Server error during product deletion
+    Given the administrator has confirmed deletion of a product
+    When the server returns an unexpected error (5xx)
+    Then the system must display the message "An unexpected error occurred. The product could not be deleted. Please try again."
+    And the product record must remain in the database and the catalog list
+    And the confirmation dialog must close without further action
 ```
 
 ---
@@ -355,23 +522,21 @@ Feature: Delete Product
 |---|---|
 | **User Story** | **As an** administrator, **I want** to restock products by adding units **so that** inventory levels are always accurate. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Restock Inventory
-
   Scenario: Successful inventory restock
     Given a product record exists in the system
-    When the administrator enters a valid positive restock quantity and confirms the operation
+    When the administrator enters a valid positive integer as the restock quantity and confirms the operation
     Then the system must increment the product's stock level by the entered amount
     And the system must display the message "Stock updated successfully"
-    And the updated stock value must be reflected in the product catalog list
+    And the updated stock value must be reflected immediately in the product catalog list
 
   Scenario: Invalid restock quantity entered
     Given a product record exists in the system
-    When the administrator enters a quantity of zero or a negative number
+    When the administrator enters a value of zero, a negative number, a decimal, or a non-numeric value
     Then the system must reject the submission
-    And the system must display the message "Restock quantity must be greater than zero"
+    And the system must display the message "Restock quantity must be a whole number greater than zero"
     And the product's stock level must remain unchanged
 ```
 
@@ -383,21 +548,19 @@ Feature: Restock Inventory
 |---|---|
 | **User Story** | **As a** user, **I want** to visually identify out-of-stock products **so that** I can avoid attempting to order unavailable items. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Out of Stock Indicator
-
-  Scenario: Product with zero stock is displayed in the catalog
+  Scenario: Product with zero stock displayed in the catalog
     Given a product has a current stock level of zero
     When the product is displayed in the catalog or product list
     Then the system must render a clearly visible "Out of Stock" badge on that product entry
-    And the badge must be visually distinct from available product indicators
+    And the badge must be visually distinct from available product indicators (e.g. different color or icon)
 
   Scenario: Out-of-stock product cannot be added to an active order
     Given a product has a current stock level of zero
     When the user views the product in the order creation interface
-    Then the system must disable the option to add that product to the order
+    Then the system must disable the add-to-order button for that product
     And the system must display the message "This product is currently out of stock"
 ```
 
@@ -415,40 +578,140 @@ Feature: Out of Stock Indicator
 |---|---|
 | **User Story** | **As an** administrator, **I want** to create, edit, and delete cafeteria tables **so that** orders can be accurately assigned to the corresponding physical tables. |
 
-**Acceptance Criteria:**
+#### Input Fields
+
+| Field | Type | Required | Constraints |
+|---|---|---|---|
+| Table Number | Integer | Yes | Must be a positive integer greater than 0. Must be unique. |
+| Seating Capacity | Integer | Yes | Must be a positive integer between 1 and 50. |
+
+#### Acceptance Criteria — Create Table
 
 ```gherkin
-Feature: Create Table
-
   Scenario: Successful table creation
     Given the administrator is on the tables management page
-    When a valid table number and seating capacity are entered and the form is submitted
+    When a valid and unique table number and a valid seating capacity are entered and the form is submitted
     Then the system must save the new table record in the database
     And the system must display the message "Table created successfully"
-    And the new table must appear in the tables list
+    And the new table must appear immediately in the tables list
 
-Feature: Edit Table
+  Scenario: Table creation with a duplicate table number
+    Given a table with number "5" already exists in the system
+    When the administrator attempts to create a new table with the same number
+    Then the system must reject the submission
+    And the Table Number field must be highlighted with a visual error indicator
+    And the system must display the message "A table with this number already exists"
 
+  Scenario: Table creation with an invalid table number
+    Given the administrator is on the table creation form
+    When a value of zero, a negative number, or a non-integer is entered in the Table Number field
+    Then the system must reject the submission
+    And the Table Number field must be highlighted with a visual error indicator
+    And the system must display the message "Table number must be a positive integer"
+
+  Scenario: Table creation with an invalid seating capacity
+    Given the administrator is on the table creation form
+    When a value outside the range 1–50 or a non-integer is entered in the Seating Capacity field
+    Then the system must reject the submission
+    And the Seating Capacity field must be highlighted with a visual error indicator
+    And the system must display the message "Seating capacity must be a whole number between 1 and 50"
+
+  Scenario: Submission with empty required fields
+    Given the administrator is on the table creation form
+    When the form is submitted with one or more required fields left empty
+    Then the system must halt the submission without sending a server request
+    And each empty field must be highlighted with a visual error indicator
+    And the system must display a specific validation message adjacent to each empty field
+```
+
+#### Acceptance Criteria — Edit Table
+
+```gherkin
   Scenario: Successful table edit
     Given a table record exists in the system
-    When the administrator updates the table details and saves the changes
-    Then the system must update the record in the database
+    When the administrator opens the edit form, all fields must be pre-populated with the current table data
+    And the administrator modifies one or more fields with valid data and saves the changes
+    Then the system must validate all fields before sending the request to the server
+    And the system must update the record in the database
     And the system must display the message "Table updated successfully"
-    And the updated details must be reflected in the tables list
+    And the updated details must be reflected immediately in the tables list
 
-Feature: Delete Table
+  Scenario: Edit table with a duplicate table number
+    Given a table with number "3" already exists with a different record ID
+    When the administrator edits another table and changes its number to "3"
+    Then the system must reject the submission
+    And the Table Number field must be highlighted with a visual error indicator
+    And the system must display the message "A table with this number already exists"
+    And no changes must be saved to the database
 
+  Scenario: Edit table with invalid field values
+    Given the administrator has opened the edit form for an existing table
+    When an invalid value is entered in any required field (e.g. non-integer, out-of-range value)
+    Then the system must reject the submission
+    And the affected field must be highlighted with a visual error indicator
+    And the system must display a specific validation message for each invalid field
+    And the original table data must remain unchanged in the database
+
+  Scenario: Table record deleted by another user while the edit form is open
+    Given the administrator has the edit form open for a table
+    When the same table has been deleted in another session before the form is saved
+    And the administrator submits the edit form
+    Then the system must detect the 404 response from the server
+    And the system must display the message "This table no longer exists. It may have been deleted by another user."
+    And the system must close the edit form and refresh the tables list
+
+  Scenario: Server error during table edit
+    Given the administrator has submitted valid changes for an existing table
+    When the server returns an unexpected error (5xx)
+    Then the system must display the message "An unexpected error occurred. Your changes were not saved. Please try again."
+    And the form must remain open with the entered data intact
+    And the original table data must remain unchanged in the database
+```
+
+#### Acceptance Criteria — Delete Table
+
+```gherkin
   Scenario: Successful deletion of a table with no active orders
     Given a table record exists in the system with no active orders currently linked to it
-    When the administrator initiates deletion and confirms the action
-    Then the system must permanently remove the table record from the database
+    When the administrator clicks the Delete button for that table
+    Then the system must display a confirmation dialog with the message "Are you sure you want to delete Table #[N]? This action cannot be undone."
+    And when the administrator confirms the action
+    Then the system must send a DELETE request to the server using the table's unique ID
+    And the system must permanently remove the table record from the database
     And the system must display the message "Table deleted successfully"
+    And the table must no longer appear in the tables list
 
   Scenario: Deletion attempt on a table with active linked orders
     Given a table record exists with one or more active orders currently assigned to it
     When the administrator attempts to delete that table
-    Then the system must prevent the deletion
+    Then the system must reject the deletion request
     And the system must display the message "This table cannot be deleted because it has active orders assigned to it"
+    And no DELETE request must be sent to the server
+
+  Scenario: Table deletion cancelled by the administrator
+    Given a table record exists in the system
+    When the administrator clicks the Delete button and then cancels the action in the confirmation dialog
+    Then no DELETE request must be sent to the server
+    And the table record must remain unchanged in the database and the tables list
+
+  Scenario: Deletion of a table that was already deleted by another user
+    Given the administrator attempts to delete a table
+    When the server returns a 404 response because the table was already deleted in another session
+    Then the system must display the message "This table no longer exists. It may have already been deleted."
+    And the system must remove the stale entry from the tables list automatically
+
+  Scenario: Frontend displays table after successful backend deletion (sync failure)
+    Given the server has confirmed successful deletion of a table
+    When the frontend fails to update the tables list correctly
+    Then the system must attempt to re-fetch the tables data from the server
+    And the deleted table must not appear in the refreshed list
+    And if the re-fetch also fails, the system must display the message "The list could not be refreshed. Please reload the page."
+
+  Scenario: Server error during table deletion
+    Given the administrator has confirmed deletion of a table
+    When the server returns an unexpected error (5xx)
+    Then the system must display the message "An unexpected error occurred. The table could not be deleted. Please try again."
+    And the table record must remain in the database and the tables list
 ```
 
 ---
@@ -463,11 +726,9 @@ Feature: Delete Table
 |---|---|
 | **User Story** | **As an** employee, **I want** to create a new order linked to a customer and a table **so that** customer requests are tracked from the start of service. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Create Order
-
   Scenario: Successful order creation
     Given the employee is on the order creation form
     When a valid customer and an available table are selected and the form is submitted
@@ -490,11 +751,9 @@ Feature: Create Order
 |---|---|
 | **User Story** | **As an** employee, **I want** to add products to an active order with automatic inventory deduction **so that** stock levels are kept accurate at all times. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Add Products to Order
-
   Scenario: Successful addition of a product with available stock
     Given an active order exists and the selected product has sufficient available stock
     When the employee adds the product to the order with a specified quantity
@@ -518,11 +777,9 @@ Feature: Add Products to Order
 |---|---|
 | **User Story** | **As an** employee, **I want** to update the order status through valid transitions **so that** the progress of each order is accurately tracked. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Order Status Change
-
   Scenario: Valid forward status transition
     Given an active order is in a status that permits a forward transition
     When the employee changes the order to the next allowed status in the workflow
@@ -546,11 +803,9 @@ Feature: Order Status Change
 |---|---|
 | **User Story** | **As an** employee, **I want** to cancel an active order and have the consumed stock automatically restored **so that** inventory remains accurate even when orders are cancelled. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Cancel Order
-
   Scenario: Successful order cancellation with automatic stock restoration
     Given an active order contains one or more products with associated quantities
     When the employee initiates the cancellation and confirms the action
@@ -578,11 +833,9 @@ Feature: Cancel Order
 |---|---|
 | **User Story** | **As an** administrator, **I want** to generate a daily sales report **so that** I can monitor revenue and order volume for any selected day. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Daily Sales Report
-
   Scenario: Successful report generation with available sales data
     Given delivered orders exist in the system for the selected date
     When the administrator selects a date and generates the report
@@ -611,11 +864,9 @@ Feature: Daily Sales Report
 |---|---|
 | **User Story** | **As an** administrator, **I want** to view interactive charts and apply date range filters to reports **so that** I can analyze sales trends more effectively. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Advanced Sales Reports
-
   Scenario: Successful report generation using a date range filter
     Given the administrator is on the reports page
     When a valid start date and end date are selected and the report is generated
@@ -643,11 +894,9 @@ Feature: Advanced Sales Reports
 |---|---|
 | **User Story** | **As an** administrator, **I want** to search and filter past orders **so that** I can easily locate specific transactions in the system's history. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Order History
-
   Scenario: Successful display of all past orders
     Given the administrator accesses the order history page
     When the page finishes loading
@@ -674,11 +923,9 @@ Feature: Order History
 |---|---|
 | **User Story** | **As an** administrator, **I want** to assign roles to users (Administrator or Employee) **so that** each person only has access to the system features they are authorized to use. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: User Roles and Permissions
-
   Scenario: Role assignment during user account creation
     Given the administrator is completing the user registration form
     When a role is selected from the available options (Administrator or Employee) and the form is submitted
@@ -706,11 +953,9 @@ Feature: User Roles and Permissions
 |---|---|
 | **User Story** | **As an** administrator, **I want** to export generated reports in PDF and CSV formats **so that** I can share and archive sales data externally. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Export Reports
-
   Scenario: Successful export of a report to CSV format
     Given a report has been successfully generated and contains data
     When the administrator clicks the "Export CSV" button
@@ -738,11 +983,9 @@ Feature: Export Reports
 |---|---|
 | **User Story** | **As a** developer, **I want** the system to load quickly and respond efficiently **so that** the user experience remains smooth even with large volumes of data. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Performance Optimization
-
   Scenario: Page load time under normal operating conditions
     Given the system is operating under normal load conditions
     When a user navigates to any page within the system
@@ -764,11 +1007,9 @@ Feature: Performance Optimization
 |---|---|
 | **User Story** | **As a** user, **I want** to receive clear and friendly error messages **so that** I understand what went wrong and can take the appropriate corrective action. |
 
-**Acceptance Criteria:**
+#### Acceptance Criteria
 
 ```gherkin
-Feature: Error Handling
-
   Scenario: Network connection error during any system operation
     Given the user is performing any action within the system
     When the request fails due to the absence of an internet connection
@@ -792,3 +1033,5 @@ Feature: Error Handling
 ```
 
 ---
+
+*Document Version: 2.0 — Last updated: 2026*
