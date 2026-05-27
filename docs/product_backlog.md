@@ -1,11 +1,6 @@
 # Product Backlog — Chicaffe
 
-**Project:** Chicaffe — Cafeteria Management System
-**Repository:** `cbtis47-db-project-salchichasparrita-2026`
-**Team:** Anderson Vazquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
-**Version:** 2.0 | **Date:** May 27, 2026
 
----
 
 ## Product Goal
 
