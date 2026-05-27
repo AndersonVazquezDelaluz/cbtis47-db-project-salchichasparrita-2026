@@ -135,9 +135,8 @@ Feature: Protected Routes
 
 ---
 
-## epic 2 — User Management `EP-02`
+## Epic 2 — User Management `EP-02`
 
-**Sprint Goal:** Provide administrators with full visibility and searchability over all registered system users.
 
 ---
 
@@ -188,9 +187,8 @@ Feature: Search Users
 
 ---
 
-## Sprint 3 — Products & Inventory `EP-03`
+## Epic 3 — Products & Inventory `EP-03`
 
-**Sprint Goal:** Give administrators full control over the product catalog and maintain accurate real-time inventory.
 
 ---
 
