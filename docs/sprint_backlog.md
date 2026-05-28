@@ -22,7 +22,7 @@
 
 ---
 
-# 🟦 FIRST PARTIAL
+# FIRST PARTIAL
 
 ---
 
@@ -106,7 +106,7 @@
 
 ---
 
-# 🟩 SECOND PARTIAL
+# SECOND PARTIAL
 
 ---
 
@@ -183,7 +183,7 @@
 
 ---
 
-# 🟨 THIRD PARTIAL
+# THIRD PARTIAL
 
 ---
 
