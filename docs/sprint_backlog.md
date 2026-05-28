@@ -193,9 +193,3 @@ Mejorar la experiencia de usuario, añadir reportes avanzados y pulir el sistema
 **Estimación total:** 16 horas
 
 ---
-
-**Notas finales del Sprint Backlog:**
-- Total de horas: **112 horas** (realista para el equipo).
-- Cada sprint respeta la capacidad de **16 horas**.
-- Dependencias claras entre sprints (ej. autenticación antes que todo).
-- Enfocado en valor incremental.
