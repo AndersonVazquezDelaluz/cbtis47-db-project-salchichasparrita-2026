@@ -4,192 +4,178 @@
 **Repository:** `cbtis47-db-project-salchichasparrita-2026`  
 **Stack:** Node.js · Express · MySQL · HTML/CSS/JavaScript  
 **Team:** Anderson Vázquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras  
-**Versión:** 2.0 | **Date:** 28 de mayo de 2026
+**Version:** 2.0 | **Date:** May 28, 2026
 
-**Capacidad total del proyecto:** 112 horas (7 sprints × 16 horas)
+**Total Project Capacity:** 112 hours (7 sprints × 16 hours)
 
 ---
 
 ### SPRINT 1 — Authentication (EP-01)
 
 **Sprint Goal**  
-Implementar un sistema de autenticación seguro que permita registrar usuarios, iniciar sesión, cerrar sesión y proteger las rutas del sistema, aportando una base sólida de seguridad para todo el proyecto.
+Implement a secure authentication system that allows user registration, login, logout, and route protection, providing a solid security foundation for the entire application.
 
-**Parámetros Generales Semanales**
-- **Duración del sprint:** 2 semanas
-- **Capacidad total del equipo:** 16 horas
-- **Disponibilidad semanal:** 8 horas por semana
-- **Roles involucrados:** Anderson Vázquez (Backend), Axel de la Cruz (Frontend)
-- **Herramientas/Tecnologías:** Node.js, Express, MySQL, bcrypt, JWT, Postman
-- **Restricciones/Dependencias:** Base de datos MySQL configurada
+**General Weekly Parameters**
+- **Sprint Duration:** 2 weeks
+- **Team Capacity:** 16 hours
+- **Weekly Availability:** 8 hours per week
+- **Roles Involved:** Anderson Vázquez (Backend), Axel de la Cruz (Frontend)
+- **Tools & Technologies:** Node.js, Express, MySQL, bcrypt, JWT, Postman
+- **Constraints / Dependencies:** MySQL database must be configured
 
-**Historias de Usuario**
+**User Stories from Product Backlog**
 
-| US    | Historia de Usuario | Prioridad | Estimación (horas) | Criterios de Aceptación |
-|-------|---------------------|-----------|--------------------|-------------------------|
-| US-01 | Como administrador quiero registrar nuevos usuarios para dar acceso al personal. | High | 5h | Registro exitoso, contraseña hasheada, email único |
-| US-02 | Como usuario quiero iniciar sesión con email y contraseña para acceder al sistema. | High | 4h | Login exitoso, JWT generado, redirección al dashboard |
-| US-03 | Como usuario quiero cerrar sesión para finalizar mi sesión de forma segura. | High | 3h | Token invalidado y redirección a login |
-| US-04 | Como administrador quiero que las rutas estén protegidas para evitar accesos no autorizados. | High | 4h | Middleware funcional en todas las rutas protegidas |
+| US    | User Story | Priority | Estimation (hours) | Acceptance Criteria |
+|-------|------------|----------|--------------------|---------------------|
+| US-01 | As an Administrator, I want to register new users (name, email, password, role) so that staff can access the system. | High | 5h | Successful registration, hashed password, unique email, field validation |
+| US-02 | As a Registered User, I want to log in with email and password so that I can access the dashboard. | High | 4h | Successful login with JWT, clear error messages, correct redirection |
+| US-03 | As an Authenticated User, I want to log out so that I can securely end my session. | High | 3h | Token invalidated, redirection to login |
+| US-04 | As an Administrator, I want protected routes so that unauthorized access is prevented. | High | 4h | Authentication middleware working on all protected routes |
 
-**Tareas**
+**Tasks**
 
-| Tarea | Nombre de la Tarea | Responsable | Horas | Estado | US |
-|-------|--------------------|-------------|-------|--------|----|
-| T-01 | Crear tabla `users` en MySQL | Anderson | 2 | ✅ | US-01 |
-| T-02 | Endpoint POST `/api/auth/register` + bcrypt | Anderson | 2 | ⬜ | US-01 |
-| T-03 | Formulario de registro (HTML + Fetch) | Axel | 1.5 | ⬜ | US-01 |
-| T-04 | Endpoint POST `/api/auth/login` + JWT | Anderson | 2 | ⬜ | US-02 |
-| T-05 | Formulario login + manejo de errores | Axel | 1.5 | ⬜ | US-02 |
-| T-06 | Logout + middleware de autenticación | Anderson | 2 | ⬜ | US-03/US-04 |
-| T-07 | Proteger rutas del dashboard | Axel | 2 | ⬜ | US-04 |
-| T-08 | Pruebas y corrección de errores | Ambos | 3 | ⬜ | Todas |
+| Task | Task Name | Responsible | Hours | Status | US |
+|------|-----------|-------------|-------|--------|----|
+| T-01 | Create `users` table in MySQL | Anderson | 2 | ✅ Done | US-01 |
+| T-02 | Implement POST `/api/auth/register` endpoint + bcrypt | Anderson | 2 | ⬜ To Do | US-01 |
+| T-03 | Create registration form (HTML + Fetch) | Axel | 1.5 | ⬜ To Do | US-01 |
+| T-04 | Implement POST `/api/auth/login` endpoint + JWT | Anderson | 2 | ⬜ To Do | US-02 |
+| T-05 | Create login form + error handling | Axel | 1.5 | ⬜ To Do | US-02 |
+| T-06 | Implement logout + auth middleware | Anderson | 2 | ⬜ To Do | US-03/US-04 |
+| T-07 | Protect dashboard routes | Axel | 2 | ⬜ To Do | US-04 |
+| T-08 | Functional testing and bug fixing | Both | 3 | ⬜ To Do | All |
 
-**Tareas a Través del Tiempo**  
-**Semana 1 (8h):** T-01, T-02, T-03, T-04 → Registro y Login básico  
-**Semana 2 (8h):** T-05, T-06, T-07, T-08 → Logout y protección completa
+**Tasks Through Time**
+- **Week 1 (8 hours):** T-01 to T-04 → Registration and basic login
+- **Week 2 (8 hours):** T-05 to T-08 → Logout and full protection
 
-**Definición de Hecho**  
-- Código implementado y limpio  
-- Pruebas manuales exitosas  
-- Funciona en entorno local  
-- Documentación de endpoints actualizada  
-- Aprobación del Product Owner  
-- Sin errores críticos de seguridad
+**Definition of Done**
+- Code implemented and clean
+- Manual tests passed
+- Works in local environment
+- Endpoints documented
+- Product Owner approval
+- No critical security errors
 
 ---
 
 ### SPRINT 2 — User Management (EP-02)
 
 **Sprint Goal**  
-Permitir al administrador gestionar los usuarios del sistema (visualizar, editar y eliminar), mejorando el control administrativo.
+Enable the administrator to manage system users (view, edit, and delete), improving administrative control.
 
-**Parámetros Generales Semanales**
-- **Duración del sprint:** 2 semanas
-- **Capacidad total del equipo:** 16 horas
-- **Disponibilidad semanal:** 8 horas por semana
-- **Roles involucrados:** Anderson Vázquez (Backend), Axel de la Cruz (Frontend)
-- **Herramientas/Tecnologías:** Node.js, Express, MySQL, JWT
-- **Restricciones/Dependencias:** Sprint 1 completado (autenticación)
+**General Weekly Parameters**
+- **Sprint Duration:** 2 weeks
+- **Team Capacity:** 16 hours
+- **Weekly Availability:** 8 hours per week
+- **Roles Involved:** Anderson Vázquez (Backend), Axel de la Cruz (Frontend)
+- **Tools & Technologies:** Node.js, Express, MySQL, JWT
+- **Constraints / Dependencies:** Sprint 1 (Authentication) must be completed
 
-**Historias de Usuario**
+**User Stories**
 
-| US    | Historia de Usuario | Prioridad | Estimación (horas) | Criterios de Aceptación |
-|-------|---------------------|-----------|--------------------|-------------------------|
-| US-05 | Como administrador quiero ver la lista de usuarios para gestionar el personal. | High | 5h | Lista paginada o completa con filtros |
-| US-06 | Como administrador quiero editar o eliminar usuarios para mantener información actualizada. | High | 6h | Actualización y eliminación segura |
+| US    | User Story | Priority | Estimation (hours) | Acceptance Criteria |
+|-------|------------|----------|--------------------|---------------------|
+| US-05 | As an Administrator, I want to view the list of users so that I can manage staff. | High | 5h | Complete or paginated list with filters |
+| US-06 | As an Administrator, I want to edit or delete users so that information stays updated. | High | 6h | Secure update and deletion with confirmation |
 
-**Tareas**
+**Tasks** (Summary)
+- Backend endpoints (GET, PUT, DELETE users)
+- Frontend user list and management pages
+- Role-based access validation
+- Error handling and user feedback
 
-| Tarea | Nombre de la Tarea | Responsable | Horas | Estado | US |
-|-------|--------------------|-------------|-------|--------|----|
-| T-09 | Endpoint GET `/api/users` | Anderson | 2 | ⬜ | US-05 |
-| T-10 | Endpoint PUT `/api/users/:id` y DELETE | Anderson | 2.5 | ⬜ | US-06 |
-| T-11 | Página de lista de usuarios (HTML + JS) | Axel | 3 | ⬜ | US-05 |
-| T-12 | Formularios de edición y confirmación de eliminación | Axel | 3 | ⬜ | US-06 |
-| T-13 | Pruebas de permisos (solo admin) | Ambos | 2.5 | ⬜ | Todas |
-| T-14 | Manejo de errores y feedback | Axel | 3 | ⬜ | Todas |
+**Tasks Through Time**
+- **Week 1:** Backend development
+- **Week 2:** Frontend integration and testing
 
-**Tareas a Través del Tiempo**  
-**Semana 1 (8h):** Backend (lista y CRUD)  
-**Semana 2 (8h):** Frontend + pruebas
-
-**Definición de Hecho**  
-- CRUD funcional  
-- Solo accesible por administradores  
-- Pruebas realizadas  
-- Interfaz responsive
+**Definition of Done**
+- Full CRUD functionality
+- Only accessible by administrators
+- Responsive interface
+- Tested and approved
 
 ---
 
 ### SPRINT 3 — Products & Inventory (EP-03)
 
 **Sprint Goal**  
-Implementar el módulo completo de productos e inventario para gestionar la oferta de la cafetería.
+Implement complete product and inventory management to control the cafeteria’s offerings.
 
-**Parámetros Generales Semanales**
-- **Duración del sprint:** 2 semanas
-- **Capacidad total del equipo:** 16 horas
-- **Disponibilidad semanal:** 8 horas por semana
-- **Roles involucrados:** Anderson, Axel, Jayden Reyes
-- **Herramientas/Tecnologías:** Node.js, Express, MySQL
+**General Weekly Parameters**
+- **Sprint Duration:** 2 weeks
+- **Team Capacity:** 16 hours
+- **Roles Involved:** Anderson, Axel, Jayden Reyes
+- **Technologies:** Node.js, Express, MySQL
 
-**Historias de Usuario**
+**User Stories**
 
-| US    | Historia de Usuario | Prioridad | Estimación (horas) | Criterios de Aceptación |
-|-------|---------------------|-----------|--------------------|-------------------------|
-| US-07 | Como administrador quiero crear productos para ofrecerlos en la cafetería. | High | 5h | Campos: nombre, precio, stock, categoría |
-| US-08 | Como administrador quiero editar o eliminar productos. | High | 4h | Actualización en tiempo real |
-| US-09 | Como administrador quiero reponer inventario. | High | 4h | Actualización de stock |
-| US-10 | Como usuario quiero ver visualmente cuando un producto está agotado. | Medium | 3h | Indicador visual claro |
+| US    | User Story | Priority | Estimation (hours) | Acceptance Criteria |
+|-------|------------|----------|--------------------|---------------------|
+| US-07 | As an Administrator, I want to create products so they can be offered in the cafeteria. | High | 5h | Name, price, stock, category |
+| US-08 | As an Administrator, I want to edit or delete products. | High | 4h | Real-time updates |
+| US-09 | As an Administrator, I want to restock inventory. | High | 4h | Stock quantity update |
+| US-10 | As a User, I want to see when a product is out of stock. | Medium | 3h | Clear visual indicator |
 
-*(Tabla de Tareas y distribución similar a los anteriores — se mantiene el formato)*
-
-**Tareas a Través del Tiempo**  
-**Semana 1:** CRUD de productos  
-**Semana 2:** Control de inventario y visualización
-
-**Definición de Hecho**  
-- CRUD completo  
-- Stock actualizado correctamente  
-- Indicadores visuales funcionales
+**Definition of Done**
+- Complete CRUD for products
+- Inventory updated correctly
+- Visual indicators working
 
 ---
 
 ### SPRINT 4 — Tables (EP-04)
 
 **Sprint Goal**  
-Gestionar las mesas de la cafetería (CRUD) para organizar mejor el espacio físico.
+Manage cafeteria tables (CRUD) to better organize the physical space.
 
-*(Estructura completa similar)*
+**User Stories**
+- US-11: As an Administrator, I want to manage tables (create, assign number, status: available/occupied).
 
-**Historias de Usuario**
-- US-11: Como administrador quiero gestionar las mesas (crear, asignar número, estado: disponible/ocupada).
-
-**Estimación total:** 16 horas
+**Total Capacity:** 16 hours
 
 ---
 
 ### SPRINT 5 — Orders (EP-05)
 
 **Sprint Goal**  
-Implementar el flujo completo de órdenes: crear, agregar productos, cambiar estado y cancelar con devolución de inventario.
+Implement the complete order flow: create orders, add products, change status, and cancel with inventory restoration.
 
-**Historias de Usuario**
-- US-12: Crear orden
-- US-13: Agregar productos a orden
-- US-14: Cambiar estado de orden
-- US-15: Cancelar orden y restaurar stock
+**User Stories**
+- US-12: Create Order
+- US-13: Add Products to Order
+- US-14: Change Order Status
+- US-15: Cancel Order and Restore Inventory
 
-**Estimación total:** 16 horas
+**Total Capacity:** 16 hours
 
 ---
 
 ### SPRINT 6 — Reports (EP-06)
 
 **Sprint Goal**  
-Generar reportes básicos de ventas diarias para tener control financiero.
+Generate basic daily sales reports for financial control.
 
-**Historias de Usuario**
-- US-16: Generar reporte de ventas del día
+**User Stories**
+- US-16: Generate Daily Sales Report
 
-**Estimación total:** 16 horas
+**Total Capacity:** 16 hours
 
 ---
 
 ### SPRINT 7 — Enhancements & Polish (EP-07)
 
 **Sprint Goal**  
-Mejorar la experiencia de usuario, añadir reportes avanzados y pulir el sistema antes de la entrega final.
+Improve user experience, add advanced reports, and polish the system for final delivery.
 
-**Historias de Usuario**
-- US-17: Reportes avanzados con gráficos
-- US-18: Mejoras de diseño responsive
-- US-19: Mejor manejo de errores
-- US-20: Optimización de rendimiento
-- US-21: Control de acceso por roles (RBAC)
-- US-22: Documentación final y pulido
+**User Stories**
+- US-17: Advanced Sales Reports with Charts
+- US-18: Responsive Design Improvements
+- US-19: Better Error Handling
+- US-20: Performance Optimization
+- US-21: Role-Based Access Control (RBAC)
+- US-22: Final Polish and Documentation
 
-**Estimación total:** 16 horas
+**Total Capacity:** 16 hours
 
 ---
