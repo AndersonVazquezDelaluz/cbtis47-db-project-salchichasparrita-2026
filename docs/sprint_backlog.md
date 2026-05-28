@@ -34,16 +34,16 @@ Implement a secure authentication system that allows user registration, login, l
 
 **Tasks**
 
-| Task | Task Name | Responsible | Hours | Status | US |
-|------|-----------|-------------|-------|--------|----|
-| T-01 | Create `users` table in MySQL | Anderson | 2 | ✅ Done | US-01 |
-| T-02 | Implement POST `/api/auth/register` endpoint + bcrypt | Anderson | 2 | ⬜ To Do | US-01 |
-| T-03 | Create registration form (HTML + Fetch) | Axel | 1.5 | ⬜ To Do | US-01 |
-| T-04 | Implement POST `/api/auth/login` endpoint + JWT | Anderson | 2 | ⬜ To Do | US-02 |
-| T-05 | Create login form + error handling | Axel | 1.5 | ⬜ To Do | US-02 |
-| T-06 | Implement logout + auth middleware | Anderson | 2 | ⬜ To Do | US-03/US-04 |
-| T-07 | Protect dashboard routes | Axel | 2 | ⬜ To Do | US-04 |
-| T-08 | Functional testing and bug fixing | Both | 3 | ⬜ To Do | All |
+| Task | Task Name | Hours | Status | US |
+|------|-----------|-------|--------|----|
+| T-01 | Create `users` table in MySQL |  2 | ✅ Done | US-01 |
+| T-02 | Implement POST `/api/auth/register` endpoint + bcrypt |  2 | ⬜ To Do | US-01 |
+| T-03 | Create registration form (HTML + Fetch) |  1.5 | ⬜ To Do | US-01 |
+| T-04 | Implement POST `/api/auth/login` endpoint + JWT | 2 | ⬜ To Do | US-02 |
+| T-05 | Create login form + error handling |  1.5 | ⬜ To Do | US-02 |
+| T-06 | Implement logout + auth middleware | 2 | ⬜ To Do | US-03/US-04 |
+| T-07 | Protect dashboard routes |  2 | ⬜ To Do | US-04 |
+| T-08 | Functional testing and bug fixing  | 3 | ⬜ To Do | All |
 
 **Tasks Through Time**
 - **Week 1 (8 hours):** T-01 to T-04 → Registration and basic login
