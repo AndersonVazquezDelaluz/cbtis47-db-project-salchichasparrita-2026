@@ -10,10 +10,10 @@
 
 ## Partial Overview
 
-| Sprint | Name                        | Epic   | User Stories              | Story Points |
-|--------|-----------------------------|--------|---------------------------|--------------|
-| Sprint 7 | Enhancements & Polish      | EP-07  | US-17 to US-22            | 36 SP |
-| **Total** |                          |        |                           | **36 SP** |
+| Sprint | Name                        | Epic   | User Stories     | Story Points |
+|--------|-----------------------------|--------|------------------|--------------|
+| Sprint 7 | Enhancements & Polish      | EP-07  | US-17 to US-22   | 36 SP |
+| **Total** |                          |        |                  | **36 SP** |
 
 **Partial Duration:** 4 weeks  
 **Real Available Hours:** 8h/week × 4 = 32 hours  
@@ -26,12 +26,10 @@
 **Sprint Goal**  
 Improve user experience, add advanced features, implement role-based access control, and polish the system for final delivery.
 
-**Roles:** Full Team (Parallel development)
-
 **User Stories**
 
-| US    | User Story | Priority | SP | Acceptance Criteria |
-|-------|------------|----------|----|---------------------|
+| US | User Story | Priority | SP | Acceptance Criteria |
+|---|------------|----------|----|---------------------|
 | US-17 | As an Administrator, I want advanced sales reports with charts | Medium | 8 | Reports with date range, bar/pie/line charts using Chart.js |
 | US-18 | As an Administrator, I want to view order history with search and filters | Medium | 6 | Full order list, search by ID/customer/date, detail modal |
 | US-19 | As an Administrator, I want role-based access control (RBAC) | High | 8 | Admin/Employee roles, protected sections according to role |
@@ -41,24 +39,23 @@ Improve user experience, add advanced features, implement role-based access cont
 
 **Tasks**
 
-| #   | Task | Hours | US    | Assigned to      | Status     |
-|-----|------|-------|-------|------------------|------------|
-| T-45 | Add date range picker to reports page | 2 | US-17 | Axel | To Do |
-| T-46 | Implement advanced sales queries with filters | 3 | US-17 | Jayden | To Do |
-| T-47 | Integrate Chart.js and create sales charts | 3 | US-17 | Axel | To Do |
-| T-48 | Build order history page with search and filters | 3 | US-18 | Jayden | To Do |
-| T-49 | Create order detail modal | 2 | US-18 | Axel | To Do |
-| T-50 | Implement role-based access control (RBAC) | 4 | US-19 | Anderson | To Do |
-| T-51 | Add role validation to protected routes | 3 | US-19 | Anderson | To Do |
-| T-52 | Implement CSV and PDF report export | 4 | US-20 | Matthew / Axel | To Do |
-| T-53 | Add pagination to users, products and orders lists | 2 | US-21 | Matthew | To Do |
-| T-54 | Add database indexes for performance | 2 | US-21 | Matthew | To Do |
-| T-55 | Improve form validations and error messages | 2 | US-22 | Anuar | To Do |
-| T-56 | Add global error handling | 2 | US-22 | Anderson | To Do |
-| T-57 | Final testing, bug fixing and UI polish | 5 | All | Team | To Do |
+| # | Task | Hours | US | Status |
+|---|------|-------|---|--------|
+| T-45 | Add date range picker to reports page | 2 | US-17 | Done |
+| T-46 | Implement advanced sales queries with filters | 3 | US-17 | Done |
+| T-47 | Integrate Chart.js and create sales charts | 3 | US-17 | Done |
+| T-48 | Build order history page with search and filters | 3 | US-18 | Done |
+| T-49 | Create order detail modal | 2 | US-18 | Done |
+| T-50 | Implement role-based access control (RBAC) | 4 | US-19 | Done |
+| T-51 | Add role validation to protected routes | 3 | US-19 | Done |
+| T-52 | Implement CSV and PDF report export | 4 | US-20 | Done |
+| T-53 | Add pagination to users, products and orders lists | 2 | US-21 | Done |
+| T-54 | Add database indexes for performance | 2 | US-21 | Done |
+| T-55 | Improve form validations and error messages | 2 | US-22 | Done |
+| T-56 | Add global error handling | 2 | US-22 | Done |
+| T-57 | Final testing, bug fixing and UI polish | 5 | All | Done |
 
 **Suggested Weekly Plan:**
-
 - **Week 1:** Roles & Permissions + Error Handling (US-19, US-22)
 - **Week 2:** Advanced Reports + Charts (US-17)
 - **Week 3:** Order History + Export (US-18, US-20)
@@ -79,8 +76,6 @@ Improve user experience, add advanced features, implement role-based access cont
 
 ---
 
-**Current Status:** Pending
+**Current Status:** in progress
 
 ---
-
-**Note:** This final partial integrates all previous sprints and focuses on quality, usability, and advanced functionality.
