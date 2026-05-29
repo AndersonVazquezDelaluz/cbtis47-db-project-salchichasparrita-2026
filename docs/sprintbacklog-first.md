@@ -1,138 +1,103 @@
 # Sprint Backlog — Chicaffe · First Partial
 
-**Project:** Chicaffe - Cafeteria Management System
-**Repository:** `cbtis47-db-project-salchichasparrita-2026`
-**Stack:** HTML · CSS · JavaScript · Supabase
-**Team:** Anderson Vazquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
-**Version:** 1.2 | **Date:** May 14, 2026
+**Project:** Chicaffe - Cafeteria Management System  
+**Repository:** `cbtis47-db-project-salchichasparrita-2026`  
+**Stack:** Node.js · Express · MySQL · HTML/CSS/JavaScript  
+**Team:** Anderson Vázquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras  
+**Version:** 2.1 | **Date:** May 29, 2026
 
 ---
 
 ## Partial Overview
 
-| Sprint | Name | Epic | User Stories | Story Points |
-|---|---|---|---|---|
-| Sprint 1 | Authentication | EP-01 | US-01, US-02, US-03, US-04 | 13 SP |
-| Sprint 2 | User Management | EP-02 | US-05, US-06 | 5 SP |
-| Sprint 3 | Products & Inventory | EP-03 | US-07, US-08, US-09, US-10 | 17 SP |
-| | **Total** | | | **35 SP** |
+| Sprint | Name                    | Epic   | User Stories               | Story Points |
+|--------|-------------------------|--------|----------------------------|--------------|
+| Sprint 1 | Authentication         | EP-01  | US-01, US-02, US-03, US-04 | 14 SP |
+| Sprint 2 | User Management        | EP-02  | US-05, US-06               | 8 SP |
+| Sprint 3 | Products & Inventory   | EP-03  | US-07, US-08, US-09, US-10 | 18 SP |
+| **Total** |                      |        |                            | **40 SP** |
 
-**Partial Duration:** 4 weeks
-**Available Hours:** 8h/week × 4 weeks = 32 real hours
-**Expected Hours (with buffer):** ~48h — accounts for setbacks, learning curve, and revisions
-
----
-
-## Sprint 1 — Authentication `EP-01`
-
-**Sprint Goal:** Enable secure access to the system through registration, login, logout, and protected routes.
-
-**Time Estimate**
-- Real availability: ~10h
-- Expected with buffer: ~15h
-- Suggested weeks: Weeks 1–2
-
-| US | Title | Story Points | Priority |
-|---|---|---|---|
-| US-01 | User Registration by Administrator | 5 SP | High |
-| US-02 | User Login | 3 SP | High |
-| US-03 | Logout | 2 SP | High |
-| US-04 | Protected Routes | 3 SP | High |
-| | **Total** | **13 SP** | |
-
-### Tasks
-
-| # | Task | US | Assigned To | Status |
-|---|---|---|---|---|
-| T-01 | Set up Supabase Auth project and configure credentials | US-01 | Anderson Vazquez | ⬜ To Do |
-| T-02 | Build the registration form (name, email, password) | US-01 | Axel de la Cruz | ⬜ To Do |
-| T-03 | Connect the registration form to Supabase Auth | US-01 | Anderson Vazquez | ⬜ To Do |
-| T-04 | Add duplicate email and empty field validations | US-01 | Anuar Contreras | ⬜ To Do |
-| T-05 | Build the login form (email, password) | US-02 | Axel de la Cruz | ⬜ To Do |
-| T-06 | Connect the login form to Supabase Auth | US-02 | Anderson Vazquez | ⬜ To Do |
-| T-07 | Handle and display invalid credentials error message | US-02 | Anuar Contreras | ⬜ To Do |
-| T-08 | Implement logout button and session termination logic | US-03 | Anderson Vazquez | ⬜ To Do |
-| T-09 | Redirect user to login page after logout | US-03 | Axel de la Cruz | ⬜ To Do |
-| T-10 | Create route guard and session check function | US-04 | Anderson Vazquez | ⬜ To Do |
-| T-11 | Redirect unauthenticated users to the login page | US-04 | Anuar Contreras | ⬜ To Do |
+**Partial Duration:** 4 weeks  
+**Real Available Hours:** 8h/week × 4 = 32 hours  
+**Estimated Hours (with buffer):** ~50 hours
 
 ---
 
-## Sprint 2 — User Management `EP-02`
+## SPRINT 1 — Authentication (EP-01)
 
-**Sprint Goal:** Provide administrators with full visibility and searchability over all registered system users.
+**Sprint Goal**  
+Implement a secure authentication system with user registration, login, logout, and route protection using JWT + bcrypt.
 
-**Time Estimate**
-- Real availability: ~8h
-- Expected with buffer: ~12h
-- Suggested weeks: Week 2–3
+**Roles:** Anderson Vázquez (Backend), Axel de la Cruz (Frontend)
 
-| US | Title | Story Points | Priority |
-|---|---|---|---|
-| US-05 | View Users List | 3 SP | High |
-| US-06 | Search Users by Name | 2 SP | Medium |
-| | **Total** | **5 SP** | |
+**User Stories**
 
-### Tasks
+| US    | User Story | Priority | SP | Acceptance Criteria |
+|-------|------------|----------|----|---------------------|
+| US-01 | As an Administrator, I want to register new users (name, email, password, role) | High | 5 | Successful registration, hashed password, unique email, field validation |
+| US-02 | As a Registered User, I want to log in with email and password | High | 4 | Successful login with JWT, clear error messages, correct redirection |
+| US-03 | As an Authenticated User, I want to log out | High | 2 | Token invalidated on client side, redirection to login |
+| US-04 | As an Authenticated User, I want protected routes | High | 3 | Authentication middleware working on all protected routes |
 
-| # | Task | US | Assigned To | Status |
-|---|---|---|---|---|
-| T-12 | Query all users from Supabase and render them in a table | US-05 | Jayden Reyes | ⬜ To Do |
-| T-13 | Style the users table (name, email, role, status columns) | US-05 | Axel de la Cruz | ⬜ To Do |
-| T-14 | Add a search input field to the users page | US-06 | Axel de la Cruz | ⬜ To Do |
-| T-15 | Implement real-time filter by name on the users list | US-06 | Jayden Reyes | ⬜ To Do |
+**Tasks**
 
----
+| #   | Task | Hours | US    | Assigned to      | Status     |
+|-----|------|-------|-------|------------------|------------|
+| T-01 | Create `users` table in MySQL | 2 | US-01 | Anderson | Done |
+| T-02 | Implement POST `/api/auth/register` endpoint + bcrypt | 3 | US-01 | Anderson | To Do |
+| T-03 | Create registration form (HTML + Fetch) with validations | 2 | US-01 | Axel | To Do |
+| T-04 | Implement POST `/api/auth/login` endpoint + JWT | 3 | US-02 | Anderson | To Do |
+| T-05 | Create login form + error handling | 2 | US-02 | Axel | To Do |
+| T-06 | Implement logout functionality (clear token) | 1.5 | US-03 | Axel | To Do |
+| T-07 | Create authentication middleware (`authMiddleware.js`) | 2 | US-04 | Anderson | To Do |
+| T-08 | Protect dashboard and admin routes | 2 | US-04 | Anderson | To Do |
+| T-09 | Functional testing and bug fixing | 3 | All | Team | To Do |
 
-## Sprint 3 — Products & Inventory `EP-03`
-
-**Sprint Goal:** Give administrators full control over the product catalog and maintain accurate real-time inventory.
-
-**Time Estimate**
-- Real availability: ~14h
-- Expected with buffer: ~21h
-- Suggested weeks: Weeks 3–4
-
-| US | Title | Story Points | Priority |
-|---|---|---|---|
-| US-07 | Create Product | 5 SP | High |
-| US-08 | Edit and Delete Product | 5 SP | High |
-| US-09 | Restock Inventory | 5 SP | High |
-| US-10 | Out of Stock Visual Indicator | 2 SP | Medium |
-| | **Total** | **17 SP** | |
-
-### Tasks
-
-| # | Task | US | Assigned To | Status |
-|---|---|---|---|---|
-| T-16 | Create `products` table in Supabase (name, price, stock) | US-07 | Matthew Venegas | ⬜ To Do |
-| T-17 | Build the new product form and connect it to Supabase | US-07 | Axel de la Cruz | ⬜ To Do |
-| T-18 | Render the products list on the admin page | US-07 | Jayden Reyes | ⬜ To Do |
-| T-19 | Build the edit product modal with pre-filled data | US-08 | Axel de la Cruz | ⬜ To Do |
-| T-20 | Implement update product functionality in Supabase | US-08 | Matthew Venegas | ⬜ To Do |
-| T-21 | Implement delete product with confirmation dialog | US-08 | Anuar Contreras | ⬜ To Do |
-| T-22 | Build the restock form (add quantity to existing stock) | US-09 | Jayden Reyes | ⬜ To Do |
-| T-23 | Update stock value in Supabase on restock submission | US-09 | Matthew Venegas | ⬜ To Do |
-| T-24 | Display "Out of Stock" badge when stock equals 0 | US-10 | Axel de la Cruz | ⬜ To Do |
-| T-25 | Disable the add-to-order button when product is out of stock | US-10 | Anuar Contreras | ⬜ To Do |
+**Weekly Plan:**
+- **Week 1:** T-01 to T-04 (Registration + Basic Login)
+- **Week 2:** T-05 to T-09 (Logout + Full Protection)
 
 ---
 
-## Definition of Done
+## SPRINT 2 — User Management (EP-02)
 
-- Code implemented and tested locally
-- No critical bugs open
-- Feature approved by the team
-- Tasks moved to ✅ Done in the board
+**Sprint Goal**  
+Allow the administrator to view, edit, and delete system users.
+
+**User Stories**
+
+| US    | User Story | Priority | SP |
+|-------|------------|----------|----|
+| US-05 | As an Administrator, I want to view the list of users | High | 4 |
+| US-06 | As an Administrator, I want to edit or delete users | High | 4 |
 
 ---
 
-## Team
+## SPRINT 3 — Products & Inventory (EP-03)
 
-| Member | Role |
-|---|---|
-| Anderson Vazquez | Analyst & Designer |
-| Jayden Reyes | SQL Developer |
-| Matthew Venegas | Database Administrator |
-| Axel de la Cruz | Query Master |
-| Anuar Contreras | SQL Tester |
+**Sprint Goal**  
+Implement complete product and inventory management for the cafeteria.
+
+**User Stories**
+
+| US    | User Story | Priority | SP |
+|-------|------------|----------|----|
+| US-07 | As an Administrator, I want to create products | High | 5 |
+| US-08 | As an Administrator, I want to edit or delete products | High | 5 |
+| US-09 | As an Administrator, I want to restock inventory | High | 5 |
+| US-10 | As a User, I want to see when a product is out of stock | Medium | 3 |
+
+---
+
+## Definition of Done (First Partial)
+
+- Clean and well-commented code
+- Endpoints properly documented
+- Manual tests completed
+- Fully functional in local environment (XAMPP)
+- No critical security issues
+- Approved by the team and professor
+
+---
+
+**Current Status:** In Progress
