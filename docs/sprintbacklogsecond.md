@@ -1,131 +1,120 @@
 # Sprint Backlog — Chicaffe · Second Partial
 
-**Project:** Chicaffe - Cafeteria Management System
-**Repository:** `cbtis47-db-project-salchichasparrita-2026`
-**Stack:** HTML · CSS · JavaScript · Supabase
-**Team:** Anderson Vazquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
-**Version:** 1.2 | **Date:** May 14, 2026
+**Project:** Chicaffe - Cafeteria Management System  
+**Repository:** `cbtis47-db-project-salchichasparrita-2026`  
+**Stack:** Node.js · Express · MySQL · HTML/CSS/JavaScript  
+**Team:** Anderson Vázquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras  
+**Version:** 2.1 | **Date:** May 29, 2026
 
 ---
 
 ## Partial Overview
 
-| Sprint | Name | Epic | User Stories | Story Points |
-|---|---|---|---|---|
-| Sprint 4 | Tables | EP-04 | US-11 | 5 SP |
-| Sprint 5 | Orders | EP-05 | US-12, US-13, US-14, US-15 | 26 SP |
-| Sprint 6 | Reports | EP-06 | US-16 | 8 SP |
-| | **Total** | | | **39 SP** |
+| Sprint | Name              | Epic   | User Stories                    | Story Points |
+|--------|-------------------|--------|---------------------------------|--------------|
+| Sprint 4 | Tables           | EP-04  | US-11                           | 6 SP |
+| Sprint 5 | Orders           | EP-05  | US-12, US-13, US-14, US-15      | 26 SP |
+| Sprint 6 | Reports          | EP-06  | US-16                           | 8 SP |
+| **Total** |                |        |                                 | **40 SP** |
 
-**Partial Duration:** 4 weeks
-**Available Hours:** 8h/week × 4 weeks = 32 real hours
-**Expected Hours (with buffer):** ~50h — Orders (Sprint 5) is the most complex sprint in the project; extra time is expected
-
----
-
-## Sprint 4 — Tables `EP-04`
-
-**Sprint Goal:** Allow administrators to manage physical cafeteria tables to support accurate order assignment.
-
-**Time Estimate**
-- Real availability: ~6h
-- Expected with buffer: ~9h
-- Suggested weeks: Week 1
-
-| US | Title | Story Points | Priority |
-|---|---|---|---|
-| US-11 | Tables Management (CRUD) | 5 SP | Medium |
-| | **Total** | **5 SP** | |
-
-### Tasks
-
-| # | Task | US | Assigned To | Status |
-|---|---|---|---|---|
-| T-26 | Create `tables` table in Supabase (number, capacity, status) | US-11 | Matthew Venegas | ⬜ To Do |
-| T-27 | Build the create table form | US-11 | Axel de la Cruz | ⬜ To Do |
-| T-28 | Render the tables list on the admin page | US-11 | Jayden Reyes | ⬜ To Do |
-| T-29 | Implement edit table functionality | US-11 | Axel de la Cruz | ⬜ To Do |
-| T-30 | Implement delete table with confirmation dialog | US-11 | Anuar Contreras | ⬜ To Do |
-| T-31 | Block table deletion if active orders are linked to it | US-11 | Anderson Vazquez | ⬜ To Do |
+**Partial Duration:** 4 weeks  
+**Real Available Hours:** 8h/week × 4 = 32 hours  
+**Estimated Hours (with buffer):** ~52 hours
 
 ---
 
-## Sprint 5 — Orders `EP-05`
+## SPRINT 4 — Tables (EP-04)
 
-**Sprint Goal:** Enable employees to fully manage the lifecycle of customer orders with automatic inventory control.
+**Sprint Goal**  
+Allow the administrator to manage cafeteria tables (CRUD operations).
 
-**Time Estimate**
-- Real availability: ~18h
-- Expected with buffer: ~28h
-- Suggested weeks: Weeks 2–3 (this sprint may bleed into week 4)
+**Roles:** Matthew Venegas (Database), Axel de la Cruz (Frontend), Anderson Vázquez (Backend)
 
-| US | Title | Story Points | Priority |
-|---|---|---|---|
-| US-12 | Create Order | 5 SP | High |
-| US-13 | Add Products to Order | 8 SP | High |
-| US-14 | Change Order Status | 5 SP | High |
-| US-15 | Cancel Order and Restore Inventory | 8 SP | High |
-| | **Total** | **26 SP** | |
+**User Stories**
 
-### Tasks
+| US    | User Story | Priority | SP | Acceptance Criteria |
+|-------|------------|----------|----|---------------------|
+| US-11 | As an Administrator, I want to manage tables (create, edit, delete, assign number and status) | Medium | 6 | Full CRUD functionality, status management (available/occupied), validation to prevent deletion of tables with active orders |
 
-| # | Task | US | Assigned To | Status |
-|---|---|---|---|---|
-| T-32 | Create `orders` table in Supabase (user, table, status, date) | US-12 | Matthew Venegas | ⬜ To Do |
-| T-33 | Build the new order form (select customer and table) | US-12 | Axel de la Cruz | ⬜ To Do |
-| T-34 | Save the new order with initial status "pending" | US-12 | Anderson Vazquez | ⬜ To Do |
-| T-35 | Create `order_items` table (order_id, product_id, quantity) | US-13 | Matthew Venegas | ⬜ To Do |
-| T-36 | Build the add-product-to-order interface | US-13 | Axel de la Cruz | ⬜ To Do |
-| T-37 | Automatically deduct stock when a product is added to an order | US-13 | Jayden Reyes | ⬜ To Do |
-| T-38 | Block adding out-of-stock products and display error message | US-13 | Anuar Contreras | ⬜ To Do |
-| T-39 | Build the order status selector (pending / in-progress / delivered) | US-14 | Axel de la Cruz | ⬜ To Do |
-| T-40 | Validate and enforce allowed status transitions | US-14 | Anderson Vazquez | ⬜ To Do |
-| T-41 | Block invalid transitions and display an explanatory message | US-14 | Anuar Contreras | ⬜ To Do |
-| T-42 | Implement the cancel order action with confirmation | US-15 | Axel de la Cruz | ⬜ To Do |
-| T-43 | Restore the stock of each product upon order cancellation | US-15 | Jayden Reyes | ⬜ To Do |
+**Tasks**
+
+| #   | Task | Hours | US    | Assigned to      | Status     |
+|-----|------|-------|-------|------------------|------------|
+| T-26 | Create `tables` table in MySQL | 1.5 | US-11 | Matthew | To Do |
+| T-27 | Implement CRUD endpoints for tables | 2 | US-11 | Anderson | To Do |
+| T-28 | Create form to add new table | 1 | US-11 | Axel | To Do |
+| T-29 | Display tables list in admin interface | 1 | US-11 | Jayden | To Do |
+| T-30 | Implement edit and delete table functionality | 1.5 | US-11 | Axel | To Do |
+| T-31 | Prevent deletion of tables with active orders | 1 | US-11 | Anderson | To Do |
 
 ---
 
-## Sprint 6 — Reports `EP-06`
+## SPRINT 5 — Orders (EP-05)
 
-**Sprint Goal:** Provide administrators with actionable daily sales insights to support informed decision-making.
+**Sprint Goal**  
+Implement the complete order flow: create orders, add products, change status, and cancel with inventory restoration.
 
-**Time Estimate**
-- Real availability: ~8h
-- Expected with buffer: ~13h
-- Suggested weeks: Week 4
+**Roles:** Anderson Vázquez (Backend), Axel de la Cruz (Frontend), Jayden Reyes (Logic)
 
-| US | Title | Story Points | Priority |
-|---|---|---|---|
-| US-16 | Daily Sales Report | 8 SP | Medium |
-| | **Total** | **8 SP** | |
+**User Stories**
 
-### Tasks
+| US    | User Story | Priority | SP | Acceptance Criteria |
+|-------|------------|----------|----|---------------------|
+| US-12 | As a User, I want to create a new order | High | 5 | Order created with table and user association, initial status "pending" |
+| US-13 | As a User, I want to add products to an order | High | 8 | Products added to order, stock automatically deducted, prevent out-of-stock items |
+| US-14 | As a User, I want to change order status | High | 6 | Valid status transitions (pending → in-progress → delivered) |
+| US-15 | As a User, I want to cancel an order and restore inventory | High | 7 | Order cancelled, stock restored for all items |
 
-| # | Task | US | Assigned To | Status |
-|---|---|---|---|---|
-| T-44 | Query delivered orders filtered by selected date | US-16 | Jayden Reyes | ⬜ To Do |
-| T-45 | Calculate total sales amount and total order count | US-16 | Matthew Venegas | ⬜ To Do |
-| T-46 | Render the report table (product, quantity sold, subtotal) | US-16 | Axel de la Cruz | ⬜ To Do |
-| T-47 | Display "No sales data for the selected period" when no results found | US-16 | Anuar Contreras | ⬜ To Do |
+**Tasks**
 
----
-
-## Definition of Done
-
-- Code implemented and tested locally
-- No critical bugs open
-- Feature approved by the team
-- Tasks moved to ✅ Done in the board
+| #   | Task | Hours | US    | Assigned to      | Status     |
+|-----|------|-------|-------|------------------|------------|
+| T-32 | Create `orders` table in MySQL | 2 | US-12 | Matthew | To Do |
+| T-33 | Create `order_items` table in MySQL | 2 | US-13 | Matthew | To Do |
+| T-34 | Implement endpoint to create new order | 3 | US-12 | Anderson | To Do |
+| T-35 | Implement endpoint to add products to order with stock deduction | 5 | US-13 | Anderson | To Do |
+| T-36 | Create interface to select table and create order | 3 | US-12 | Axel | To Do |
+| T-37 | Create interface to add products to existing order | 4 | US-13 | Axel | To Do |
+| T-38 | Implement order status update with validation | 3 | US-14 | Anderson | To Do |
+| T-39 | Implement order cancellation with inventory restoration | 4 | US-15 | Jayden | To Do |
+| T-40 | Add validations and error handling for the entire order flow | 3 | All | Team | To Do |
 
 ---
 
-## Team
+## SPRINT 6 — Reports (EP-06)
 
-| Member | Role |
-|---|---|
-| Anderson Vazquez | Analyst & Designer |
-| Jayden Reyes | SQL Developer |
-| Matthew Venegas | Database Administrator |
-| Axel de la Cruz | Query Master |
-| Anuar Contreras | SQL Tester |
+**Sprint Goal**  
+Generate basic daily sales reports for financial control.
+
+**Roles:** Jayden Reyes (Backend), Axel de la Cruz (Frontend)
+
+**User Stories**
+
+| US    | User Story | Priority | SP | Acceptance Criteria |
+|-------|------------|----------|----|---------------------|
+| US-16 | As an Administrator, I want to generate daily sales reports | Medium | 8 | Report filtered by date, showing products sold, quantities, and totals |
+
+**Tasks**
+
+| #   | Task | Hours | US    | Assigned to      | Status     |
+|-----|------|-------|-------|------------------|------------|
+| T-41 | Implement endpoint for sales report by date | 3 | US-16 | Jayden | To Do |
+| T-42 | Create reports interface with date selector | 2 | US-16 | Axel | To Do |
+| T-43 | Display table with sold products, quantities and subtotals | 2 | US-16 | Axel | To Do |
+| T-44 | Calculate and display general sales totals | 1 | US-16 | Matthew | To Do |
+
+---
+
+## Definition of Done (Second Partial)
+
+- Clean and well-commented code
+- Endpoints properly documented
+- Manual tests completed
+- Correct integration between orders, inventory and tables
+- Proper error handling and validations
+- Fully functional in local environment
+- Approved by the team and professor
+
+---
+
+**Current Status:** Pending
