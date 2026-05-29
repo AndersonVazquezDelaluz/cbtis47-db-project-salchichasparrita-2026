@@ -41,19 +41,18 @@ Improve user experience, add advanced features, implement role-based access cont
 
 | # | Task | Hours | US | Status |
 |---|------|-------|---|--------|
-| T-45 | Add date range picker to reports page | 2 | US-17 | Done |
-| T-46 | Implement advanced sales queries with filters | 3 | US-17 | Done |
+| T-45 | Add date range picker to reports page | 2 | US-17 | to do |
+| T-46 | Implement advanced sales queries with filters | 3 | US-17 | to do |
 | T-47 | Integrate Chart.js and create sales charts | 3 | US-17 | Done |
 | T-48 | Build order history page with search and filters | 3 | US-18 | Done |
-| T-49 | Create order detail modal | 2 | US-18 | Done |
-| T-50 | Implement role-based access control (RBAC) | 4 | US-19 | Done |
-| T-51 | Add role validation to protected routes | 3 | US-19 | Done |
-| T-52 | Implement CSV and PDF report export | 4 | US-20 | Done |
-| T-53 | Add pagination to users, products and orders lists | 2 | US-21 | Done |
-| T-54 | Add database indexes for performance | 2 | US-21 | Done |
-| T-55 | Improve form validations and error messages | 2 | US-22 | Done |
-| T-56 | Add global error handling | 2 | US-22 | Done |
-| T-57 | Final testing, bug fixing and UI polish | 5 | All | Done |
+| T-49 | Create order detail modal | 2 | US-18 | to do  |
+| T-50 | Add role validation to protected routes | 3 | US-19 | to do |
+| T-51 | Implement CSV and PDF report export | 4 | US-20 | to do |
+| T-52 | Add pagination to users, products and orders lists | 2 | US-21 | Done |
+| T-53 | Add database indexes for performance | 2 | US-21 | Done |
+| T-54 | Improve form validations and error messages | 2 | US-22 | to do |
+| T-55 | Add global error handling | 2 | US-22 | to do |
+| T-56 | Final testing, bug fixing and UI polish | 5 | All | to do |
 
 **Suggested Weekly Plan:**
 - **Week 1:** Roles & Permissions + Error Handling (US-19, US-22)
