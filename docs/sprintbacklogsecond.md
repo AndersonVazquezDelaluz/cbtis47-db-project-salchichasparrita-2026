@@ -40,12 +40,12 @@ Allow the administrator to manage cafeteria tables (CRUD operations).
 
 | #   | Task | Hours | US     | Status     |
 |-----|------|-------|-------|------------|
-| T-26 | Create `tables` table in MySQL | 1.5 | US-11 | To Do |
-| T-27 | Implement CRUD endpoints for tables | 2 | US-11  | To Do |
-| T-28 | Create form to add new table | 1 | US-11 | To Do |
-| T-29 | Display tables list in admin interface | 1 | US-11 | To Do |
-| T-30 | Implement edit and delete table functionality | 1.5 | US-11  | To Do |
-| T-31 | Prevent deletion of tables with active orders | 1 | US-11| To Do |
+| T-26 | Create `tables` table in MySQL | 1.5 | US-11 |done|
+| T-27 | Implement CRUD endpoints for tables | 2 | US-11  | done |
+| T-28 | Create form to add new table | 1 | US-11 | done |
+| T-29 | Display tables list in admin interface | 1 | US-11 | done|
+| T-30 | Implement edit and delete table functionality | 1.5 | US-11  | done |
+| T-31 | Prevent deletion of tables with active orders | 1 | US-11| done|
 
 ---
 
