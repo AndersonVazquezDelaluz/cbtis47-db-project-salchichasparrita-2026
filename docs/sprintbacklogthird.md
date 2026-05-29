@@ -1,97 +1,86 @@
 # Sprint Backlog — Chicaffe · Third Partial
 
-**Project:** Chicaffe - Cafeteria Management System
-**Repository:** `cbtis47-db-project-salchichasparrita-2026`
-**Stack:** HTML · CSS · JavaScript · Supabase
-**Team:** Anderson Vazquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
-**Version:** 1.2 | **Date:** May 14, 2026
+**Project:** Chicaffe - Cafeteria Management System  
+**Repository:** `cbtis47-db-project-salchichasparrita-2026`  
+**Stack:** Node.js · Express · MySQL · HTML/CSS/JavaScript  
+**Team:** Anderson Vázquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras  
+**Version:** 2.1 | **Date:** May 29, 2026
 
 ---
 
 ## Partial Overview
 
-| Sprint | Name | Epic | User Stories | Story Points |
-|---|---|---|---|---|
-| Sprint 7 | Enhancements & Polish | EP-07 | US-17 to US-22 | 36 SP |
-| | **Total** | | | **36 SP** |
+| Sprint | Name                        | Epic   | User Stories              | Story Points |
+|--------|-----------------------------|--------|---------------------------|--------------|
+| Sprint 7 | Enhancements & Polish      | EP-07  | US-17 to US-22            | 36 SP |
+| **Total** |                          |        |                           | **36 SP** |
 
-**Partial Duration:** 4 weeks
-**Available Hours:** 8h/week × 4 weeks = 32 real hours
-**Expected Hours (with buffer):** ~52h — this partial integrates all previous work; integration issues and polish take more time than expected
-
----
-
-## Sprint 7 — Enhancements & Polish `EP-07`
-
-**Sprint Goal:** Elevate the system with advanced analytics, role-based access control, export capabilities, and production-grade reliability.
-
-**Time Estimate**
-- Real availability: ~32h
-- Expected with buffer: ~52h
-- Suggested weeks: Weeks 1–4 (full partial, parallel tracks recommended)
-
-| US | Title | Story Points | Priority |
-|---|---|---|---|
-| US-17 | Advanced Sales Reports with Charts | 8 SP | Medium |
-| US-18 | Order History and Search | 6 SP | Medium |
-| US-19 | User Roles and Permissions | 8 SP | High |
-| US-20 | Export Reports (PDF / CSV) | 5 SP | Medium |
-| US-21 | Performance Optimization | 5 SP | Medium |
-| US-22 | Improved Error Handling | 4 SP | Medium |
-| | **Total** | **36 SP** | |
-
-### Tasks
-
-| # | Task | US | Assigned To | Status |
-|---|---|---|---|---|
-| T-48 | Add a date range picker to the reports page | US-17 | Axel de la Cruz | ⬜ To Do |
-| T-49 | Filter report queries by the selected date range | US-17 | Jayden Reyes | ⬜ To Do |
-| T-50 | Integrate Chart.js and render a bar chart (sales by day) | US-17 | Axel de la Cruz | ⬜ To Do |
-| T-51 | Add a pie chart (top products) and a line chart (sales trend) | US-17 | Axel de la Cruz | ⬜ To Do |
-| T-52 | Build the order history page with a full orders list | US-18 | Jayden Reyes | ⬜ To Do |
-| T-53 | Add search and filter by order ID, customer name, or date | US-18 | Jayden Reyes | ⬜ To Do |
-| T-54 | Build the order detail modal (products, quantities, subtotals) | US-18 | Axel de la Cruz | ⬜ To Do |
-| T-55 | Add `role` column to the users table (admin / employee) | US-19 | Matthew Venegas | ⬜ To Do |
-| T-56 | Save the assigned role when a user is created | US-19 | Anderson Vazquez | ⬜ To Do |
-| T-57 | Implement role-based access checks on protected sections | US-19 | Anderson Vazquez | ⬜ To Do |
-| T-58 | Display an access denied message for unauthorized roles | US-19 | Anuar Contreras | ⬜ To Do |
-| T-59 | Implement CSV export with all report data | US-20 | Jayden Reyes | ⬜ To Do |
-| T-60 | Integrate jsPDF and implement PDF report export | US-20 | Matthew Venegas | ⬜ To Do |
-| T-61 | Add pagination to users, products, and orders lists | US-21 | Matthew Venegas | ⬜ To Do |
-| T-62 | Add indexes to frequently queried columns in Supabase | US-21 | Matthew Venegas | ⬜ To Do |
-| T-63 | Add a global network error handler | US-22 | Anderson Vazquez | ⬜ To Do |
-| T-64 | Add per-field validation messages to all forms | US-22 | Anuar Contreras | ⬜ To Do |
-| T-65 | Add a generic server error fallback message | US-22 | Anuar Contreras | ⬜ To Do |
+**Partial Duration:** 4 weeks  
+**Real Available Hours:** 8h/week × 4 = 32 hours  
+**Estimated Hours (with buffer):** ~52 hours
 
 ---
 
-## Suggested Week-by-Week Plan
+## SPRINT 7 — Enhancements & Polish (EP-07)
 
-| Week | Focus | Tasks |
-|---|---|---|
-| Week 1 | Roles & Permissions + Error Handling | T-55 to T-58, T-63 to T-65 |
-| Week 2 | Advanced Reports + Charts | T-48 to T-51 |
-| Week 3 | Order History + Export | T-52 to T-54, T-59, T-60 |
-| Week 4 | Performance + Final Polish & Testing | T-61, T-62 + integration testing |
+**Sprint Goal**  
+Improve user experience, add advanced features, implement role-based access control, and polish the system for final delivery.
+
+**Roles:** Full Team (Parallel development)
+
+**User Stories**
+
+| US    | User Story | Priority | SP | Acceptance Criteria |
+|-------|------------|----------|----|---------------------|
+| US-17 | As an Administrator, I want advanced sales reports with charts | Medium | 8 | Reports with date range, bar/pie/line charts using Chart.js |
+| US-18 | As an Administrator, I want to view order history with search and filters | Medium | 6 | Full order list, search by ID/customer/date, detail modal |
+| US-19 | As an Administrator, I want role-based access control (RBAC) | High | 8 | Admin/Employee roles, protected sections according to role |
+| US-20 | As an Administrator, I want to export reports (PDF and CSV) | Medium | 5 | Export functionality for reports |
+| US-21 | As a Developer, I want performance optimization | Medium | 5 | Pagination, database indexes, faster queries |
+| US-22 | As a User, I want better error handling and user feedback | Medium | 4 | Clear validation messages and error handling |
+
+**Tasks**
+
+| #   | Task | Hours | US    | Assigned to      | Status     |
+|-----|------|-------|-------|------------------|------------|
+| T-45 | Add date range picker to reports page | 2 | US-17 | Axel | To Do |
+| T-46 | Implement advanced sales queries with filters | 3 | US-17 | Jayden | To Do |
+| T-47 | Integrate Chart.js and create sales charts | 3 | US-17 | Axel | To Do |
+| T-48 | Build order history page with search and filters | 3 | US-18 | Jayden | To Do |
+| T-49 | Create order detail modal | 2 | US-18 | Axel | To Do |
+| T-50 | Implement role-based access control (RBAC) | 4 | US-19 | Anderson | To Do |
+| T-51 | Add role validation to protected routes | 3 | US-19 | Anderson | To Do |
+| T-52 | Implement CSV and PDF report export | 4 | US-20 | Matthew / Axel | To Do |
+| T-53 | Add pagination to users, products and orders lists | 2 | US-21 | Matthew | To Do |
+| T-54 | Add database indexes for performance | 2 | US-21 | Matthew | To Do |
+| T-55 | Improve form validations and error messages | 2 | US-22 | Anuar | To Do |
+| T-56 | Add global error handling | 2 | US-22 | Anderson | To Do |
+| T-57 | Final testing, bug fixing and UI polish | 5 | All | Team | To Do |
+
+**Suggested Weekly Plan:**
+
+- **Week 1:** Roles & Permissions + Error Handling (US-19, US-22)
+- **Week 2:** Advanced Reports + Charts (US-17)
+- **Week 3:** Order History + Export (US-18, US-20)
+- **Week 4:** Optimization, Testing and Final Polish (US-21 + integration)
 
 ---
 
-## Definition of Done
+## Definition of Done (Third Partial)
 
-- Code implemented and tested locally
-- No critical bugs open
-- Feature approved by the team
-- Tasks moved to ✅ Done in the board
-- Final system demo ready for delivery
+- Clean and well-commented code
+- All features fully functional
+- Responsive and polished user interface
+- Proper error handling and user feedback
+- Performance optimizations applied
+- Complete documentation
+- System ready for final presentation
+- Approved by the team and professor
 
 ---
 
-## Team
+**Current Status:** Pending
 
-| Member | Role |
-|---|---|
-| Anderson Vazquez | Analyst & Designer |
-| Jayden Reyes | SQL Developer |
-| Matthew Venegas | Database Administrator |
-| Axel de la Cruz | Query Master |
-| Anuar Contreras | SQL Tester |
+---
+
+**Note:** This final partial integrates all previous sprints and focuses on quality, usability, and advanced functionality.
