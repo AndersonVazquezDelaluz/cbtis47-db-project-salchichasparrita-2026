@@ -28,12 +28,10 @@
 **Sprint Goal**  
 Implement a secure authentication system with user registration, login, logout, and route protection using JWT + bcrypt.
 
-**Roles:** Anderson Vázquez (Backend), Axel de la Cruz (Frontend)
-
 **User Stories**
 
-| US    | User Story | Priority | SP | Acceptance Criteria |
-|-------|------------|----------|----|---------------------|
+| US | User Story | Priority | SP | Acceptance Criteria |
+|---|------------|----------|----|---------------------|
 | US-01 | As an Administrator, I want to register new users (name, email, password, role) | High | 5 | Successful registration, hashed password, unique email, field validation |
 | US-02 | As a Registered User, I want to log in with email and password | High | 4 | Successful login with JWT, clear error messages, correct redirection |
 | US-03 | As an Authenticated User, I want to log out | High | 2 | Token invalidated on client side, redirection to login |
@@ -41,17 +39,17 @@ Implement a secure authentication system with user registration, login, logout, 
 
 **Tasks**
 
-| #   | Task | Hours | US    | Assigned to      | Status     |
-|-----|------|-------|-------|------------------|------------|
-| T-01 | Create `users` table in MySQL | 2 | US-01 | Anderson | Done |
-| T-02 | Implement POST `/api/auth/register` endpoint + bcrypt | 3 | US-01 | Anderson | To Do |
-| T-03 | Create registration form (HTML + Fetch) with validations | 2 | US-01 | Axel | To Do |
-| T-04 | Implement POST `/api/auth/login` endpoint + JWT | 3 | US-02 | Anderson | To Do |
-| T-05 | Create login form + error handling | 2 | US-02 | Axel | To Do |
-| T-06 | Implement logout functionality (clear token) | 1.5 | US-03 | Axel | To Do |
-| T-07 | Create authentication middleware (`authMiddleware.js`) | 2 | US-04 | Anderson | To Do |
-| T-08 | Protect dashboard and admin routes | 2 | US-04 | Anderson | To Do |
-| T-09 | Functional testing and bug fixing | 3 | All | Team | To Do |
+| # | Task | Hours | US | Status |
+|---|------|-------|---|--------|
+| T-01 | Create `users` table in MySQL | 2 | US-01 | Done |
+| T-02 | Implement POST `/api/auth/register` endpoint + bcrypt | 3 | US-01 | Done |
+| T-03 | Create registration form (HTML + Fetch) with validations | 2 | US-01 | Done |
+| T-04 | Implement POST `/api/auth/login` endpoint + JWT | 3 | US-02 | Done |
+| T-05 | Create login form + error handling | 2 | US-02 | Done |
+| T-06 | Implement logout functionality (clear token) | 1.5 | US-03 | Done |
+| T-07 | Create authentication middleware (`authMiddleware.js`) | 2 | US-04 | Done |
+| T-08 | Protect dashboard and admin routes | 2 | US-04 | Done |
+| T-09 | Functional testing and bug fixing | 3 | All | Done |
 
 **Weekly Plan:**
 - **Week 1:** T-01 to T-04 (Registration + Basic Login)
@@ -66,8 +64,8 @@ Allow the administrator to view, edit, and delete system users.
 
 **User Stories**
 
-| US    | User Story | Priority | SP |
-|-------|------------|----------|----|
+| US | User Story | Priority | SP |
+|---|------------|----------|----|
 | US-05 | As an Administrator, I want to view the list of users | High | 4 |
 | US-06 | As an Administrator, I want to edit or delete users | High | 4 |
 
@@ -80,8 +78,8 @@ Implement complete product and inventory management for the cafeteria.
 
 **User Stories**
 
-| US    | User Story | Priority | SP |
-|-------|------------|----------|----|
+| US | User Story | Priority | SP |
+|---|------------|----------|----|
 | US-07 | As an Administrator, I want to create products | High | 5 |
 | US-08 | As an Administrator, I want to edit or delete products | High | 5 |
 | US-09 | As an Administrator, I want to restock inventory | High | 5 |
@@ -100,4 +98,4 @@ Implement complete product and inventory management for the cafeteria.
 
 ---
 
-**Current Status:** In Progress
+**Current Status:** Completed
