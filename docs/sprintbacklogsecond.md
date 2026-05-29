@@ -32,9 +32,9 @@ Allow the administrator to manage cafeteria tables (CRUD operations).
 
 **User Stories**
 
-| US    | User Story | Priority | SP | Acceptance Criteria |
-|-------|------------|----------|----|---------------------|
-| US-11 | As an Administrator, I want to manage tables (create, edit, delete, assign number and status) | Medium | 6 | Full CRUD functionality, status management (available/occupied), validation to prevent deletion of tables with active orders |
+| US    | User Story | Priority | SP |
+|-------|------------|----------|----|
+| US-11 | As an Administrator, I want to manage tables (create, edit, delete, assign number and status) | Medium | 6 |
 
 **Tasks**
 
