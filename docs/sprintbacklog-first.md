@@ -27,25 +27,102 @@
 
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories
 
-| US | User Story | Priority | SP | Scenario | Given | When | Then |
-|----|------------|----------|----|----------|-------|------|------|
-| US-01 | As an Administrator, I want to register new users (name, email, password, role) | High | 5 | Successful registration | Admin is on the registration form | All required fields are completed and the form is submitted | User is saved to the database with a hashed password; success confirmation is displayed |
-| | | | | Duplicate email | Admin attempts to register a user with an existing email | The form is submitted | System displays the message "This email is already registered"; no duplicate record is created |
-| | | | | Missing or invalid fields | Admin submits the form with one or more empty or invalid fields | The form is submitted | Submission halts; specific validation messages appear next to each invalid field; form stays populated |
-| US-02 | As a Registered User, I want to log in with email and password | High | 4 | Successful login | A registered user is on the login page | Valid credentials are entered and the form is submitted | System generates a JWT token; user is redirected to the dashboard |
-| | | | | Invalid credentials | A user enters an incorrect email or password | The form is submitted | System displays the message "Invalid email or password"; the form remains populated; no token is issued |
-| | | | | Empty fields | A user attempts to submit the login form without filling in all fields | The form is submitted | Submission halts; validation messages appear next to each empty field |
-| US-03 | As an Authenticated User, I want to log out | High | 2 | Successful logout | An authenticated user is on any page | User clicks the logout button | JWT token is removed from the client; user is redirected to the login page |
-| | | | | Session cleared | A user has just logged out | User attempts to access a protected route directly via URL | Access is denied; user is redirected to the login page |
-| US-04 | As an Authenticated User, I want protected routes | High | 3 | Access with valid token | An authenticated user has a valid JWT | User navigates to any protected route | Access is granted; the requested page loads normally |
-| | | | | Access without token | An unauthenticated user attempts to access a protected route | Request is made without a valid JWT | Access is denied; user is redirected to the login page with an appropriate message |
-| | | | | Expired token | A user's JWT has expired | User attempts to navigate to a protected route | Access is denied; session is cleared; user is redirected to the login page |
+| US | User Story | Priority | SP |
+|----|------------|----------|----|
+| US-01 | As an Administrator, I want to register new users (name, email, password, role) | High | 5 |
+| US-02 | As a Registered User, I want to log in with email and password | High | 4 |
+| US-03 | As an Authenticated User, I want to log out | High | 2 |
+| US-04 | As an Authenticated User, I want protected routes | High | 3 |
 
 ---
 
-## Tasks
+### Acceptance Criteria
+
+#### US-01 · User Registration
+
+```gherkin
+  Scenario: Successful user registration
+    Given the administrator is on the user registration form
+    When all required fields (name, email, password, role) are completed and the form is submitted
+    Then the system must save the user to the database with a hashed password
+    And the system must confirm the registration was successful
+
+  Scenario: Registration with a duplicate email
+    Given the administrator is completing the registration form
+    When an email address that already exists in the system is entered and the form is submitted
+    Then the system must reject the submission
+    And the system must display a message indicating the email is already registered
+
+  Scenario: Registration with missing or invalid fields
+    Given the administrator is completing the registration form
+    When the form is submitted with one or more empty or invalid fields
+    Then the system must halt the submission
+    And the system must display specific validation messages next to each invalid field
+```
+
+---
+
+#### US-02 · User Login
+
+```gherkin
+  Scenario: Successful login
+    Given a registered user is on the login page
+    When valid credentials (email and password) are entered and the form is submitted
+    Then the system must generate a JWT token
+    And the user must be redirected to the dashboard
+
+  Scenario: Login with invalid credentials
+    Given a user is on the login page
+    When an incorrect email or password is entered and the form is submitted
+    Then the system must display a clear error message
+    And no token must be issued
+
+  Scenario: Correct redirection after login
+    Given a registered user has successfully authenticated
+    When the login process completes
+    Then the user must be redirected to the corresponding dashboard based on their role
+```
+
+---
+
+#### US-03 · User Logout
+
+```gherkin
+  Scenario: Successful logout
+    Given an authenticated user is on any page of the system
+    When the user clicks the logout button
+    Then the system must invalidate the JWT token on the client side
+    And the user must be redirected to the login page
+```
+
+---
+
+#### US-04 · Protected Routes
+
+```gherkin
+  Scenario: Access to protected route with valid token
+    Given an authenticated user has a valid JWT token
+    When the user navigates to any protected route
+    Then the system must grant access and load the requested page normally
+
+  Scenario: Access attempt without token
+    Given a user is not authenticated
+    When the user attempts to access a protected route directly
+    Then the authentication middleware must block the request
+    And the user must be redirected to the login page
+
+  Scenario: Access attempt with expired token
+    Given a user's JWT token has expired
+    When the user attempts to navigate to a protected route
+    Then the system must deny access
+    And the session must be cleared and the user redirected to the login page
+```
+
+---
+
+### Tasks
 
 | # | Task | Hours | US | Status |
 |---|------|-------|----|--------|
@@ -63,7 +140,7 @@
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
 | Week | Focus | Tasks |
 |------|-------|-------|
@@ -78,19 +155,48 @@
 
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories
 
-| US | User Story | Priority | SP | Scenario | Given | When | Then |
-|----|------------|----------|----|----------|-------|------|------|
-| US-05 | As an Administrator, I want to view the list of users | High | 4 | Display all users | Admin accesses the user management page | Page finishes loading | A table displaying all registered users with their name, email, and role is shown |
-| | | | | Empty state | No users are registered in the system | Admin accesses the user management page | Message "No users registered yet" is displayed |
-| US-06 | As an Administrator, I want to edit or delete users | High | 4 | Edit user | Admin is on the user management page | Admin selects a user and modifies their data | Changes are saved to the database; updated data is reflected in the table |
-| | | | | Delete user | Admin selects a user and confirms deletion | Deletion is confirmed | User is removed from the database; user no longer appears in the list |
-| | | | | Delete own account | Admin attempts to delete their own account | Deletion is attempted | Action is blocked; message "You cannot delete your own account" is displayed |
+| US | User Story | Priority | SP |
+|----|------------|----------|----|
+| US-05 | As an Administrator, I want to view the list of users | High | 4 |
+| US-06 | As an Administrator, I want to edit or delete users | High | 4 |
 
 ---
 
-## Tasks
+### Acceptance Criteria
+
+#### US-05 · User List
+
+```gherkin
+  Scenario: Display complete list of users
+    Given the administrator accesses the user management page
+    When the page finishes loading
+    Then the system must display a complete list of all registered users
+    And the list must support filters to narrow down results
+```
+
+---
+
+#### US-06 · Edit and Delete Users
+
+```gherkin
+  Scenario: Secure update of user information
+    Given the administrator is on the user management page
+    When the administrator selects a user and submits updated information
+    Then the system must save the changes securely to the database
+    And the updated data must be reflected immediately in the users list
+
+  Scenario: User deletion with confirmation
+    Given the administrator selects a user to delete
+    When the administrator confirms the deletion action
+    Then the system must permanently remove the user from the database
+    And the user must no longer appear in the users list
+```
+
+---
+
+### Tasks
 
 | # | Task | Hours | US | Status |
 |---|------|-------|----|--------|
@@ -105,7 +211,7 @@
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
 | Week | Focus | Tasks |
 |------|-------|-------|
@@ -120,23 +226,73 @@
 
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories
 
-| US | User Story | Priority | SP | Scenario | Given | When | Then |
-|----|------------|----------|----|----------|-------|------|------|
-| US-07 | As an Administrator, I want to create products | High | 5 | Successful creation | Admin is on the product creation form | All required fields (name, price, stock, category) are completed and submitted | Product is saved to the database and appears in the products list |
-| | | | | Missing fields | Admin submits the form with incomplete data | The form is submitted | Submission halts; validation messages appear next to each invalid field |
-| US-08 | As an Administrator, I want to edit or delete products | High | 5 | Edit product | Admin selects a product to edit | Updated data is submitted | Changes are saved and the products list reflects the updated information |
-| | | | | Delete product | Admin confirms deletion of a product | Deletion is confirmed | Product is removed from the database and no longer appears in the list |
-| | | | | Delete with active orders | Admin attempts to delete a product linked to active orders | Deletion is attempted | Action is blocked; message "Cannot delete a product with active orders" is displayed |
-| US-09 | As an Administrator, I want to restock inventory | High | 5 | Successful restock | Admin is on the product inventory page | A valid quantity is entered and the restock action is confirmed | Stock is updated in the database; new quantity is reflected in the product list |
-| | | | | Invalid quantity | Admin enters a negative or non-numeric value | Restock is attempted | Action is blocked; message "Please enter a valid positive number" is displayed |
-| US-10 | As a User, I want to see when a product is out of stock | Medium | 3 | Out-of-stock indicator | A product's stock reaches zero | Any user views the products list | Product is displayed with a clear visual indicator "Out of stock"; it cannot be added to an order |
-| | | | | Low stock warning | A product's stock falls below a defined threshold | Any user views the products list | Product is displayed with a "Low stock" warning indicator |
+| US | User Story | Priority | SP |
+|----|------------|----------|----|
+| US-07 | As an Administrator, I want to create products | High | 5 |
+| US-08 | As an Administrator, I want to edit or delete products | High | 5 |
+| US-09 | As an Administrator, I want to restock inventory | High | 5 |
+| US-10 | As a User, I want to see when a product is out of stock | Medium | 3 |
 
 ---
 
-## Tasks
+### Acceptance Criteria
+
+#### US-07 · Product Creation
+
+```gherkin
+  Scenario: Successful product creation
+    Given the administrator is on the product creation form
+    When all required fields (name, price, stock, category) are completed and the form is submitted
+    Then the system must save the product to the database
+    And the product must appear in the products list
+```
+
+---
+
+#### US-08 · Edit and Delete Products
+
+```gherkin
+  Scenario: Real-time product update
+    Given the administrator selects a product to edit
+    When updated data is submitted
+    Then the system must save the changes to the database
+    And the products list must reflect the updated information immediately
+
+  Scenario: Product deletion
+    Given the administrator confirms deletion of a product
+    When the deletion action is executed
+    Then the product must be permanently removed from the database
+    And the product must no longer appear in the products list
+```
+
+---
+
+#### US-09 · Inventory Restock
+
+```gherkin
+  Scenario: Successful inventory restock
+    Given the administrator is on the product management page
+    When a valid quantity is entered for a product and the restock action is confirmed
+    Then the system must update the stock quantity in the database
+    And the new stock value must be reflected in the products list
+```
+
+---
+
+#### US-10 · Out-of-Stock Indicator
+
+```gherkin
+  Scenario: Visual out-of-stock indicator displayed
+    Given a product's stock quantity has reached zero
+    When any user views the products list
+    Then the system must display a clear visual indicator marking the product as out of stock
+```
+
+---
+
+### Tasks
 
 | # | Task | Hours | US | Status |
 |---|------|-------|----|--------|
@@ -155,7 +311,7 @@
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
 | Week | Focus | Tasks |
 |------|-------|-------|
