@@ -91,6 +91,8 @@
 | T-07 | Create authentication middleware (`authMiddleware.js`) | High | 2 | 4 | Matthew Venegas (DBA) | US-04 | Done |
 | T-08 | Protect dashboard and admin routes with middleware | High | 2 | 3 | Matthew Venegas (DBA) | US-04 | Done |
 | T-09 | Functional testing and bug fixing | High | 3 | 3.5 | Anuar Contreras (Tester) | All | Done |
+
+**Estimated Hours:** 20.5 h
 ---
 
 
@@ -119,6 +121,8 @@
 | US-05 | As an Administrator, I want to view the list of users | High | 4 | Display complete list of users | The administrator accesses the user management page | The page finishes loading | The system must display a complete list of all registered users with support for filters to narrow down results |
 | US-06 | As an Administrator, I want to edit or delete users | High | 4 | Secure update of user information | The administrator is on the user management page | The administrator selects a user and submits updated information | The system must save the changes securely to the database and reflect the updated data immediately in the users list |
 | | | | | User deletion with confirmation | The administrator selects a user to delete | The administrator confirms the deletion action | The system must permanently remove the user from the database and the user must no longer appear in the users list |
+
+**Estimated Hours:** 11 h
 
 ---
 
@@ -178,6 +182,8 @@
 | T-23 | Implement PUT `/api/products/:id/restock` endpoint for inventory update | High | 2 | 2.5 | Axel de la Cruz (Query Master) | US-09 | Done |
 | T-24 | Create restock interface with quantity input and validation | Medium | 2 | 2 | Anderson Vázquez (Designer) | US-09 | Done |
 | T-25 | Add out-of-stock and low-stock visual indicators to the products list | Medium | 1.5 | 2 | Anuar Contreras (Tester) | US-10 | Done |
+
+**Estimated Hours:** 19 h
 ---
 
 ### Week-by-Week Plan
