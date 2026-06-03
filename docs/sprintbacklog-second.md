@@ -43,12 +43,12 @@
 
 | # | Task | Hours | US | Status |
 |---|------|-------|----|--------|
-| T-26 | Create `tables` table in MySQL with number and status fields | 1.5 | US-11 | ✅ Done |
-| T-27 | Implement CRUD endpoints for tables (GET, POST, PUT, DELETE) | 2 | US-11 | ✅ Done |
-| T-28 | Create form to add new table with field validations | 1 | US-11 | ✅ Done |
-| T-29 | Display tables list in the admin interface | 1 | US-11 | ✅ Done |
-| T-30 | Implement edit and delete table functionality with confirmation modal | 1.5 | US-11 | ✅ Done |
-| T-31 | Prevent deletion of tables with active orders | 1 | US-11 | ✅ Done |
+| T-26 | Create `tables` table in MySQL with number and status fields | 1.5 | US-11 |  Done |
+| T-27 | Implement CRUD endpoints for tables (GET, POST, PUT, DELETE) | 2 | US-11 |  Done |
+| T-28 | Create form to add new table with field validations | 1 | US-11 |  Done |
+| T-29 | Display tables list in the admin interface | 1 | US-11 |  Done |
+| T-30 | Implement edit and delete table functionality with confirmation modal | 1.5 | US-11 | Done |
+| T-31 | Prevent deletion of tables with active orders | 1 | US-11 |  Done |
 
 **Total estimated hours: 8 h**
 
