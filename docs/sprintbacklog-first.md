@@ -80,21 +80,19 @@
 
 ### Tasks
 
-| # | Task | Est. h | Real h | Assignee | US | Status |
-|---|------|--------|--------|----------|----|--------|
-| T-01 | Create `users` table in MySQL | 2 | 2 | Jayden Reyes (SQL Dev) | US-01 | Done |
-| T-02 | Implement POST `/api/auth/register` endpoint with bcrypt password hashing | 3 | 4.5 | Jayden Reyes (SQL Dev) | US-01 | Done |
-| T-03 | Create registration form (HTML + Fetch) with field validations | 2 | 2.5 | Anderson Vázquez (Designer) | US-01 | Done |
-| T-04 | Implement POST `/api/auth/login` endpoint with JWT generation | 3 | 5 | Jayden Reyes (SQL Dev) | US-02 | Done |
-| T-05 | Create login form with error handling and validation messages | 2 | 2 | Anderson Vázquez (Designer) | US-02 | Done |
-| T-06 | Implement logout functionality (clear token from client) | 1.5 | 1.5 | Anderson Vázquez (Designer) | US-03 | Done |
-| T-07 | Create authentication middleware (`authMiddleware.js`) | 2 | 4 | Matthew Venegas (DBA) | US-04 | Done |
-| T-08 | Protect dashboard and admin routes with middleware | 2 | 3 | Matthew Venegas (DBA) | US-04 | Done |
-| T-09 | Functional testing and bug fixing | 3 | 3.5 | Anuar Contreras (Tester) | All | Done |
-
-**Estimated: 20.5 h · Real: ~28 h**
-
+| # | Task | Priority | Est. h | Real h | Assignee | US | Status |
+|---|------|----------|--------|--------|----------|----|--------|
+| T-01 | Create `users` table in MySQL | High | 2 | 2 | Jayden Reyes (SQL Dev) | US-01 | Done |
+| T-02 | Implement POST `/api/auth/register` endpoint with bcrypt password hashing | High | 3 | 4.5 | Jayden Reyes (SQL Dev) | US-01 | Done |
+| T-03 | Create registration form (HTML + Fetch) with field validations | Medium | 2 | 2.5 | Anderson Vázquez (Designer) | US-01 | Done |
+| T-04 | Implement POST `/api/auth/login` endpoint with JWT generation | High | 3 | 5 | Jayden Reyes (SQL Dev) | US-02 | Done |
+| T-05 | Create login form with error handling and validation messages | Medium | 2 | 2 | Anderson Vázquez (Designer) | US-02 | Done |
+| T-06 | Implement logout functionality (clear token from client) | Medium | 1.5 | 1.5 | Anderson Vázquez (Designer) | US-03 | Done |
+| T-07 | Create authentication middleware (`authMiddleware.js`) | High | 2 | 4 | Matthew Venegas (DBA) | US-04 | Done |
+| T-08 | Protect dashboard and admin routes with middleware | High | 2 | 3 | Matthew Venegas (DBA) | US-04 | Done |
+| T-09 | Functional testing and bug fixing | High | 3 | 3.5 | Anuar Contreras (Tester) | All | Done |
 ---
+
 
 ### Week-by-Week Plan
 
@@ -126,17 +124,14 @@
 
 ### Tasks
 
-| # | Task | Est. h | Real h | Assignee | US | Status |
-|---|------|--------|--------|----------|----|--------|
-| T-10 | Implement GET `/api/users` endpoint to list all users | 2 | 2 | Jayden Reyes (SQL Dev) | US-05 | Done |
-| T-11 | Create user management page with users table | 2 | 2.5 | Anderson Vázquez (Designer) | US-05 | Done |
-| T-12 | Implement PUT `/api/users/:id` endpoint to update user data | 2 | 2.5 | Jayden Reyes (SQL Dev) | US-06 | Done |
-| T-13 | Implement DELETE `/api/users/:id` endpoint with self-deletion guard | 2 | 3 | Matthew Venegas (DBA) | US-06 | Done |
-| T-14 | Create edit and delete user interface with confirmation modal | 2 | 2.5 | Anderson Vázquez (Designer) | US-06 | Done |
-| T-15 | Restrict user management section to administrators only | 1 | 1.5 | Anuar Contreras (Tester) | All | Done |
-
-**Estimated: 11 h · Real: ~14 h**
-
+| # | Task | Priority | Est. h | Real h | Assignee | US | Status |
+|---|------|----------|--------|--------|----------|----|--------|
+| T-10 | Implement GET `/api/users` endpoint to list all users | High | 2 | 2 | Jayden Reyes (SQL Dev) | US-05 | Done |
+| T-11 | Create user management page with users table | Medium | 2 | 2.5 | Anderson Vázquez (Designer) | US-05 | Done |
+| T-12 | Implement PUT `/api/users/:id` endpoint to update user data | High | 2 | 2.5 | Jayden Reyes (SQL Dev) | US-06 | Done |
+| T-13 | Implement DELETE `/api/users/:id` endpoint with self-deletion guard | High | 2 | 3 | Matthew Venegas (DBA) | US-06 | Done |
+| T-14 | Create edit and delete user interface with confirmation modal | Medium | 2 | 2.5 | Anderson Vázquez (Designer) | US-06 | Done |
+| T-15 | Restrict user management section to administrators only | High | 1 | 1.5 | Anuar Contreras (Tester) | All | Done |
 ---
 
 ### Week-by-Week Plan
@@ -171,21 +166,18 @@
 
 ### Tasks
 
-| # | Task | Est. h | Real h | Assignee | US | Status |
-|---|------|--------|--------|----------|----|--------|
-| T-16 | Create `products` table in MySQL with name, price, stock, and category fields | 1.5 | 1.5 | Jayden Reyes (SQL Dev) | US-07 | Done |
-| T-17 | Implement POST `/api/products` endpoint to create a product | 2 | 2 | Jayden Reyes (SQL Dev) | US-07 | Done |
-| T-18 | Create product creation form with field validations | 2 | 2 | Anderson Vázquez (Designer) | US-07 | Done |
-| T-19 | Create products list page in the admin interface | 2 | 2.5 | Anderson Vázquez (Designer) | US-07, US-08 | Done |
-| T-20 | Implement PUT `/api/products/:id` endpoint to update a product | 2 | 3 | Jayden Reyes (SQL Dev) | US-08 | Done |
-| T-21 | Implement DELETE `/api/products/:id` endpoint with active-order guard | 2 | 3.5 | Matthew Venegas (DBA) | US-08 | Done |
-| T-22 | Create edit and delete product interface with confirmation modal | 2 | 2 | Anderson Vázquez (Designer) | US-08 | Done |
-| T-23 | Implement PUT `/api/products/:id/restock` endpoint for inventory update | 2 | 2.5 | Axel de la Cruz (Query Master) | US-09 | Done |
-| T-24 | Create restock interface with quantity input and validation | 2 | 2 | Anderson Vázquez (Designer) | US-09 | Done |
-| T-25 | Add out-of-stock and low-stock visual indicators to the products list | 1.5 | 2 | Anuar Contreras (Tester) | US-10 | Done |
-
-**Estimated: 19 h · Real: ~24 h**
-
+| # | Task | Priority | Est. h | Real h | Assignee | US | Status |
+|---|------|----------|--------|--------|----------|----|--------|
+| T-16 | Create `products` table in MySQL with name, price, stock, and category fields | High | 1.5 | 1.5 | Jayden Reyes (SQL Dev) | US-07 | Done |
+| T-17 | Implement POST `/api/products` endpoint to create a product | High | 2 | 2 | Jayden Reyes (SQL Dev) | US-07 | Done |
+| T-18 | Create product creation form with field validations | Medium | 2 | 2 | Anderson Vázquez (Designer) | US-07 | Done |
+| T-19 | Create products list page in the admin interface | Medium | 2 | 2.5 | Anderson Vázquez (Designer) | US-07, US-08 | Done |
+| T-20 | Implement PUT `/api/products/:id` endpoint to update a product | High | 2 | 3 | Jayden Reyes (SQL Dev) | US-08 | Done |
+| T-21 | Implement DELETE `/api/products/:id` endpoint with active-order guard | High | 2 | 3.5 | Matthew Venegas (DBA) | US-08 | Done |
+| T-22 | Create edit and delete product interface with confirmation modal | Medium | 2 | 2 | Anderson Vázquez (Designer) | US-08 | Done |
+| T-23 | Implement PUT `/api/products/:id/restock` endpoint for inventory update | High | 2 | 2.5 | Axel de la Cruz (Query Master) | US-09 | Done |
+| T-24 | Create restock interface with quantity input and validation | Medium | 2 | 2 | Anderson Vázquez (Designer) | US-09 | Done |
+| T-25 | Add out-of-stock and low-stock visual indicators to the products list | Medium | 1.5 | 2 | Anuar Contreras (Tester) | US-10 | Done |
 ---
 
 ### Week-by-Week Plan
