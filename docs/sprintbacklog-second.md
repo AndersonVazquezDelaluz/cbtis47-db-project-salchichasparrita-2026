@@ -198,23 +198,12 @@
 
 ## Team Velocity Summary (Second Partial)
 
-| Sprint | SP Planned | SP Completed | Hours Estimated | Hours Real | Efficiency |
-|--------|-----------|--------------|-----------------|------------|------------|
-| Sprint 4 | 6 | 6 | 8 h | ~10 h | 80% |
-| Sprint 5 | 26 | 26 | 29 h | ~38 h | 76% |
-| Sprint 6 | 8 | 8 | 8 h | ~10 h | 80% |
-| **Total** | **40** | **40** | **45 h** | **~58 h** | **~78%** |
+| Sprint | SP Planned | SP Completed | Hours Estimated | Hours Real |
+|--------|-----------|--------------|-----------------|------------|
+| Sprint 4 | 6 | 6 | 8 h | ~10 h |
+| Sprint 5 | 26 | 26 | 29 h | ~38 h |
+| Sprint 6 | 8 | 8 | 8 h | ~10 h |
+| **Total** | **40** | **40** | **45 h** | **~58 h** |
 
-## Overall Project Velocity
-
-| Partial | SP Total | Hours Estimated | Hours Real | Efficiency |
-|---------|----------|-----------------|------------|------------|
-| First Partial | 40 SP | 50.5 h | ~66 h | ~77% |
-| Second Partial | 40 SP | 45 h | ~58 h | ~78% |
-| **Project Total** | **80 SP** | **95.5 h** | **~124 h** | **~77%** |
-
-> The team maintained a consistent ~77% efficiency rate across both partials, with hour overruns concentrated in backend/integration tasks. Story point completion was 100% across all 6 sprints.
-
----
 
 **Current Status:** Completed
