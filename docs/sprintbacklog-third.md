@@ -8,18 +8,6 @@
 
 ---
 
-## Team Roles
-
-| Member | Role |
-|--------|------|
-| Anderson Vázquez | Analyst & Designer |
-| Jayden Reyes | SQL Developer |
-| Matthew Venegas | Database Administrator |
-| Axel de la Cruz | Query Master |
-| Anuar Contreras | SQL Tester |
-
----
-
 
 ## Key Technical Decisions
 
