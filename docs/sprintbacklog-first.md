@@ -1,23 +1,54 @@
 # Sprint Backlog — Chicaffe · First Partial
 
 **Project:** Chicaffe - Cafeteria Management System
-**Repository:** `cbtis47-db-project-salchichasparrita-2026`
+**Repository:** [`cbtis47-db-project-salchichasparrita-2026`](https://github.com/AndersonVazquezDelaluz/cbtis47-db-project-salchichasparrita-2026)
 **Stack:** Node.js · Express · MySQL · HTML/CSS/JavaScript
+**Dependencies:** `express ^4.18.2` · `mysql2 ^3.6.0` · `cors ^2.8.5` · `nodemon ^3.0.1` (dev)
+**Local Environment:** XAMPP (Apache + MySQL) · `node server.js` / `nodemon server.js`
 **Team:** Anderson Vázquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
-**Version:** 2.1 | **Date:** May 29, 2026
+**Version:** 3.0 | **Date:** May 29, 2026
+
+---
+
+## Team Roles
+
+| Name | Role | Primary Responsibility |
+|------|------|------------------------|
+| Anderson Vázquez | Analyst & Designer | UI/UX design, business logic modeling, ERD, data dictionary |
+| Jayden Reyes | SQL Developer | DDL scripts, schema creation, constraints (PK, FK), data types |
+| Matthew Venegas | Database Administrator | Security, users, backups, final deliverable assembly |
+| Axel de la Cruz | Query Master | Seed data, complex queries, JOINs, aggregates, reports |
+| Anuar Contreras | SQL Tester | Referential integrity testing, bug reports, test cases |
 
 ---
 
 ## Partial Overview
 
-| Sprint | Name | Epic | User Stories | Story Points |
-|--------|------|------|--------------|--------------|
-| Sprint 1 | Authentication | EP-01 | US-01, US-02, US-03, US-04 | 14 SP |
-| Sprint 2 | User Management | EP-02 | US-05, US-06 | 8 SP |
-| Sprint 3 | Products & Inventory | EP-03 | US-07, US-08, US-09, US-10 | 18 SP |
-| **Total** | | | | **40 SP** |
+| Sprint | Name | Epic | User Stories | Story Points | Est. Hours | Real Hours |
+|--------|------|------|--------------|--------------|------------|------------|
+| Sprint 1 | Authentication | EP-01 | US-01, US-02, US-03, US-04 | 14 SP | 20.5 h | ~28 h |
+| Sprint 2 | User Management | EP-02 | US-05, US-06 | 8 SP | 11 h | ~14 h |
+| Sprint 3 | Products & Inventory | EP-03 | US-07, US-08, US-09, US-10 | 18 SP | 19 h | ~24 h |
+| **Total** | | | | **40 SP** | **50.5 h** | **~66 h** |
 
-**Partial Duration:** 4 weeks · **Real Available Hours:** 32 h · **Estimated Hours (with buffer):** ~50 h
+**Partial Duration:** ~10 weeks (2.5 months total for both partials)
+**Real Available Hours:** ~32 h/partial · **Buffer applied:** ~30 % over estimate
+**Team Velocity:** ~4 SP/week · ~16 SP/sprint
+
+> **Note on hours:** Estimated hours reflect ideal conditions. Real hours were consistently higher due to environment setup, debugging MySQL connection issues, and JWT integration complexity. The buffer accounts for this overhead and is distributed across heavier technical tasks (T-02, T-04, T-07, T-20, T-21).
+
+---
+
+## Key Technical Decisions
+
+| Decision | Chosen | Reason |
+|----------|--------|--------|
+| Auth strategy | JWT (stateless) | No session storage needed for a local system; simpler to implement with `mysql2` |
+| Password hashing | bcrypt | Industry standard; built into the auth sprint from day one |
+| DB driver | `mysql2` | Faster than `mysql`, supports Promises natively |
+| Frontend approach | Vanilla HTML/CSS/JS + Fetch API | No framework overhead; matches team's skill level and DGETI scope |
+| Local environment | XAMPP | Standard tool used in class; consistent across all team machines |
+| Token storage | `localStorage` (client side) | Simplest approach for a school-scoped local system |
 
 ---
 
@@ -25,9 +56,12 @@
 
 **Sprint Goal:** Implement a secure authentication system with user registration, login, logout, and route protection using JWT and bcrypt.
 
+**Sprint Velocity:** 14 SP · **Estimated:** 20.5 h · **Real:** ~28 h
+*(Overrun due to JWT middleware debugging and bcrypt async integration)*
+
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories & Acceptance Criteria
 
 | US | User Story | Priority | SP | Scenario | Given | When | Then |
 |----|------------|----------|----|----------|-------|------|------|
@@ -44,30 +78,30 @@
 
 ---
 
-## Tasks
+### Tasks
 
-| # | Task | Hours | US | Status |
-|---|------|-------|----|--------|
-| T-01 | Create `users` table in MySQL | 2 | US-01 | Done |
-| T-02 | Implement POST `/api/auth/register` endpoint with bcrypt password hashing | 3 | US-01 | Done |
-| T-03 | Create registration form (HTML + Fetch) with field validations | 2 | US-01 | Done |
-| T-04 | Implement POST `/api/auth/login` endpoint with JWT generation | 3 | US-02 | Done |
-| T-05 | Create login form with error handling and validation messages | 2 | US-02 | Done |
-| T-06 | Implement logout functionality (clear token from client) | 1.5 | US-03 | Done |
-| T-07 | Create authentication middleware (`authMiddleware.js`) | 2 | US-04 | Done |
-| T-08 | Protect dashboard and admin routes with middleware | 2 | US-04 | Done |
-| T-09 | Functional testing and bug fixing | 3 | All | Done |
+| # | Task | Est. h | Real h | Assignee | US | Status |
+|---|------|--------|--------|----------|----|--------|
+| T-01 | Create `users` table in MySQL | 2 | 2 | Jayden Reyes (SQL Dev) | US-01 | Done |
+| T-02 | Implement POST `/api/auth/register` endpoint with bcrypt password hashing | 3 | 4.5 | Jayden Reyes (SQL Dev) | US-01 | Done |
+| T-03 | Create registration form (HTML + Fetch) with field validations | 2 | 2.5 | Anderson Vázquez (Designer) | US-01 | Done |
+| T-04 | Implement POST `/api/auth/login` endpoint with JWT generation | 3 | 5 | Jayden Reyes (SQL Dev) | US-02 | Done |
+| T-05 | Create login form with error handling and validation messages | 2 | 2 | Anderson Vázquez (Designer) | US-02 | Done |
+| T-06 | Implement logout functionality (clear token from client) | 1.5 | 1.5 | Anderson Vázquez (Designer) | US-03 | Done |
+| T-07 | Create authentication middleware (`authMiddleware.js`) | 2 | 4 | Matthew Venegas (DBA) | US-04 | Done |
+| T-08 | Protect dashboard and admin routes with middleware | 2 | 3 | Matthew Venegas (DBA) | US-04 | Done |
+| T-09 | Functional testing and bug fixing | 3 | 3.5 | Anuar Contreras (Tester) | All | Done |
 
-**Total estimated hours: 20.5 h**
+**Estimated: 20.5 h · Real: ~28 h**
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
-| Week | Focus | Tasks |
-|------|-------|-------|
-| Week 1 | Database setup + Registration + Basic Login | T-01 to T-04 |
-| Week 2 | Logout + Route Protection + Testing | T-05 to T-09 |
+| Week | Focus | Tasks | Assignees |
+|------|-------|-------|-----------|
+| Week 1 | Database setup + Registration + Basic Login | T-01 to T-04 | Jayden, Anderson |
+| Week 2 | Logout + Route Protection + Testing | T-05 to T-09 | Anderson, Matthew, Anuar |
 
 ---
 
@@ -75,9 +109,12 @@
 
 **Sprint Goal:** Allow the administrator to view, edit, and delete system users, improving administrative control over system access.
 
+**Sprint Velocity:** 8 SP · **Estimated:** 11 h · **Real:** ~14 h
+*(Overrun due to self-deletion guard edge case and confirmation modal polish)*
+
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories & Acceptance Criteria
 
 | US | User Story | Priority | SP | Scenario | Given | When | Then |
 |----|------------|----------|----|----------|-------|------|------|
@@ -87,27 +124,27 @@
 
 ---
 
-## Tasks
+### Tasks
 
-| # | Task | Hours | US | Status |
-|---|------|-------|----|--------|
-| T-10 | Implement GET `/api/users` endpoint to list all users | 2 | US-05 | Done |
-| T-11 | Create user management page with users table | 2 | US-05 | Done |
-| T-12 | Implement PUT `/api/users/:id` endpoint to update user data | 2 | US-06 | Done |
-| T-13 | Implement DELETE `/api/users/:id` endpoint with self-deletion guard | 2 | US-06 | Done |
-| T-14 | Create edit and delete user interface with confirmation modal | 2 | US-06 | Done |
-| T-15 | Restrict user management section to administrators only | 1 | All | Done |
+| # | Task | Est. h | Real h | Assignee | US | Status |
+|---|------|--------|--------|----------|----|--------|
+| T-10 | Implement GET `/api/users` endpoint to list all users | 2 | 2 | Jayden Reyes (SQL Dev) | US-05 | Done |
+| T-11 | Create user management page with users table | 2 | 2.5 | Anderson Vázquez (Designer) | US-05 | Done |
+| T-12 | Implement PUT `/api/users/:id` endpoint to update user data | 2 | 2.5 | Jayden Reyes (SQL Dev) | US-06 | Done |
+| T-13 | Implement DELETE `/api/users/:id` endpoint with self-deletion guard | 2 | 3 | Matthew Venegas (DBA) | US-06 | Done |
+| T-14 | Create edit and delete user interface with confirmation modal | 2 | 2.5 | Anderson Vázquez (Designer) | US-06 | Done |
+| T-15 | Restrict user management section to administrators only | 1 | 1.5 | Anuar Contreras (Tester) | All | Done |
 
-**Total estimated hours: 11 h**
+**Estimated: 11 h · Real: ~14 h**
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
-| Week | Focus | Tasks |
-|------|-------|-------|
-| Week 3 | Backend endpoints for user management | T-10 to T-13 |
-| Week 4 | Frontend integration + Access control + Testing | T-14, T-15 |
+| Week | Focus | Tasks | Assignees |
+|------|-------|-------|-----------|
+| Week 3 | Backend endpoints for user management | T-10 to T-13 | Jayden, Matthew |
+| Week 4 | Frontend integration + Access control + Testing | T-14, T-15 | Anderson, Anuar |
 
 ---
 
@@ -115,9 +152,12 @@
 
 **Sprint Goal:** Implement complete product and inventory management to control the cafeteria's offerings and stock levels.
 
+**Sprint Velocity:** 18 SP · **Estimated:** 19 h · **Real:** ~24 h
+*(Overrun due to DELETE guard for active orders requiring cross-module logic ahead of schedule)*
+
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories & Acceptance Criteria
 
 | US | User Story | Priority | SP | Scenario | Given | When | Then |
 |----|------------|----------|----|----------|-------|------|------|
@@ -129,31 +169,31 @@
 
 ---
 
-## Tasks
+### Tasks
 
-| # | Task | Hours | US | Status |
-|---|------|-------|----|--------|
-| T-16 | Create `products` table in MySQL with name, price, stock, and category fields | 1.5 | US-07 | Done |
-| T-17 | Implement POST `/api/products` endpoint to create a product | 2 | US-07 | Done |
-| T-18 | Create product creation form with field validations | 2 | US-07 | Done |
-| T-19 | Create products list page in the admin interface | 2 | US-07, US-08 | Done |
-| T-20 | Implement PUT `/api/products/:id` endpoint to update a product | 2 | US-08 | Done |
-| T-21 | Implement DELETE `/api/products/:id` endpoint with active-order guard | 2 | US-08 | Done |
-| T-22 | Create edit and delete product interface with confirmation modal | 2 | US-08 | Done |
-| T-23 | Implement PUT `/api/products/:id/restock` endpoint for inventory update | 2 | US-09 | Done |
-| T-24 | Create restock interface with quantity input and validation | 2 | US-09 | Done |
-| T-25 | Add out-of-stock and low-stock visual indicators to the products list | 1.5 | US-10 | Done |
+| # | Task | Est. h | Real h | Assignee | US | Status |
+|---|------|--------|--------|----------|----|--------|
+| T-16 | Create `products` table in MySQL with name, price, stock, and category fields | 1.5 | 1.5 | Jayden Reyes (SQL Dev) | US-07 | Done |
+| T-17 | Implement POST `/api/products` endpoint to create a product | 2 | 2 | Jayden Reyes (SQL Dev) | US-07 | Done |
+| T-18 | Create product creation form with field validations | 2 | 2 | Anderson Vázquez (Designer) | US-07 | Done |
+| T-19 | Create products list page in the admin interface | 2 | 2.5 | Anderson Vázquez (Designer) | US-07, US-08 | Done |
+| T-20 | Implement PUT `/api/products/:id` endpoint to update a product | 2 | 3 | Jayden Reyes (SQL Dev) | US-08 | Done |
+| T-21 | Implement DELETE `/api/products/:id` endpoint with active-order guard | 2 | 3.5 | Matthew Venegas (DBA) | US-08 | Done |
+| T-22 | Create edit and delete product interface with confirmation modal | 2 | 2 | Anderson Vázquez (Designer) | US-08 | Done |
+| T-23 | Implement PUT `/api/products/:id/restock` endpoint for inventory update | 2 | 2.5 | Axel de la Cruz (Query Master) | US-09 | Done |
+| T-24 | Create restock interface with quantity input and validation | 2 | 2 | Anderson Vázquez (Designer) | US-09 | Done |
+| T-25 | Add out-of-stock and low-stock visual indicators to the products list | 1.5 | 2 | Anuar Contreras (Tester) | US-10 | Done |
 
-**Total estimated hours: 19 h**
+**Estimated: 19 h · Real: ~24 h**
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
-| Week | Focus | Tasks |
-|------|-------|-------|
-| Week 1 | Database + Product creation endpoints | T-16 to T-18 |
-| Week 2 | Product editing, deletion + Inventory management | T-19 to T-25 |
+| Week | Focus | Tasks | Assignees |
+|------|-------|-------|-----------|
+| Week 1 (S3) | Database + Product creation endpoints | T-16 to T-18 | Jayden, Anderson |
+| Week 2 (S3) | Product editing, deletion + Inventory management | T-19 to T-25 | Anderson, Jayden, Matthew, Axel, Anuar |
 
 ---
 
@@ -161,12 +201,25 @@
 
 - Clean and well-commented code
 - Endpoints properly documented
-- Manual tests completed
+- Manual tests completed by Anuar (SQL Tester)
 - Fully functional in local environment (XAMPP)
 - No critical security issues
 - Correct integration between authentication, users, and products modules
 - Proper error handling and validations
 - Approved by the team and professor
+
+---
+
+## Team Velocity Summary (First Partial)
+
+| Sprint | SP Planned | SP Completed | Hours Estimated | Hours Real | Efficiency |
+|--------|-----------|--------------|-----------------|------------|------------|
+| Sprint 1 | 14 | 14 | 20.5 h | ~28 h | 73% |
+| Sprint 2 | 8 | 8 | 11 h | ~14 h | 79% |
+| Sprint 3 | 18 | 18 | 19 h | ~24 h | 79% |
+| **Total** | **40** | **40** | **50.5 h** | **~66 h** | **~77%** |
+
+> All sprints completed 100% of planned story points. Hour overruns were consistent (~25–35%) and are accounted for in the Second Partial's planning buffer.
 
 ---
 
