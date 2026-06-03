@@ -4,7 +4,7 @@
 **Repository:** [`cbtis47-db-project-salchichasparrita-2026`](https://github.com/AndersonVazquezDelaluz/cbtis47-db-project-salchichasparrita-2026)
 **Stack:** Node.js · Express · MySQL · HTML/CSS/JavaScript
 **Dependencies:** `express ^4.18.2` · `mysql2 ^3.6.0` · `cors ^2.8.5` · `nodemon ^3.0.1` (dev)
-**Local Environment:** Node.js + MySQL · `node server.js` / `nodemon server.js`
+**Local Environment:** XAMPP (Apache + MySQL) · `node server.js` / `nodemon server.js`
 **Team:** Anderson Vázquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
 **Version:** 3.0 | **Date:** May 29, 2026
 
@@ -74,14 +74,14 @@
 
 ### Tasks
 
-| # | Task | Est. h | Real h | Assignee | US | Status |
-|---|------|--------|--------|----------|----|--------|
-| T-26 | Create `tables` table in MySQL with number and status fields | 1.5 | 1.5 | Jayden Reyes (SQL Dev) | US-11 | Done |
-| T-27 | Implement CRUD endpoints for tables (GET, POST, PUT, DELETE) | 2 | 2.5 | Jayden Reyes (SQL Dev) | US-11 | Done |
-| T-28 | Create form to add new table with field validations | 1 | 1 | Anderson Vázquez (Designer) | US-11 | Done |
-| T-29 | Display tables list in the admin interface | 1 | 1.5 | Anderson Vázquez (Designer) | US-11 | Done |
-| T-30 | Implement edit and delete table functionality with confirmation modal | 1.5 | 1.5 | Anderson Vázquez (Designer) | US-11 | Done |
-| T-31 | Prevent deletion of tables with active orders | 1 | 2 | Matthew Venegas (DBA) | US-11 | Done |
+| # | Task | Priority | Est. h | Real h | Assignee | US | Status |
+|---|------|----------|--------|--------|----------|----|--------|
+| T-26 | Create `tables` table in MySQL with number and status fields | High | 1.5 | 1.5 | Jayden Reyes (SQL Dev) | US-11 | Done |
+| T-27 | Implement CRUD endpoints for tables (GET, POST, PUT, DELETE) | High | 2 | 2.5 | Jayden Reyes (SQL Dev) | US-11 | Done |
+| T-28 | Create form to add new table with field validations | Medium | 1 | 1 | Anderson Vázquez (Designer) | US-11 | Done |
+| T-29 | Display tables list in the admin interface | Medium | 1 | 1.5 | Anderson Vázquez (Designer) | US-11 | Done |
+| T-30 | Implement edit and delete table functionality with confirmation modal | Medium | 1.5 | 1.5 | Anderson Vázquez (Designer) | US-11 | Done |
+| T-31 | Prevent deletion of tables with active orders | High | 1 | 2 | Matthew Venegas (DBA) | US-11 | Done |
 
 **Estimated: 8 h · Real: ~10 h**
 
@@ -120,18 +120,17 @@
 
 ### Tasks
 
-| # | Task | Est. h | Real h | Assignee | US | Status |
-|---|------|--------|--------|----------|----|--------|
-| T-32 | Create `orders` table in MySQL with status and associations | 2 | 2 | Jayden Reyes (SQL Dev) | US-12 | Done |
-| T-33 | Create `order_items` table in MySQL with product, quantity, and unit price | 2 | 2.5 | Jayden Reyes (SQL Dev) | US-13 | Done |
-| T-34 | Implement POST `/api/orders` endpoint to create a new order | 3 | 3.5 | Jayden Reyes (SQL Dev) | US-12 | Done |
-| T-35 | Implement POST `/api/orders/:id/items` endpoint to add products with stock deduction | 5 | 7 | Axel de la Cruz (Query Master) | US-13 | Done |
-| T-36 | Create interface to select table and create order | 3 | 3.5 | Anderson Vázquez (Designer) | US-12 | Done |
-| T-37 | Create interface to add products to an existing order | 4 | 5 | Anderson Vázquez (Designer) | US-13 | Done |
-| T-38 | Implement PUT `/api/orders/:id/status` endpoint with transition validation | 3 | 4 | Axel de la Cruz (Query Master) | US-14 | Done |
-| T-39 | Implement PUT `/api/orders/:id/cancel` endpoint with inventory restoration | 4 | 6 | Axel de la Cruz (Query Master) | US-15 | Done |
-| T-40 | Add validations and error handling for the entire order flow | 3 | 4 | Anuar Contreras (Tester) | All | Done |
-
+| # | Task | Priority | Est. h | Real h | Assignee | US | Status |
+|---|------|----------|--------|--------|----------|----|--------|
+| T-32 | Create `orders` table in MySQL with status and associations | High | 2 | 2 | Jayden Reyes (SQL Dev) | US-12 | Done |
+| T-33 | Create `order_items` table in MySQL with product, quantity, and unit price | High | 2 | 2.5 | Jayden Reyes (SQL Dev) | US-13 | Done |
+| T-34 | Implement POST `/api/orders` endpoint to create a new order | High | 3 | 3.5 | Jayden Reyes (SQL Dev) | US-12 | Done |
+| T-35 | Implement POST `/api/orders/:id/items` endpoint to add products with stock deduction | High | 5 | 7 | Axel de la Cruz (Query Master) | US-13 | Done |
+| T-36 | Create interface to select table and create order | Medium | 3 | 3.5 | Anderson Vázquez (Designer) | US-12 | Done |
+| T-37 | Create interface to add products to an existing order | Medium | 4 | 5 | Anderson Vázquez (Designer) | US-13 | Done |
+| T-38 | Implement PUT `/api/orders/:id/status` endpoint with transition validation | High | 3 | 4 | Axel de la Cruz (Query Master) | US-14 | Done |
+| T-39 | Implement PUT `/api/orders/:id/cancel` endpoint with inventory restoration | High | 4 | 6 | Axel de la Cruz (Query Master) | US-15 | Done |
+| T-40 | Add validations and error handling for the entire order flow | High | 3 | 4 | Anuar Contreras (Tester) | All | Done |
 **Estimated: 29 h · Real: ~38 h**
 
 ---
@@ -165,13 +164,12 @@
 
 ### Tasks
 
-| # | Task | Est. h | Real h | Assignee | US | Status |
-|---|------|--------|--------|----------|----|--------|
-| T-41 | Implement GET `/api/reports/sales` endpoint filtered by date | 3 | 3.5 | Axel de la Cruz (Query Master) | US-16 | Done |
-| T-42 | Create reports page with date selector | 2 | 2 | Anderson Vázquez (Designer) | US-16 | Done |
-| T-43 | Display table with sold products, quantities, unit prices, and subtotals | 2 | 2.5 | Anderson Vázquez (Designer) | US-16 | Done |
-| T-44 | Calculate and display general sales total for the selected day | 1 | 2 | Axel de la Cruz (Query Master) | US-16 | Done |
-
+| # | Task | Priority | Est. h | Real h | Assignee | US | Status |
+|---|------|----------|--------|--------|----------|----|--------|
+| T-41 | Implement GET `/api/reports/sales` endpoint filtered by date | High | 3 | 3.5 | Axel de la Cruz (Query Master) | US-16 | Done |
+| T-42 | Create reports page with date selector | Medium | 2 | 2 | Anderson Vázquez (Designer) | US-16 | Done |
+| T-43 | Display table with sold products, quantities, unit prices, and subtotals | Medium | 2 | 2.5 | Anderson Vázquez (Designer) | US-16 | Done |
+| T-44 | Calculate and display general sales total for the selected day | High | 1 | 2 | Axel de la Cruz (Query Master) | US-16 | Done |
 **Estimated: 8 h · Real: ~10 h**
 
 ---
