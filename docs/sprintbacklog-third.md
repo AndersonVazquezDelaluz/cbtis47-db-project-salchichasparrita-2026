@@ -3,8 +3,20 @@
 **Project:** Chicaffe - Cafeteria Management System
 **Repository:** `cbtis47-db-project-salchichasparrita-2026`
 **Stack:** Node.js · Express · MySQL · HTML/CSS/JavaScript
-**Team:** Anderson Vázquez · Jayden Reyes · Matthew Venegas · Axel de la Cruz · Anuar Contreras
 **Version:** 2.1 | **Date:** May 29, 2026
+**Status:** 🟡 In Progress
+
+---
+
+## Team Roles
+
+| Member | Role |
+|--------|------|
+| Anderson Vázquez | Analyst & Designer |
+| Jayden Reyes | SQL Developer |
+| Matthew Venegas | Database Administrator |
+| Axel de la Cruz | Query Master |
+| Anuar Contreras | SQL Tester |
 
 ---
 
@@ -15,7 +27,27 @@
 | Sprint 7 | Enhancements & Polish | EP-07 | US-17 to US-22 | 36 SP |
 | **Total** | | | | **36 SP** |
 
-**Partial Duration:** 4 weeks · **Real Available Hours:** 32 h · **Estimated Hours (with buffer):** ~52 h
+| Metric | Value |
+|--------|-------|
+| Partial Duration | 4 weeks |
+| Real Available Hours | 32 h |
+| Total Estimated Hours (tasks) | 42 h |
+| Estimated Hours (with buffer) | ~52 h |
+
+> ⚠️ **Hour Discrepancy Note:** The task list totals **42 h**. The ~52 h buffered figure adds ~10 h for code reviews, team syncs, unexpected rework, and final polish (T-63 alone carries 5 h). Real available capacity is **32 h** — parallel work across all five members is required to avoid overrun.
+
+---
+
+## Key Technical Decisions
+
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Chart library | Chart.js (CDN) | Lightweight, zero-dependency, integrates directly with existing HTML/JS stack |
+| PDF export | jsPDF | Client-side generation avoids server overhead; streams directly to download |
+| RBAC | `role` ENUM column + Express middleware | Single column (admin/employee) on users table; middleware intercepts protected routes before granting access |
+| Performance | Server-side pagination + MySQL indexes | Limits query payload to current page; indexes on date, user_id, status keep response time under 2 s |
+| Error handling | Global fetch wrapper + inline validation | Intercepts network failures; form validation runs client-side before any request, preserving input state |
+| CSV export | Node.js / Express `res.download()` | Server-side generation ensures full dataset fidelity regardless of client pagination state |
 
 ---
 
@@ -35,7 +67,7 @@
 | US-18 | As an Administrator, I want to view order history with search and filters | Medium | 6 | Display all orders | Admin accesses the order history page | Page finishes loading | All past orders appear in a table with date, table, total, and status |
 | | | | | Search & filter | Order history table is loaded | Admin enters a value (order ID, customer name, or date) in the search field | Table filters in real time; only matching records are shown |
 | | | | | Order detail | A specific order exists in the history | Admin selects that order | Detail view shows all products, quantities, unit prices, and subtotal |
-| US-19 | As an Administrator, I want role-based access control (RBAC) | High | 8 | Role assignment | Admin is completing the user registration form | A role (Administrator or Employee) is selected and form is submitted | Role is saved to the database and visible in the user's profile |
+| US-19 | As an Administrator, I want role-based access control (RBAC) | **High** | 8 | Role assignment | Admin is completing the user registration form | A role (Administrator or Employee) is selected and form is submitted | Role is saved to the database and visible in the user's profile |
 | | | | | Employee restriction | A user with role "Employee" is logged in | User attempts to navigate to user management or reports | Access is denied; message "You do not have permission to access this section" is displayed |
 | | | | | Admin full access | A user with role "Administrator" is logged in | User navigates to any section | Full access is granted; all features and data are accessible |
 | US-20 | As an Administrator, I want to export reports (PDF and CSV) | Medium | 5 | CSV export | A report has been generated and contains data | Admin clicks "Export CSV" | A .csv file with all records and column headers is downloaded |
@@ -47,58 +79,60 @@
 | | | | | Form validation | User is submitting any form | Form is submitted with invalid or incomplete data | Submission halts; specific validation messages appear next to each invalid field; form stays populated |
 | | | | | Server error | User triggers an unhandled server-side exception | System receives an error response | Message "An unexpected error occurred. Please try again later." is shown; error is logged internally; UI remains stable |
 
+**Total: 36 SP**
+
 ---
 
 ## Tasks
 
-| # | Task | Hours | US | Status |
-|---|------|-------|----|--------|
-| T-45 | Add date range picker to reports page | 2 | US-17 | ⬜ To Do |
-| T-46 | Filter report queries by the selected date range | 3 | US-17 | ⬜ To Do |
-| T-47 | Integrate Chart.js and render a bar chart (sales by day) | 3 | US-17 | ⬜ To Do |
-| T-48 | Add a pie chart (top products) and a line chart (sales trend) | 2 | US-17 | ⬜ To Do |
-| T-49 | Build order history page with a full orders list | 3 | US-18 | ⬜ To Do |
-| T-50 | Add search and filter by order ID, customer name, or date | 2 | US-18 | ⬜ To Do |
-| T-51 | Build the order detail modal (products, quantities, subtotals) | 2 | US-18 | ⬜ To Do |
-| T-52 | Add `role` column to the users table (admin / employee) | 1 | US-19 | ⬜ To Do |
-| T-53 | Save the assigned role when a user is created | 2 | US-19 | ⬜ To Do |
-| T-54 | Implement role-based access checks on protected sections | 3 | US-19 | ⬜ To Do |
-| T-55 | Display an access denied message for unauthorized roles | 1 | US-19 | ⬜ To Do |
-| T-56 | Implement CSV export with all report data | 2 | US-20 | ⬜ To Do |
-| T-57 | Integrate jsPDF and implement PDF report export | 2 | US-20 | ⬜ To Do |
-| T-58 | Add pagination to users, products, and orders lists | 2 | US-21 | ⬜ To Do |
-| T-59 | Add indexes to frequently queried columns in the database | 2 | US-21 | ⬜ To Do |
-| T-60 | Add a global network error handler | 2 | US-22 | ⬜ To Do |
-| T-61 | Add per-field validation messages to all forms | 2 | US-22 | ⬜ To Do |
-| T-62 | Add a generic server error fallback message | 1 | US-22 | ⬜ To Do |
-| T-63 | Final testing, bug fixing and UI polish | 5 | All | ⬜ To Do |
+| # | Task | US | Priority | Assignee | Est. h | Real h | Status |
+|---|------|----|----------|----------|--------|--------|--------|
+| T-45 | Add date range picker to reports page | US-17 | Medium | Anderson Vázquez | 2 h | — | ⬜ To Do |
+| T-46 | Filter report queries by the selected date range | US-17 | Medium | Jayden Reyes | 3 h | — | ⬜ To Do |
+| T-47 | Integrate Chart.js and render a bar chart (sales by day) | US-17 | Medium | Anderson Vázquez | 3 h | — | ⬜ To Do |
+| T-48 | Add a pie chart (top products) and a line chart (sales trend) | US-17 | Medium | Anderson Vázquez | 2 h | — | ⬜ To Do |
+| T-49 | Build order history page with a full orders list | US-18 | Medium | Axel de la Cruz | 3 h | — | ⬜ To Do |
+| T-50 | Add search and filter by order ID, customer name, or date | US-18 | Medium | Axel de la Cruz | 2 h | — | ⬜ To Do |
+| T-51 | Build the order detail modal (products, quantities, subtotals) | US-18 | Medium | Jayden Reyes | 2 h | — | ⬜ To Do |
+| T-52 | Add `role` column to the users table (admin / employee) | US-19 | **High** | Matthew Venegas | 1 h | — | ⬜ To Do |
+| T-53 | Save the assigned role when a user is created | US-19 | **High** | Jayden Reyes | 2 h | — | ⬜ To Do |
+| T-54 | Implement role-based access checks on protected sections | US-19 | **High** | Jayden Reyes | 3 h | — | ⬜ To Do |
+| T-55 | Display an access denied message for unauthorized roles | US-19 | **High** | Anuar Contreras | 1 h | — | ⬜ To Do |
+| T-56 | Implement CSV export with all report data | US-20 | Medium | Axel de la Cruz | 2 h | — | ⬜ To Do |
+| T-57 | Integrate jsPDF and implement PDF report export | US-20 | Medium | Anderson Vázquez | 2 h | — | ⬜ To Do |
+| T-58 | Add pagination to users, products, and orders lists | US-21 | Medium | Matthew Venegas | 2 h | — | ⬜ To Do |
+| T-59 | Add indexes to frequently queried columns in the database | US-21 | Medium | Matthew Venegas | 2 h | — | ⬜ To Do |
+| T-60 | Add a global network error handler | US-22 | Medium | Anuar Contreras | 2 h | — | ⬜ To Do |
+| T-61 | Add per-field validation messages to all forms | US-22 | Medium | Anuar Contreras | 2 h | — | ⬜ To Do |
+| T-62 | Add a generic server error fallback message | US-22 | Medium | Anuar Contreras | 1 h | — | ⬜ To Do |
+| T-63 | Final testing, bug fixing and UI polish | All | **High** | All team | 5 h | — | ⬜ To Do |
 
-**Total estimated hours: 42 h**
+**Total estimated hours: 42 h · With buffer: ~52 h**
 
 ---
 
 ## Week-by-Week Plan
 
-| Week | Focus | Tasks |
-|------|-------|-------|
-| Week 1 | Roles & Permissions + Error Handling | T-52 to T-55, T-60 to T-62 |
-| Week 2 | Advanced Reports + Charts | T-45 to T-48 |
-| Week 3 | Order History + Export | T-49 to T-51, T-56, T-57 |
-| Week 4 | Performance + Final Polish & Testing | T-58, T-59, T-63 |
+| Week | Focus | Tasks | Assignees |
+|------|-------|-------|-----------|
+| Week 1 | Roles & Permissions + Error Handling | T-52, T-53, T-54, T-55, T-60, T-61, T-62 | Matthew Venegas (T-52) · Jayden Reyes (T-53, T-54) · Anuar Contreras (T-55, T-60, T-61, T-62) |
+| Week 2 | Advanced Reports + Charts | T-45, T-46, T-47, T-48 | Anderson Vázquez (T-45, T-47, T-48) · Jayden Reyes (T-46) |
+| Week 3 | Order History + Export | T-49, T-50, T-51, T-56, T-57 | Axel de la Cruz (T-49, T-50, T-56) · Jayden Reyes (T-51) · Anderson Vázquez (T-57) |
+| Week 4 | Performance + Final Polish & Testing | T-58, T-59, T-63 | Matthew Venegas (T-58, T-59) · All team (T-63) |
 
 ---
 
 ## Definition of Done
 
-- Clean and well-commented code
-- All features fully functional
-- Responsive and polished user interface
-- Proper error handling and user feedback
-- Performance optimizations applied
-- Complete documentation
-- System ready for final presentation
-- Approved by the team and professor
+- [ ] Clean and well-commented code
+- [ ] All features fully functional
+- [ ] Responsive and polished user interface
+- [ ] Proper error handling and user feedback
+- [ ] Performance optimizations applied
+- [ ] Complete documentation
+- [ ] System ready for final presentation
+- [ ] Approved by the team and professor
 
 ---
 
-**Current Status:** In Progress
+**Current Status:** 🟡 In Progress
