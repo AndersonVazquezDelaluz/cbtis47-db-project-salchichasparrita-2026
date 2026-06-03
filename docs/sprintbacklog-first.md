@@ -212,15 +212,14 @@
 
 ## Team Velocity Summary (First Partial)
 
-| Sprint | SP Planned | SP Completed | Hours Estimated | Hours Real | Efficiency |
-|--------|-----------|--------------|-----------------|------------|------------|
-| Sprint 1 | 14 | 14 | 20.5 h | ~28 h | 73% |
-| Sprint 2 | 8 | 8 | 11 h | ~14 h | 79% |
-| Sprint 3 | 18 | 18 | 19 h | ~24 h | 79% |
-| **Total** | **40** | **40** | **50.5 h** | **~66 h** | **~77%** |
-
-> All sprints completed 100% of planned story points. Hour overruns were consistent (~25–35%) and are accounted for in the Second Partial's planning buffer.
+| Sprint | SP Planned | SP Completed | Hours Estimated | Hours Real |
+|--------|-----------|--------------|-----------------|------------|
+| Sprint 1 | 14 | 14 | 20.5 h | ~28 h |
+| Sprint 2 | 8 | 8 | 11 h | ~14 h |
+| Sprint 3 | 18 | 18 | 19 h | ~24 h |
+| **Total** | **40** | **40** | **50.5 h** | **~66 h** |
 
 ---
+
 
 **Current Status:** Completed
