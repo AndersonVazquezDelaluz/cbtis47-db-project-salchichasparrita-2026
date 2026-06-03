@@ -20,21 +20,6 @@
 
 ---
 
-## Partial Overview
-
-| Sprint | Name | Epic | User Stories | Story Points |
-|--------|------|------|--------------|--------------|
-| Sprint 7 | Enhancements & Polish | EP-07 | US-17 to US-22 | 36 SP |
-| **Total** | | | | **36 SP** |
-
-| Metric | Value |
-|--------|-------|
-| Partial Duration | 4 weeks |
-| Real Available Hours | 32 h |
-| Total Estimated Hours (tasks) | 42 h |
-| Estimated Hours (with buffer) | ~52 h |
-
----
 
 ## Key Technical Decisions
 
