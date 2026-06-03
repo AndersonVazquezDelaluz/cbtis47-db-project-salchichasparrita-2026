@@ -7,26 +7,10 @@
 **Status:** In Progress
 
 ---
-
-
-## Key Technical Decisions
-
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| Chart library | Chart.js (CDN) | Lightweight, zero-dependency, integrates directly with existing HTML/JS stack |
-| PDF export | jsPDF | Client-side generation avoids server overhead; streams directly to download |
-| RBAC | `role` ENUM column + Express middleware | Single column (admin/employee) on users table; middleware intercepts protected routes before granting access |
-| Performance | Server-side pagination + MySQL indexes | Limits query payload to current page; indexes on date, user_id, status keep response time under 2 s |
-| Error handling | Global fetch wrapper + inline validation | Intercepts network failures; form validation runs client-side before any request, preserving input state |
-| CSV export | Node.js / Express `res.download()` | Server-side generation ensures full dataset fidelity regardless of client pagination state |
-
----
-
 ## SPRINT 7 — Enhancements & Polish (EP-07)
 
 **Sprint Goal:** Improve user experience, add advanced features, implement role-based access control, and polish the system for final delivery.
 
----
 
 ## User Stories & Acceptance Criteria
 
@@ -53,6 +37,8 @@
 **Total: 36 SP**
 
 ---
+
+
 
 ## Tasks
 
@@ -92,6 +78,21 @@
 | Week 4 | Performance + Final Polish & Testing | T-58, T-59, T-63 | Matthew Venegas (T-58, T-59) · All team (T-63) |
 
 ---
+
+
+## Key Technical Decisions
+
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Chart library | Chart.js (CDN) | Lightweight, zero-dependency, integrates directly with existing HTML/JS stack |
+| PDF export | jsPDF | Client-side generation avoids server overhead; streams directly to download |
+| RBAC | `role` ENUM column + Express middleware | Single column (admin/employee) on users table; middleware intercepts protected routes before granting access |
+| Performance | Server-side pagination + MySQL indexes | Limits query payload to current page; indexes on date, user_id, status keep response time under 2 s |
+| Error handling | Global fetch wrapper + inline validation | Intercepts network failures; form validation runs client-side before any request, preserving input state |
+| CSV export | Node.js / Express `res.download()` | Server-side generation ensures full dataset fidelity regardless of client pagination state |
+
+---
+
 
 ## Definition of Done
 
