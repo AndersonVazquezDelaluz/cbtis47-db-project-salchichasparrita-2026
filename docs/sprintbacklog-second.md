@@ -27,34 +27,62 @@
 
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories
 
-| US | User Story | Priority | SP | Scenario | Given | When | Then |
-|----|------------|----------|----|----------|-------|------|------|
-| US-11 | As an Administrator, I want to manage tables (create, edit, delete, assign number and status) | Medium | 6 | Create table | Admin is on the table management page | A valid table number is entered and the form is submitted | Table is saved to the database with status "available" and appears in the tables list |
-| | | | | Edit table | Admin selects an existing table | Updated number or status is submitted | Changes are saved to the database; updated data is reflected in the table list |
-| | | | | Delete table | Admin selects a table and confirms deletion | No active orders are associated with the table | Table is removed from the database and no longer appears in the list |
-| | | | | Delete table with active orders | Admin attempts to delete a table that has active orders | Deletion is attempted | Action is blocked; message "Cannot delete a table with active orders" is displayed |
-| | | | | Duplicate table number | Admin enters a table number that already exists | The form is submitted | Submission halts; message "This table number is already registered" is displayed |
+| US | User Story | Priority | SP |
+|----|------------|----------|----|
+| US-11 | As an Administrator, I want to manage tables (create, edit, delete, assign number and status) | Medium | 6 |
 
 ---
 
-## Tasks
+### Acceptance Criteria
+
+#### US-11 · Table Management
+
+```gherkin
+  Scenario: Successful table creation
+    Given the administrator is on the table management page
+    When a valid table number and status are entered and the form is submitted
+    Then the system must save the table to the database
+    And the new table must appear in the tables list with the assigned number and status
+
+  Scenario: Edit table information
+    Given the administrator selects an existing table to edit
+    When updated data is submitted
+    Then the system must save the changes to the database
+    And the updated table information must be reflected immediately in the tables list
+
+  Scenario: Delete table without active orders
+    Given a table has no active orders associated with it
+    When the administrator confirms the deletion of that table
+    Then the system must permanently remove the table from the database
+    And the table must no longer appear in the tables list
+
+  Scenario: Delete table with active orders blocked
+    Given a table has one or more active orders associated with it
+    When the administrator attempts to delete that table
+    Then the system must block the deletion
+    And the system must display a message indicating the table cannot be deleted while it has active orders
+```
+
+---
+
+### Tasks
 
 | # | Task | Hours | US | Status |
 |---|------|-------|----|--------|
-| T-26 | Create `tables` table in MySQL with number and status fields | 1.5 | US-11 |  Done |
-| T-27 | Implement CRUD endpoints for tables (GET, POST, PUT, DELETE) | 2 | US-11 |  Done |
-| T-28 | Create form to add new table with field validations | 1 | US-11 |  Done |
-| T-29 | Display tables list in the admin interface | 1 | US-11 |  Done |
-| T-30 | Implement edit and delete table functionality with confirmation modal | 1.5 | US-11 | Done |
-| T-31 | Prevent deletion of tables with active orders | 1 | US-11 |  Done |
+| T-26 | Create `tables` table in MySQL with number and status fields | 1.5 | US-11 | ✅ Done |
+| T-27 | Implement CRUD endpoints for tables (GET, POST, PUT, DELETE) | 2 | US-11 | ✅ Done |
+| T-28 | Create form to add new table with field validations | 1 | US-11 | ✅ Done |
+| T-29 | Display tables list in the admin interface | 1 | US-11 | ✅ Done |
+| T-30 | Implement edit and delete table functionality with confirmation modal | 1.5 | US-11 | ✅ Done |
+| T-31 | Prevent deletion of tables with active orders | 1 | US-11 | ✅ Done |
 
 **Total estimated hours: 8 h**
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
 | Week | Focus | Tasks |
 |------|-------|-------|
@@ -68,24 +96,86 @@
 
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories
 
-| US | User Story | Priority | SP | Scenario | Given | When | Then |
-|----|------------|----------|----|----------|-------|------|------|
-| US-12 | As a User, I want to create a new order | High | 5 | Successful order creation | User is on the order creation page | A table is selected and the order is confirmed | Order is created with status "pending", associated to the selected table and the authenticated user |
-| | | | | No table selected | User attempts to create an order without selecting a table | The form is submitted | Submission halts; message "Please select a table to continue" is displayed |
-| US-13 | As a User, I want to add products to an order | High | 8 | Add product to order | An order with status "pending" exists | User selects a product and a valid quantity and confirms | Product is added to the order; stock is automatically deducted from inventory |
-| | | | | Out-of-stock product | User attempts to add a product with zero stock | Addition is attempted | Action is blocked; message "This product is out of stock" is displayed |
-| | | | | Insufficient stock | User requests a quantity greater than available stock | Addition is attempted | Action is blocked; message "Insufficient stock. Available: [n] units" is displayed |
-| US-14 | As a User, I want to change order status | High | 6 | Valid status transition | An order exists in "pending" status | User changes the status to "in-progress" | Status is updated in the database; change is reflected in the order view |
-| | | | | Complete order | An order exists in "in-progress" status | User changes the status to "delivered" | Status is updated to "delivered"; order is marked as completed |
-| | | | | Invalid status transition | User attempts to set a status that does not follow the valid flow | Status change is attempted | Action is blocked; message "Invalid status transition" is displayed |
-| US-15 | As a User, I want to cancel an order and restore inventory | High | 7 | Cancel pending order | An order with status "pending" or "in-progress" exists | User confirms the cancellation | Order status changes to "cancelled"; stock is restored for all associated items |
-| | | | | Cancel delivered order | User attempts to cancel an order with status "delivered" | Cancellation is attempted | Action is blocked; message "Delivered orders cannot be cancelled" is displayed |
+| US | User Story | Priority | SP |
+|----|------------|----------|----|
+| US-12 | As a User, I want to create a new order | High | 5 |
+| US-13 | As a User, I want to add products to an order | High | 8 |
+| US-14 | As a User, I want to change order status | High | 6 |
+| US-15 | As a User, I want to cancel an order and restore inventory | High | 7 |
 
 ---
 
-## Tasks
+### Acceptance Criteria
+
+#### US-12 · Create Order
+
+```gherkin
+  Scenario: Successful order creation
+    Given the user is on the order creation page
+    When a table is selected and the order is confirmed
+    Then the system must create the order with an initial status of "pending"
+    And the order must be associated with the selected table and the authenticated user
+```
+
+---
+
+#### US-13 · Add Products to Order
+
+```gherkin
+  Scenario: Successful product addition to an order
+    Given an order with status "pending" exists
+    When the user selects a product with available stock and a valid quantity and confirms
+    Then the system must add the product to the order
+    And the stock must be automatically deducted from inventory
+
+  Scenario: Attempt to add an out-of-stock product
+    Given an order exists and a product has zero stock
+    When the user attempts to add that product to the order
+    Then the system must prevent the addition
+    And the system must display a message indicating the product is out of stock
+```
+
+---
+
+#### US-14 · Change Order Status
+
+```gherkin
+  Scenario: Valid status transition
+    Given an order exists with a current status
+    When the user selects a valid next status following the flow (pending → in-progress → delivered)
+    Then the system must update the order status in the database
+    And the change must be reflected in the order view
+
+  Scenario: Invalid status transition blocked
+    Given an order exists with a current status
+    When the user attempts to set a status that does not follow the valid transition flow
+    Then the system must block the change
+    And the system must display a message indicating the transition is not allowed
+```
+
+---
+
+#### US-15 · Cancel Order and Restore Inventory
+
+```gherkin
+  Scenario: Successful order cancellation with inventory restoration
+    Given an order exists with status "pending" or "in-progress"
+    When the user confirms the cancellation of that order
+    Then the system must update the order status to "cancelled"
+    And the stock must be restored for all products associated with that order
+
+  Scenario: Cancellation of delivered order blocked
+    Given an order exists with status "delivered"
+    When the user attempts to cancel that order
+    Then the system must block the cancellation
+    And the system must display a message indicating that delivered orders cannot be cancelled
+```
+
+---
+
+### Tasks
 
 | # | Task | Hours | US | Status |
 |---|------|-------|----|--------|
@@ -103,7 +193,7 @@
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
 | Week | Focus | Tasks |
 |------|-------|-------|
@@ -118,18 +208,36 @@
 
 ---
 
-## User Stories & Acceptance Criteria
+### User Stories
 
-| US | User Story | Priority | SP | Scenario | Given | When | Then |
-|----|------------|----------|----|----------|-------|------|------|
-| US-16 | As an Administrator, I want to generate daily sales reports | Medium | 8 | Successful report generation | Admin is on the reports page | A valid date is selected and the report is generated | System displays a table with all products sold on that date, their quantities, unit prices, subtotals, and the general total |
-| | | | | No data for selected date | No orders exist for the selected date | Report is generated | Message "No sales data available for the selected date" is displayed; no table is rendered |
-| | | | | Invalid date | Admin leaves the date field empty or enters an invalid value | Report generation is attempted | Submission halts; message "Please select a valid date" is displayed |
-| | | | | General totals displayed | A report with data has been generated | Report results are shown | General total of sales for the day is displayed below the product table |
+| US | User Story | Priority | SP |
+|----|------------|----------|----|
+| US-16 | As an Administrator, I want to generate daily sales reports | Medium | 8 |
 
 ---
 
-## Tasks
+### Acceptance Criteria
+
+#### US-16 · Daily Sales Report
+
+```gherkin
+  Scenario: Successful report generation filtered by date
+    Given the administrator is on the reports page
+    When a valid date is selected and the report is generated
+    Then the system must display a table with all products sold on that date
+    And the table must include the product name, quantity sold, unit price, and subtotal per product
+    And the system must display the general total of sales for the selected day
+
+  Scenario: Report generation for a date with no sales data
+    Given no orders exist for the selected date
+    When the report is generated
+    Then the system must display a message indicating no sales data is available for that date
+    And no table or totals must be rendered
+```
+
+---
+
+### Tasks
 
 | # | Task | Hours | US | Status |
 |---|------|-------|----|--------|
@@ -142,7 +250,7 @@
 
 ---
 
-## Week-by-Week Plan
+### Week-by-Week Plan
 
 | Week | Focus | Tasks |
 |------|-------|-------|
