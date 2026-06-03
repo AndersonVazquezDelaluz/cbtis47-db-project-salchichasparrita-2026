@@ -197,7 +197,7 @@
 
 ## Definition of Done
 
-¨[x] Clean and well-commented code
+[x] Clean and well-commented code
 - Endpoints properly documented
 - Manual tests completed by Anuar (SQL Tester)
 - Fully functional in local environment (XAMPP)
