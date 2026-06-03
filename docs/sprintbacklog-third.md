@@ -4,7 +4,7 @@
 **Repository:** `cbtis47-db-project-salchichasparrita-2026`
 **Stack:** Node.js · Express · MySQL · HTML/CSS/JavaScript
 **Version:** 2.1 | **Date:** May 29, 2026
-**Status:** 🟡 In Progress
+**Status:** In Progress
 
 ---
 
@@ -33,8 +33,6 @@
 | Real Available Hours | 32 h |
 | Total Estimated Hours (tasks) | 42 h |
 | Estimated Hours (with buffer) | ~52 h |
-
-> ⚠️ **Hour Discrepancy Note:** The task list totals **42 h**. The ~52 h buffered figure adds ~10 h for code reviews, team syncs, unexpected rework, and final polish (T-63 alone carries 5 h). Real available capacity is **32 h** — parallel work across all five members is required to avoid overrun.
 
 ---
 
@@ -135,4 +133,4 @@
 
 ---
 
-**Current Status:** 🟡 In Progress
+**Current Status:**  In Progress
