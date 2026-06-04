@@ -26,11 +26,4 @@ mysqldump -u chicaffe_admin -p \
   --quick \
   --routines \
   --triggers \
-  chicaffe_db | gzip > backups/chicaffe_backup_$(date +%Y%m%d_%H%M%S).sql.gz}
-mysqldump -u chicaffe_admin -p \
-  --no-data \
-  --add-drop-table \
-  chicaffe_db > backups/chicaffe_schema_$(date +%Y%m%d).sql
-DROP DATABASE IF EXISTS chicaffe_db;
-CREATE DATABASE chicaffe_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-gunzip < chicaffe_backup_YYYYMMDD_HHMMSS.sql.gz | mysql -u chicaffe_admin -p chicaffe_db
+  chicaffe_db | gzip > backups/chicaffe_backup_$(date +%Y%m%d_%H%M%S).sql.gz
