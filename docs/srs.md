@@ -280,4 +280,4 @@ The system follows a three-tier client-server architecture:
 
 ---
 
-*Document generated for academic use — CBTIS 47 · 2026*
+*— CBTIS 47 · 2026*
