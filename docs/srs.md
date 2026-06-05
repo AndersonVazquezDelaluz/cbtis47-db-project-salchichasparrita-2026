@@ -235,7 +235,7 @@ This document specifies the functional and non-functional requirements of **Chic
 |---------------------|-------------------------|---------------------|
 | Version Control     | Git                     | 2.47.0              |
 | Repository Hosting  | GitHub                  | —                   |
-| API Testing         | Thunder Client / Postman| Latest              |
+| API Testing         | Thunder Client / Postman| v2.40.10/ v12.13.5  |
 | Local Server        | XAMPP                   | 3.6.4               |
 
 ### 4.5 Architecture Overview
