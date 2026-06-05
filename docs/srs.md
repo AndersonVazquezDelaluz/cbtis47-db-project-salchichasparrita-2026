@@ -232,4 +232,4 @@ This document specifies the functional and non-functional requirements of **Chic
 
 ---
 
-*Document generated for academic use — CBTIS 47 · 2026*
+* CBTIS 47 · 2026*
