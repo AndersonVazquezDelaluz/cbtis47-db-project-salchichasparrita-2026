@@ -4,7 +4,7 @@
 | Field | Value |
 |---|---|
 | **Project** | Chicaffe Web |
-| **Document Version** | 2.0 |
+| **Document Version** | 2.1 |
 | **Date** | May 29, 2026 |
 | **Repository** | `cbtis47-db-project-salchichasparrita-2026` |
 | **Stack** | Node.js · Express · MySQL · HTML/CSS/JavaScript |
@@ -90,14 +90,14 @@ This document specifies the functional and non-functional requirements of **Chic
 
 | ID | Description |
 |---|---|
-| FR-23 | The system must generate daily sales reports based on orders with status `delivered`. |
+| FR-23 | The system must generate daily sales reports based on orders with status `delivered`. In Chicaffe's business model, `delivered` is the final successful state of an order and is considered equivalent to a completed and charged sale. Orders with any other status (`pending`, `in_progress`, `cancelled`) must be excluded from sales calculations. |
 | FR-24 | The system must allow filtering reports by a user-defined date range. |
 | FR-25 | The system must display a bar chart (sales by day), a pie chart (top-selling products), and a line chart (cumulative sales trend). |
 | FR-26 | The system must display an informational message when no orders exist within the selected date range. |
 
 ---
 
-### 2.7 Order History (EP-07)
+### 2.7 Order History (EP-07 — Enhancements & Polish)
 
 | ID | Description |
 |---|---|
@@ -107,7 +107,7 @@ This document specifies the functional and non-functional requirements of **Chic
 
 ---
 
-### 2.8 Report Export (EP-07)
+### 2.8 Report Export (EP-07 — Enhancements & Polish)
 
 | ID | Description |
 |---|---|
@@ -117,17 +117,17 @@ This document specifies the functional and non-functional requirements of **Chic
 
 ---
 
-### 2.9 Role-Based Access Control — RBAC (EP-07)
+### 2.9 Role-Based Access Control — RBAC (EP-07 — Enhancements & Polish)
 
 | ID | Description |
 |---|---|
-| FR-33 | Employees must be denied access to the user management and reports sections. |
+| FR-33 | Employees must be denied access to the user management and reports sections. Server-side middleware must block any unauthorized request regardless of client state. Additionally, the frontend must hide navigation menu items for restricted sections based on the authenticated user's role, so that employees are not presented with options they cannot access. |
 | FR-34 | The system must display an access-denied message when an employee attempts to access a restricted section. |
 | FR-35 | Administrators must have full access to all system features and data. |
 
 ---
 
-### 2.10 Performance & Error Handling (EP-07)
+### 2.10 Performance & Error Handling (EP-07 — Enhancements & Polish)
 
 | ID | Description |
 |---|---|
@@ -200,9 +200,60 @@ This document specifies the functional and non-functional requirements of **Chic
 
 ---
 
-## 4. Requirements Summary
+## 4. Technology Stack
 
-### 4.1 Functional Requirements
+### 4.1 Backend
+
+| Component | Technology | Version |
+|---|---|---|
+| Runtime | Node.js | v18+ |
+| Framework | Express.js | Latest |
+| DB Connector | mysql2 | Latest |
+| Dev Tooling | Nodemon | Latest |
+
+### 4.2 Database
+
+| Component | Technology | Version |
+|---|---|---|
+| Relational Database | MySQL | 5.7+ / 8.0+ |
+| Local Environment | XAMPP (Apache + MySQL) | — |
+| Default Port | 3306 | — |
+| Database Name | `restaurant_db` | — |
+
+### 4.3 Frontend
+
+| Component | Technology |
+|---|---|
+| Markup | HTML5 |
+| Styling | CSS3 |
+| Scripting | Vanilla JavaScript |
+| Charts | Chart.js (CDN) |
+| PDF Export | jsPDF (CDN) |
+
+### 4.4 DevOps & Tooling
+
+| Component | Technology |
+|---|---|
+| Version Control | Git |
+| Repository Hosting | GitHub |
+| API Testing | Thunder Client / Postman |
+| Local Server | XAMPP |
+
+### 4.5 Architecture Overview
+
+The system follows a three-tier client-server architecture:
+
+| Tier | Description |
+|---|---|
+| **Presentation** | Static HTML/CSS/JS files served from `/public`. The browser communicates with the backend exclusively via `fetch()` calls to the REST API. |
+| **Business Logic** | Express.js application in `server.js` and route handlers. Enforces authentication, RBAC middleware, input validation, order lifecycle rules, and inventory operations. |
+| **Data** | MySQL relational database accessed via a `mysql2` connection pool. Indexes applied to `order_date`, `user_id`, and `status` for query performance. |
+
+---
+
+## 5. Requirements Summary
+
+### 5.1 Functional Requirements
 
 | Module / Epic | Identifiers | Total |
 |---|---|:---:|
@@ -212,13 +263,10 @@ This document specifies the functional and non-functional requirements of **Chic
 | EP-04 — Tables | FR-15 | 1 |
 | EP-05 — Orders | FR-16 to FR-22 | 7 |
 | EP-06 — Sales Reports | FR-23 to FR-26 | 4 |
-| EP-07 — Order History | FR-27 to FR-29 | 3 |
-| EP-07 — Report Export | FR-30 to FR-32 | 3 |
-| EP-07 — RBAC | FR-33 to FR-35 | 3 |
-| EP-07 — Performance & Error Handling | FR-36 to FR-39 | 4 |
+| EP-07 — Enhancements & Polish *(Order History, Report Export, RBAC, Performance & Error Handling)* | FR-27 to FR-39 | 13 |
 | **Total** | **FR-01 to FR-39** | **39** |
 
-### 4.2 Non-Functional Requirements
+### 5.2 Non-Functional Requirements
 
 | Category | Identifiers | Total |
 |---|---|:---:|
@@ -231,17 +279,5 @@ This document specifies the functional and non-functional requirements of **Chic
 | **Total** | **NFR-01 to NFR-18** | **18** |
 
 ---
-## 4. Technology Stack
 
-**Backend:** Node.js v18+ • Express.js • mysql2  
-
-**Database:** MySQL 8.0+ (XAMPP)  
-
-**Frontend:** HTML5 • CSS3 • Vanilla JavaScript • Chart.js • jsPDF 
-
-**Tools:** Git • GitHub • Nodemon • Thunder Client / Postman
-
----
-
-
-* CBTIS 47 · 2026*
+*Document generated for academic use — CBTIS 47 · 2026*
