@@ -234,9 +234,13 @@ This document specifies the functional and non-functional requirements of **Chic
 ## 4. Technology Stack
 
 **Backend:** Node.js v18+ • Express.js • mysql2  
+
 **Database:** MySQL 8.0+ (XAMPP)  
-**Frontend:** HTML5 • CSS3 • Vanilla JavaScript • Chart.js • jsPDF  
+
+**Frontend:** HTML5 • CSS3 • Vanilla JavaScript • Chart.js • jsPDF 
+
 **Tools:** Git • GitHub • Nodemon • Thunder Client / Postman
+
 ---
 
 
