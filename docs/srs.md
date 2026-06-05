@@ -231,5 +231,13 @@ This document specifies the functional and non-functional requirements of **Chic
 | **Total** | **NFR-01 to NFR-18** | **18** |
 
 ---
+## 4. Technology Stack
+
+**Backend:** Node.js v18+ • Express.js • mysql2  
+**Database:** MySQL 8.0+ (XAMPP)  
+**Frontend:** HTML5 • CSS3 • Vanilla JavaScript • Chart.js • jsPDF  
+**Tools:** Git • GitHub • Nodemon • Thunder Client / Postman
+---
+
 
 * CBTIS 47 · 2026*
