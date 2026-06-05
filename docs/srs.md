@@ -203,40 +203,40 @@ This document specifies the functional and non-functional requirements of **Chic
 
 ### 4.1 Backend
 
-| Component      | Technology   | Version      |
-|----------------|--------------|--------------|
-| Runtime        | Node.js      | v26.3+ (Latest LTS) |
-| Framework      | Express.js   | v5.2.x (Latest) |
-| DB Connector   | mysql2       | v3.22.4 |
-| Dev Tooling    | Nodemon      | v3.1.14 |
+| Component      | Technology   | Version          |
+|----------------|--------------|------------------|
+| Runtime        | Node.js      | 26.3.0           |
+| Framework      | Express.js   | 5.2.1            |
+| DB Connector   | mysql2       | 3.22.4           |
+| Dev Tooling    | Nodemon      | 3.1.14           |
 
 ### 4.2 Database
 
-| Component            | Technology                  | Version                  |
-|----------------------|-----------------------------|--------------------------|
-| Relational Database  | MySQL                       | 8.4.x (Latest LTS) / 9.7+ |
-| Local Environment    | XAMPP (Apache + MySQL)      | Latest                   |
-| Default Port         | 3306                        | —                        |
-| Database Name        | `restaurant_db`             | —                        |
+| Component            | Technology                  | Version             |
+|----------------------|-----------------------------|---------------------|
+| Relational Database  | MySQL                       | 8.4.3               |
+| Local Environment    | XAMPP (Apache + MySQL)      | 3.6.4               |
+| Default Port         | 3306                        | —                   |
+| Database Name        | `restaurant_db`             | —                   |
 
 ### 4.3 Frontend
 
-| Component     | Technology              | Version / Nota          |
-|---------------|-------------------------|-------------------------|
-| Markup        | HTML5                   | —                       |
-| Styling       | CSS3                    | —                       |
-| Scripting     | Vanilla JavaScript      | —                       |
-| Charts        | Chart.js (CDN)          | v4.5.1                  |
-| PDF Export    | jsPDF (CDN)             | v4.2.1                  |
+| Component     | Technology              | Version      |
+|---------------|-------------------------|--------------|
+| Markup        | HTML5                   | —            |
+| Styling       | CSS3                    | —            |
+| Scripting     | Vanilla JavaScript      | —            |
+| Charts        | Chart.js (CDN)          | 4.5.1        |
+| PDF Export    | jsPDF (CDN)             | 4.2.1        |
 
 ### 4.4 DevOps & Tooling
 
-| Component           | Technology              | Version / Nota       |
-|---------------------|-------------------------|----------------------|
-| Version Control     | Git                     | Latest               |
-| Repository Hosting  | GitHub                  | —                    |
-| API Testing         | Thunder Client / Postman| Latest               |
-| Local Server        | XAMPP                   | Latest               |
+| Component           | Technology              | Version / Nota      |
+|---------------------|-------------------------|---------------------|
+| Version Control     | Git                     | 2.47.0              |
+| Repository Hosting  | GitHub                  | —                   |
+| API Testing         | Thunder Client / Postman| Latest              |
+| Local Server        | XAMPP                   | 3.6.4               |
 
 ### 4.5 Architecture Overview
 
@@ -247,7 +247,6 @@ The system follows a **three-tier client-server architecture**:
 | **Presentation**  | Static HTML/CSS/JS files served from `/public`. The browser communicates with the backend exclusively via `fetch()` calls to the REST API. |
 | **Business Logic**| Express.js application in `server.js` and route handlers. Enforces authentication, RBAC middleware, input validation, order lifecycle rules, and inventory operations. |
 | **Data**          | MySQL relational database accessed via a `mysql2` connection pool. Indexes applied to `order_date`, `user_id`, and `status` for query performance. |
----
 
 ## 5. Requirements Summary
 
