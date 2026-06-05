@@ -199,56 +199,54 @@ This document specifies the functional and non-functional requirements of **Chic
 | NFR-18 | Destructive actions (delete, cancel order) must require a confirmation dialog before proceeding. |
 
 ---
-
 ## 4. Technology Stack
 
 ### 4.1 Backend
 
-| Component | Technology | Version |
-|---|---|---|
-| Runtime | Node.js | v18+ |
-| Framework | Express.js | Latest |
-| DB Connector | mysql2 | Latest |
-| Dev Tooling | Nodemon | Latest |
+| Component      | Technology   | Version      |
+|----------------|--------------|--------------|
+| Runtime        | Node.js      | v26.3+ (Latest LTS) |
+| Framework      | Express.js   | v5.2.x (Latest) |
+| DB Connector   | mysql2       | v3.22.4 |
+| Dev Tooling    | Nodemon      | v3.1.14 |
 
 ### 4.2 Database
 
-| Component | Technology | Version |
-|---|---|---|
-| Relational Database | MySQL | 5.7+ / 8.0+ |
-| Local Environment | XAMPP (Apache + MySQL) | — |
-| Default Port | 3306 | — |
-| Database Name | `restaurant_db` | — |
+| Component            | Technology                  | Version                  |
+|----------------------|-----------------------------|--------------------------|
+| Relational Database  | MySQL                       | 8.4.x (Latest LTS) / 9.7+ |
+| Local Environment    | XAMPP (Apache + MySQL)      | Latest                   |
+| Default Port         | 3306                        | —                        |
+| Database Name        | `restaurant_db`             | —                        |
 
 ### 4.3 Frontend
 
-| Component | Technology |
-|---|---|
-| Markup | HTML5 |
-| Styling | CSS3 |
-| Scripting | Vanilla JavaScript |
-| Charts | Chart.js (CDN) |
-| PDF Export | jsPDF (CDN) |
+| Component     | Technology              | Version / Nota          |
+|---------------|-------------------------|-------------------------|
+| Markup        | HTML5                   | —                       |
+| Styling       | CSS3                    | —                       |
+| Scripting     | Vanilla JavaScript      | —                       |
+| Charts        | Chart.js (CDN)          | v4.5.1                  |
+| PDF Export    | jsPDF (CDN)             | v4.2.1                  |
 
 ### 4.4 DevOps & Tooling
 
-| Component | Technology |
-|---|---|
-| Version Control | Git |
-| Repository Hosting | GitHub |
-| API Testing | Thunder Client / Postman |
-| Local Server | XAMPP |
+| Component           | Technology              | Version / Nota       |
+|---------------------|-------------------------|----------------------|
+| Version Control     | Git                     | Latest               |
+| Repository Hosting  | GitHub                  | —                    |
+| API Testing         | Thunder Client / Postman| Latest               |
+| Local Server        | XAMPP                   | Latest               |
 
 ### 4.5 Architecture Overview
 
-The system follows a three-tier client-server architecture:
+The system follows a **three-tier client-server architecture**:
 
-| Tier | Description |
-|---|---|
-| **Presentation** | Static HTML/CSS/JS files served from `/public`. The browser communicates with the backend exclusively via `fetch()` calls to the REST API. |
-| **Business Logic** | Express.js application in `server.js` and route handlers. Enforces authentication, RBAC middleware, input validation, order lifecycle rules, and inventory operations. |
-| **Data** | MySQL relational database accessed via a `mysql2` connection pool. Indexes applied to `order_date`, `user_id`, and `status` for query performance. |
-
+| Tier              | Description |
+|-------------------|-----------|
+| **Presentation**  | Static HTML/CSS/JS files served from `/public`. The browser communicates with the backend exclusively via `fetch()` calls to the REST API. |
+| **Business Logic**| Express.js application in `server.js` and route handlers. Enforces authentication, RBAC middleware, input validation, order lifecycle rules, and inventory operations. |
+| **Data**          | MySQL relational database accessed via a `mysql2` connection pool. Indexes applied to `order_date`, `user_id`, and `status` for query performance. |
 ---
 
 ## 5. Requirements Summary
