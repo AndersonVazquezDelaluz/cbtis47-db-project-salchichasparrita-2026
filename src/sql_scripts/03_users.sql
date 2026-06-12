@@ -5,7 +5,7 @@
 -- Role: Database Administrator (Matthew Venegas)
 -- =============================================
 
-USE restaurant_db;
+USE chicaffe_db;   -- Cambia al nombre real de tu base de datos
 
 -- =============================================
 -- 1. CREACIÓN DE USUARIOS (Least Privilege Principle)
@@ -29,17 +29,17 @@ IDENTIFIED BY 'Admin2026_StrongPass!!';
 
 -- Usuario de la Aplicación Web (mínimos privilegios necesarios)
 GRANT SELECT, INSERT, UPDATE, DELETE 
-ON restaurant_db.* 
+ON chicaffe_db.* 
 TO 'chicaffe_app'@'localhost';
 
 -- Usuario para reportes (solo lectura)
 GRANT SELECT 
-ON restaurant_db.* 
+ON chicaffe_db.* 
 TO 'chicaffe_reports'@'localhost';
 
 -- Usuario Administrador (control total)
 GRANT ALL PRIVILEGES 
-ON restaurant_db.* 
+ON chicaffe_db.* 
 TO 'chicaffe_admin'@'localhost';
 
 -- =============================================
@@ -47,11 +47,11 @@ TO 'chicaffe_admin'@'localhost';
 -- =============================================
 
 REVOKE CREATE, DROP, ALTER, INDEX 
-ON restaurant_db.* 
+ON chicaffe_db.* 
 FROM 'chicaffe_app'@'localhost';
 
 REVOKE CREATE, DROP, ALTER 
-ON restaurant_db.* 
+ON chicaffe_db.* 
 FROM 'chicaffe_reports'@'localhost';
 
 -- =============================================
